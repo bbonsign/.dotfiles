@@ -1,0 +1,43 @@
+# General
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+# Python
+__pycache__
+.pyc
+
+# VSCode
+.vscode
+
+# Created by default in Django Apps
+db.sqlite3
+
+# Ignore my dotfiles directory under version control
+.dotfiles.git
+
+# Ignore node_modules folder created by npm.  Track packages.json instead
+node_modules

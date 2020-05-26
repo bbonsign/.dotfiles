@@ -5,7 +5,9 @@
     ~/.bashrc: bashrc
     ~/.bash_aliases: bash_aliases
     ~/.gitconfig: gitconfig
+    ~/.gitignore: gitignore
     ~/.vimrc: vimrc
     ~/.zshrc: zshrc
-
-
+    ~/.nanorc: nanorc
+    ~/.emacs-profiles.el: emacs-profiles.el
+    ~/.tmux.conf.local: tmux.conf.local
