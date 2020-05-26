@@ -1,0 +1,18 @@
+[user]
+	name = Brian Bonsignore
+	email = bonsignore.brian@gmail.com
+	username = bbonsign
+[credential]
+	helper = osxkeychain
+[core]
+	excludesfile = /Users/bbonsign/.gitignore
+	editor = nano
+[alias]
+	last = log -1 HEAD
+	st = status
+	unstage = reset HEAD --
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
