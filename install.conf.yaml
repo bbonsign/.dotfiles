@@ -1,13 +1,41 @@
-- clean: ['~']
+- defaults:
+    link:
+      create: true
+      relink: true
+
+- clean:
+    ~/:
+      force: false
+    ~/.config:
+      recursive: true
 
 - link:
+    ~/.config/fish: 
+      glob: true
+      path: fish/*
     ~/.bash_profile: bash_profile
     ~/.bashrc: bashrc
     ~/.bash_aliases: bash_aliases
+    ~/.zshrc: zshrc
     ~/.gitconfig: gitconfig
     ~/.gitignore: gitignore
+    ~/.tmux.conf.local: tmux.conf.local
     ~/.vimrc: vimrc
-    ~/.zshrc: zshrc
     ~/.nanorc: nanorc
     ~/.emacs-profiles.el: emacs-profiles.el
-    ~/.tmux.conf.local: tmux.conf.local
+    ~/.doom.d: doom.d
+    ~/.config/karabiner:
+      if: '[ (uname) = Darwin ]'
+      glob: true
+      path: karabiner/*
+
+- create:
+  - ~/projects
+  - ~/tmp
+
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+  -
+    command: ./fish/abbr.fish
+    description: Read fish abbrs from fish/abbr.fish
