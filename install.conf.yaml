@@ -13,16 +13,20 @@
     ~/.config/fish: 
       glob: true
       path: fish/*
-    ~/.bash_profile: bash_profile
-    ~/.bashrc: bashrc
-    ~/.bash_aliases: bash_aliases
-    ~/.zshrc: zshrc
-    ~/.gitconfig: gitconfig
-    ~/.gitignore: gitignore
-    ~/.tmux.conf.local: tmux.conf.local
-    ~/.vimrc: vimrc
-    ~/.nanorc: nanorc
-    ~/.emacs-profiles.el: emacs-profiles.el
+    ~/.bash_profile:
+    ~/.bashrc:
+    ~/.bash_aliases:
+    ~/.zshrc:
+    ~/.gitconfig:
+    ~/.gitignore:
+    ~/.tmux.conf.local:
+    ~/.vimrc:
+    ~/.nanorc:
+    ~/.emacs: chemacs/.emacs
+    ~/.emacs-profiles.el:
+    ~/.emacs.d:
+      glob: true
+      path: emacs.d/*
     ~/.doom.d: doom.d
     ~/.config/karabiner:
       if: '[ (uname) = Darwin ]'
