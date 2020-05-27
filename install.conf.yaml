@@ -10,6 +10,7 @@
       recursive: true
 
 - link:
+    ~/.config/starship.toml: starship.toml 
     ~/.config/fish: 
       glob: true
       path: fish/*
@@ -20,7 +21,11 @@
     ~/.gitconfig:
     ~/.gitignore:
     ~/.tmux.conf.local:
-    ~/.vimrc:
+    ~/.vim: nvim
+    ~/.vimrc: nvim/init.vim
+    ~/.config/nvim/:
+      glob: true
+      path: nvim/*
     ~/.nanorc:
     ~/.emacs: chemacs/.emacs
     ~/.emacs-profiles.el:
@@ -36,7 +41,7 @@
 - create:
   - ~/projects
   - ~/tmp
-
+  - ~/.vim/undo
 
 - shell:
   - [git submodule update --init --recursive, Installing submodules]
