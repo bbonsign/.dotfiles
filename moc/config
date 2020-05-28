@@ -1,0 +1,18 @@
+# Default music directory
+MusicDir = "/Users/bbonsign/Dropbox/Music"
+
+# Theme
+#Theme = "/home/bbonsign/.moc/themes/bb_darkdot_theme"
+
+## For MacOS
+Theme = "/Users/bbonsign/.moc/themes/bbMAC_darkdot_theme"
+
+# Show file titles (title, author, album) instead of file names.
+# ReadTags = no
+
+# ALSAMixer1=Headphone
+
+#Layout1 = playlist(50%,50%,50%,50%)
+
+# Playlist track format string
+FormatString = "%(t:%t:)"

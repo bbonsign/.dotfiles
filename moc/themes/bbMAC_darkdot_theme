@@ -1,0 +1,44 @@
+# Theme to match the 'darkdot' vim theme, by David Lazar (david_bv|at|yahoo|com)
+# Modified by BB, Feb 20 2020
+# added 'marked_info' parameter based on examining source code at:
+# https://github.com/jonsafari/mocp/blob/master/themes.c
+# Parameters: https://github.com/jonsafari/mocp/blob/master/themes.c#L171
+# COLORS: black, red, green, yellow, blue, magenta, cyan, white, default, grey	
+# The lines should be in format:
+# ELEMENT = FOREGROUND BACKGROUND [ATTRIBUTE[,ATTRIBUTE,..]] 
+
+background		= default	default
+frame			= default	default
+window_title		= white		default
+directory		= white		default 
+selected_directory	= default	white	reverse
+playlist		= default	default	bold
+selected_playlist	= black		white
+file			= white 	default
+selected_file		= default	default	bold,underline
+marked_file		= blue		default	underline,reverse,bold
+marked_selected_file	= blue		default	underline,reverse,bold
+info			= default	default
+marked_info		= blue  	default	bold,reverse
+selected_info		= default	default	bold,underline
+marked_selected_info	= default	default	underline,reverse,bold
+status			= white		default
+title			= white		default bold
+state			= blue		default	bold
+current_time		= white		default	bold
+time_left		= blue		default	bold
+total_time		= white		default
+time_total_frames	= white		default
+sound_parameters	= white		default bold
+legend			= white		default
+disabled		= black		default bold
+enabled			= blue		default	bold
+empty_mixer_bar		= white		default
+filled_mixer_bar	= black		white
+empty_time_bar		= white		default
+filled_time_bar		= black		white
+entry			= white		default
+entry_title		= blue		default
+error			= white		red	bold
+message			= white		default
+plist_time		= white		default

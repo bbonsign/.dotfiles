@@ -1,5 +1,7 @@
+# TODO: .vscode, .fonts, list of brew packages for mac & apt for linux
 - defaults:
     link:
+      glob: true
       create: true
       relink: true
 
@@ -14,31 +16,31 @@
     ~/.gitignore:
     ~/.config/starship.toml: starship.toml 
     ~/.config/fish: 
-      glob: true
       path: fish/*
     ~/.bash_profile:
     ~/.bashrc:
     ~/.bash_aliases:
     ~/.zshrc:
     ~/.config/kitty: kitty
+    ~/.tmux.conf: .tmux/.tmux.conf
     ~/.tmux.conf.local:
     ~/.vim: nvim
     ~/.vimrc: nvim/init.vim
     ~/.config/nvim/:
-      glob: true
       path: nvim/*
+    ~/.nano: .nano
     ~/.nanorc:
     ~/.emacs: chemacs/.emacs
     ~/.emacs-profiles.el:
     ~/.emacs.d:
-      glob: true
       path: emacs.d/*
     ~/.doom.d: doom.d
     ~/.config/karabiner:
       if: '[ (uname) = Darwin ]'
-      glob: true
       path: karabiner/*
     ~/.config/neofetch/config.conf: neofetch/config.conf
+    ~/.moc:
+      path: moc/*
 
 - create:
   - ~/projects
