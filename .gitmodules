@@ -4,3 +4,9 @@
 [submodule "chemacs"]
 	path = chemacs
 	url = https://github.com/plexus/chemacs.git
+[submodule ".tmux"]
+	path = .tmux
+	url = https://github.com/gpakosz/.tmux.git
+[submodule ".nano"]
+	path = .nano
+	url = https://github.com/scopatz/nanorc.git
