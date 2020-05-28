@@ -1,4 +1,5 @@
 # TODO: .vscode, .fonts, list of brew packages for mac & apt for linux
+# chemacs setup might have to be fixed. 'Mine' profile isn't loading correctly
 - defaults:
     link:
       glob: true
