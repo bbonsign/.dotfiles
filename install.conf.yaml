@@ -10,6 +10,8 @@
       recursive: true
 
 - link:
+    ~/.gitconfig:
+    ~/.gitignore:
     ~/.config/starship.toml: starship.toml 
     ~/.config/fish: 
       glob: true
@@ -18,8 +20,7 @@
     ~/.bashrc:
     ~/.bash_aliases:
     ~/.zshrc:
-    ~/.gitconfig:
-    ~/.gitignore:
+    ~/.config/kitty: kitty
     ~/.tmux.conf.local:
     ~/.vim: nvim
     ~/.vimrc: nvim/init.vim
@@ -37,6 +38,7 @@
       if: '[ (uname) = Darwin ]'
       glob: true
       path: karabiner/*
+    ~/.config/neofetch/config.conf: neofetch/config.conf
 
 - create:
   - ~/projects
