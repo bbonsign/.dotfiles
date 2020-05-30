@@ -30,6 +30,9 @@ let g:airline_powerline_fonts = 1
 let g:better_whitespace_enabled=1
 let g:strip_whitespace_on_save=1
 
+" Prompt for sneak
+let g:sneak#prompt = '🔎'
+
 " Example Plug install options
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
