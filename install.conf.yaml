@@ -13,6 +13,9 @@
     ~/.config:
       recursive: true
 
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]
+
 - link:
     ~/.gitconfig:
     ~/.gitignore:
@@ -56,7 +59,6 @@
   - ~/.vim/undo
 
 - shell:
-  - [git submodule update --init --recursive, Installing submodules]
   -
     command: ./fish/abbr.fish
     description: Read fish abbrs from fish/abbr.fish
