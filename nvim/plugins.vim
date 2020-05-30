@@ -26,6 +26,11 @@ call plug#end()
 
 let g:airline_powerline_fonts = 1
 
+" Highlight trailing whitespace; remove it on save
+let g:better_whitespace_enabled=1
+let g:strip_whitespace_on_save=1
+
+" Example Plug install options
 " Specify a directory for plugins
 " - For Neovim: stdpath('data') . '/plugged'
 " - Avoid using standard Vim directory names like 'plugin'
