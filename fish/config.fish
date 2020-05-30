@@ -1,6 +1,9 @@
 starship init fish | source
 
 # set PATH <mydir> $PATH
+set -xg FZF_DEFAULT_OPTS '--height=100% --preview="bat {} --color=always"'
+
+alias vim=nvim
 
 function fish_greeting \
     --description="Fish-shell colorful ASCII-art logo" \
