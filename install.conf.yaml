@@ -1,5 +1,6 @@
-# TODO: .vscode, .fonts, list of brew packages for mac & apt for linux
 # chemacs setup might have to be fixed. 'Mine' profile isn't loading correctly
+# Notes that iterm2 settings are set in macos.sh, so it's not needed here.
+
 - defaults:
     link:
       glob: true
@@ -15,8 +16,8 @@
 - link:
     ~/.gitconfig:
     ~/.gitignore:
-    ~/.config/starship.toml: starship.toml 
-    ~/.config/fish: 
+    ~/.config/starship.toml: starship.toml
+    ~/.config/fish:
       path: fish/*
     ~/.bash_profile:
     ~/.bashrc:
