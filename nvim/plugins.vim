@@ -11,7 +11,7 @@ Plug 'junegunn/vim-plug'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
-
+Plug 'ntpeters/vim-better-whitespace'
 
 Plug 'ciaranm/securemodelines'
 Plug 'editorconfig/editorconfig-vim'
