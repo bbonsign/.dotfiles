@@ -1,0 +1,34 @@
+# install with
+# cat .code-extensions | xargs -L 1 code --install-extension
+
+aeschli.vscode-css-formatter
+asvetliakov.vscode-neovim
+ban.spellright
+batisteo.vscode-django
+bierner.emojisense
+bigonesystems.django
+bmalehorn.vscode-fish
+chenxsan.vscode-standardjs
+donjayamanne.python-extension-pack
+dsebastien.vscode-python-pack
+emmanuelbeziat.vscode-great-icons
+formulahendry.code-runner
+GitHub.vscode-pull-request-github
+magicstack.MagicPython
+marp-team.marp-vscode
+mgesbert.python-path
+ms-azuretools.vscode-docker
+ms-python.python
+ms-vscode.Go
+ms-vsliveshare.vsliveshare
+octref.vetur
+redhat.vscode-yaml
+rkwan94.vscode-emacs-improved
+shamanu4.django-intellisense
+tootone.org-mode
+torn4dom4n.latex-support
+VisualStudioExptTeam.vscodeintellicode
+vscode-icons-team.vscode-icons
+wholroyd.jinja
+yeannylam.smart-beginning-of-line
+
