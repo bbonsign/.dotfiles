@@ -102,12 +102,16 @@ nnoremap <C-n> :nohlsearch<cr>
 nnoremap <leader><leader> :
 vnoremap <leader><leader> :
 
+" Run :FZF for file selection + preview
 set rtp+=/usr/local/opt/fzf
 
 nnoremap <Leader>n :NERDTreeToggle<CR>
 
+" Save/write buffer to file
+nnoremap <Leader>fs :w<CR>
+nnoremap <Leader>fw :w<CR>
 
-
+" Reload config file
 nnoremap <Leader>r :source $MYVIMRC<CR>
 
 
