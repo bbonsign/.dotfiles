@@ -47,12 +47,11 @@ defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 # Disable “natural” (Lion-style) scrolling
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
 
-
 # Disable press-and-hold for keys in favor of key repeat
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 1 # Normal min is 2 (30ms)
+defaults write NSGlobalDomain KeyRepeat -int 2 # Normal min is 2 (30ms)
 defaults write NSGlobalDomain InitialKeyRepeat -int 15 # Normal min is 15 (225ms)
 
 ###############################################################################
