@@ -1,6 +1,3 @@
-# install with
-# cat .code-extensions | xargs -L 1 code --install-extension
-
 aeschli.vscode-css-formatter
 asvetliakov.vscode-neovim
 ban.spellright

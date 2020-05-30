@@ -23,6 +23,7 @@ Follow the instructions and you’ll have Xcode and Xcode command line tools bot
 installed.
 
 When setting up a Mac for the first time, run `macos.sh` to set common settings.
+In System preferences -> Sound, change Alert Volume slider to 0 to stop terminal bell.
 
 ### Homebrew
 Install `brew` with
@@ -33,7 +34,7 @@ Note that Command Line Tools for Xcode are required for Homebrew,
 <https://docs.brew.sh/Installation>
 Run `brew bundle` to generate a Brewfile.
 Run `brew bundle intsall -v` to install the packages (`-v` for verbose output,
-and it will look in the current directory for Brewfile).
+and it will look in the current directory for `Brewfile`).
 After installing fzf with brew, enable shell extensions (better shell integration):
 ```shell
 /usr/local/opt/fzf/install
@@ -48,9 +49,15 @@ echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
 chsh -s `which fish`
 ```
 
-### Other programs/TODO
-I haven't looked into installing these with Homebrew yet, so for now its the long way
+### Final steps/Other programs/TODO
+After Vscode is installed, install the extentions:
+```shell
+cd ~/.dotfiles
+cat vscode/extensions | xargs -L 1 code --install-extension
+```
+When starting Neovim on a new machine, `:PlugInstall` to activate the plugins I have.
 
+I haven't looked into installing these with Homebrew yet, so for now its the long way
 - Docker: <https://docs.docker.com/docker-for-mac/install/>
 - Dropbox
 - Karibiner-Elements for keyboard remapping: <https://karabiner-elements.pqrs.org/>
