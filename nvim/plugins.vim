@@ -1,4 +1,5 @@
-" Plugings with vim-plug
+" Plugings with vim-plug: https://github.com/junegunn/vim-plug
+" See the README for example import options
 " Automatically install vim-plug manager if it isn't yet
 if empty(glob('~/.local/share/nvim/site/autoload/plug.vim'))
   silent !curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
@@ -22,9 +23,34 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'joshdick/onedark.vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+" Terminal
+Plug 'voldikss/vim-floaterm'
 call plug#end()
 
+" Automatically install missing plugins on startup
+autocmd VimEnter *
+  \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
+  \|   PlugInstall --sync | q
+  \| endif
+
+" enable tabline
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#left_sep = ''
+let g:airline#extensions#tabline#left_alt_sep = ''
+let g:airline#extensions#tabline#right_sep = ''
+let g:airline#extensions#tabline#right_alt_sep = ''
+
+" enable powerline fonts
 let g:airline_powerline_fonts = 1
+"let g:airline_left_sep = ''
+"let g:airline_right_sep = ''
+
+" Switch to your current theme
+let g:airline_theme = 'onedark'
+
+" Always show tabs
+set showtabline=2
 
 " Highlight trailing whitespace; remove it on save
 let g:better_whitespace_enabled=1
@@ -33,37 +59,19 @@ let g:strip_whitespace_on_save=1
 " Prompt for sneak
 let g:sneak#prompt = '🔎'
 
-" Example Plug install options
-" Specify a directory for plugins
-" - For Neovim: stdpath('data') . '/plugged'
-" - Avoid using standard Vim directory names like 'plugin'
-" Make sure you use single quotes
-" Examples
-"" Shorthand notation; fetches https://github.com/junegunn/vim-easy-align
-"Plug 'junegunn/vim-easy-align'
 
-"" Any valid git URL is allowed
-"Plug 'https://github.com/junegunn/vim-github-dashboard.git'
+" let g:floaterm_wintype='normal'
+" let g:floaterm_height=6
 
-"" Multiple Plug commands can be written in a single line using | separators
-"Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+let g:floaterm_keymap_toggle = '<F1>'
+let g:floaterm_keymap_next   = '<F2>'
+let g:floaterm_keymap_prev   = '<F3>'
+let g:floaterm_keymap_new    = '<F4>'
 
-"" On-demand loading
-"Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
-"Plug 'tpope/vim-fireplace', { 'for': 'clojure' }
-
-"" Using a non-master branch
-"Plug 'rdnetto/YCM-Generator', { 'branch': 'stable' }
-
-"" Using a tagged release; wildcard allowed (requires git 1.9.2 or above)
-"Plug 'fatih/vim-go', { 'tag': '*' }
-
-"" Plugin options
-"Plug 'nsf/gocode', { 'tag': 'v.20150303', 'rtp': 'vim' }
-
-"" Plugin outside ~/.vim/plugged with post-update hook
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-
-"" Unmanaged plugin (manually installed and updated)
-"Plug '~/my-prototype-plugin'
-
+" Floaterm
+let g:floaterm_gitcommit='floaterm'
+let g:floaterm_autoinsert=1
+let g:floaterm_width=0.8
+let g:floaterm_height=0.8
+let g:floaterm_wintitle=0
+let g:floaterm_autoclose=1
