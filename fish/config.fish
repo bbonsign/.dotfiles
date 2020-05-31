@@ -5,6 +5,7 @@ set -xg FZF_DEFAULT_OPTS '--height=100% --preview="bat {} --color=always"'
 
 alias vim=nvim
 alias vi=nvim
+alias v=nvim
 
 function fish_greeting \
     --description="Fish-shell colorful ASCII-art logo" \
