@@ -7,7 +7,7 @@ alias vim=nvim
 alias vi=nvim
 alias v=nvim
 
-function fish_greeting \
+function print_fish \
     --description="Fish-shell colorful ASCII-art logo" \
     --argument-names outer_color medium_color inner_color mouth eye
 
@@ -40,6 +40,10 @@ function fish_greeting \
                        (UU)'(set_color normal)
 end
 
+function fish_greeting \
+    --description="Pipe ASCII fish through lolcat"
+    print_fish | lolcat
+end
 
 if command -sq gls
     function ls --description "ls command of GNU coreutils"

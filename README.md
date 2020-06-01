@@ -24,6 +24,7 @@ installed.
 
 When setting up a Mac for the first time, run `macos.sh` to set common settings.
 In System preferences -> Sound, change Alert Volume slider to 0 to stop terminal bell.
+A topbar extension that shows the calendar like in Gnome: <https://www.mowglii.com/itsycal/>
 
 ### Homebrew
 Install `brew` with
