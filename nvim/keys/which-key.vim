@@ -186,7 +186,7 @@ let g:which_key_map.w = {
       \ 'j' : ['<C-w>j'                               , 'move down'],
       \ 'k' : ['<C-w>k'                               , 'move up'],
       \ 'l' : ['<C-w>l'                               , 'move right'],
-      \ 's' : [':vsplit'                              , 'veritcal split'],
+      \ 's' : [':split'                              , 'veritcal split'],
       \ 'v' : [':vsplit'                              , 'veritcal split'],
       \ }
 
