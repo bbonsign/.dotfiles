@@ -18,7 +18,10 @@ Plug 'tpope/vim-surround'
 
 Plug 'ciaranm/securemodelines'
 Plug 'editorconfig/editorconfig-vim'
+
 Plug 'justinmk/vim-sneak'
+Plug 'unblevable/quick-scope'
+
 Plug 'liuchengxu/vim-which-key'
 
 Plug 'vim-airline/vim-airline'
@@ -29,6 +32,9 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 " Terminal - floating winots for fzf, etc.
 Plug 'voldikss/vim-floaterm'
+
+" Start Screen
+Plug 'mhinz/vim-startify'
 
 call plug#end()
 
