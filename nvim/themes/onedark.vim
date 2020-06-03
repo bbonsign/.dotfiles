@@ -23,3 +23,7 @@ if (has("termguicolors"))
     set termguicolors
 hi LineNr ctermbg=NONE guibg=NONE
 endif
+
+" Make vertical separator between panes more distinct
+highlight VertSplit guibg=#232733 guifg=#2d3c85 ctermbg=black ctermfg=cyan
+
