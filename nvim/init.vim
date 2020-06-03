@@ -17,8 +17,8 @@ source ~/.config/nvim/keys/mappings.vim
 source ~/.config/nvim/keys/which-key.vim
 
 " Source plugin configurations
-source ~/.config/nvim/plug-config/floaterm.vim
 source ~/.config/nvim/plug-config/fzf.vim
+source ~/.config/nvim/plug-config/floaterm.vim
 source ~/.config/nvim/plug-config/quickscope.vim
 source ~/.config/nvim/plug-config/sneak.vim
 source ~/.config/nvim/plug-config/startify.vim

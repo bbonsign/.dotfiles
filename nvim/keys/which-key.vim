@@ -33,7 +33,7 @@ let g:which_key_map['='] = [ '<C-W>='                     , 'balance windows' ]
 let g:which_key_map[','] = [ 'Startify'                   , 'start screen' ]
 let g:which_key_map['d'] = [ ':bd'                        , 'delete buffer']
 let g:which_key_map['e'] = [ ':CocCommand explorer'       , 'explorer' ]
-let g:which_key_map['F'] = [ ':FloatermNew fzf'           , 'search files' ]
+let g:which_key_map['F'] = [ ':Files'                     , 'search files' ]
 let g:which_key_map['h'] = [ ':help'                      , 'help']
 let g:which_key_map['n'] = [ ':NERDTreeToggle'            , 'NERTree Toggle']
 let g:which_key_map['q'] = [ 'q'                          , 'quit' ]
@@ -172,7 +172,7 @@ let g:which_key_map.t = {
       \ 'd' : [':FloatermNew lazydocker'                        , 'docker'],
       \ 'n' : [':FloatermNew node'                              , 'node'],
       \ 'N' : [':FloatermNew nnn'                               , 'nnn'],
-      \ 'p' : [':FloatermNew python'                            , 'python'],
+      \ 'p' : [':FloatermNew ipython'                           , 'python'],
       \ 'r' : [':FloatermNew ranger'                            , 'ranger'],
       \ 't' : [':FloatermToggle'                                , 'toggle'],
       \ 'y' : [':FloatermNew ytop'                              , 'ytop'],
@@ -182,12 +182,15 @@ let g:which_key_map.t = {
 " w is for window
 let g:which_key_map.w = {
       \ 'name' : '+window' ,
+      \ 'c' : ['<C-w>c'                               , 'close window'],
       \ 'h' : ['<C-w>h'                               , 'move left'],
       \ 'j' : ['<C-w>j'                               , 'move down'],
       \ 'k' : ['<C-w>k'                               , 'move up'],
       \ 'l' : ['<C-w>l'                               , 'move right'],
-      \ 's' : [':split'                              , 'veritcal split'],
+      \ 'o' : ['<C-W>W'                               , 'other window'],
+      \ 's' : [':split'                               , 'veritcal split'],
       \ 'v' : [':vsplit'                              , 'veritcal split'],
+      \ 'w' : ['<C-W>W'                               , 'other window'],
       \ }
 
 " Register which key map

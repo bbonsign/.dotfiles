@@ -2,6 +2,9 @@
 " Mappings using <leader> are set in ~/.config/nvim/keys/which-key.vim
 let mapleader=" "
 
+" Use Ctrl-s to increment number at cursor since we remap C-a below
+nnoremap <C-s> <C-a>
+
 " shortcuts for ctrl-a and ctrl-e in insert/normal mode
 inoremap <C-e> <Esc>A
 inoremap <C-a> <Esc>I
@@ -37,7 +40,11 @@ vnoremap <leader><leader> :
 inoremap <expr> <C-j> ("\<C-n>")
 inoremap <expr> <C-k> ("\<C-p>")
 
-
+" Toggle comments in visual mode, from tpope/commentary plugin
+" Note that C-_ actually maps to C-/, which is what I want
+" https://stackoverflow.com/questions/9051837/how-to-map-c-to-toggle-comments-in-vim
+nnoremap <C-_> :Commentary<CR>
+vnoremap <C-_> :Commentary<CR>
 
 
 " Save/write buffer to file
