@@ -30,6 +30,8 @@ Plug 'joshdick/onedark.vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
+Plug 'junegunn/fzf.vim'
+
 " Terminal - floating winots for fzf, etc.
 Plug 'voldikss/vim-floaterm'
 
