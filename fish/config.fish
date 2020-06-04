@@ -42,6 +42,10 @@ if command -sq gls
     end
 end
 
+set os (uname)
+if test "$os" = "Linux"
+	xcape -e 'Control_L=Escape'
+end
 
 # Base16 Shell
 if status --is-interactive
