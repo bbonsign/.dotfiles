@@ -1,7 +1,14 @@
 starship init fish | source
 
 # set PATH <mydir> $PATH
+
+# Shows a preview of the file via bat
 set -xg FZF_DEFAULT_OPTS '--height=100% --preview="bat {} --color=always"'
+# Use --preview option to display the full command on the preview window.
+# Bind ? key for toggling the preview window.
+set -xg FZF_CTRL_R_OPTS "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+# Shows tree of the directory in the preview window
+set -xg FZF_ALT_C_OPTS "--preview 'tree -C {} | head -200'"
 
 alias vim=nvim
 alias vi=nvim
