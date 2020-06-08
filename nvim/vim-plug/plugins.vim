@@ -9,12 +9,24 @@ endif
 
 call plug#begin()
 Plug 'junegunn/vim-plug'
+
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'ntpeters/vim-better-whitespace'
+Plug 'ap/vim-css-color'
+
+" Git
+Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'junegunn/gv.vim'
+
 Plug 'joom/vim-commentary'
 Plug 'tpope/vim-surround'
+Plug 'andymass/vim-matchup' " Not all features seem to work
+
+Plug 'glts/vim-radical'
 
 Plug 'ciaranm/securemodelines'
 Plug 'editorconfig/editorconfig-vim'
@@ -29,6 +41,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'joshdick/onedark.vim'
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'sheerun/vim-polyglot'
 
 Plug 'junegunn/fzf.vim'
 

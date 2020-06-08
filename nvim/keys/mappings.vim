@@ -21,11 +21,19 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" Use alt + hjkl to resize windows
-nnoremap <silent> <M-j>    :resize -2<CR>
-nnoremap <silent> <M-k>    :resize +2<CR>
-nnoremap <silent> <M-h>    :vertical resize -2<CR>
-nnoremap <silent> <M-l>    :vertical resize +2<CR>
+" Use alt + arrows to resize windows
+nnoremap <silent> <M-Down>    :resize -2<CR>
+nnoremap <silent> <M-Up>    :resize +2<CR>
+nnoremap <silent> <M-Left>    :vertical resize -2<CR>
+nnoremap <silent> <M-Right>    :vertical resize +2<CR>
+
+" Alt +kj drag line up/down
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Ctrl+h to stop highlighting search results
 vnoremap <C-n> :nohlsearch<cr>
@@ -45,6 +53,12 @@ inoremap <expr> <C-k> ("\<C-p>")
 " https://stackoverflow.com/questions/9051837/how-to-map-c-to-toggle-comments-in-vim
 nnoremap <C-_> :Commentary<CR>
 vnoremap <C-_> :Commentary<CR>
+
+" Map <c-space> to trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+
+" <CR> to confirm coc-completion, use:
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
 
 " Save/write buffer to file

@@ -10,7 +10,7 @@ let airline#extensions#tabline#tabs_label = ''
 let g:airline#extensions#tabline#fnamemod = ':t'
 
 " Disable tabline close button -- Can't seem to get it to show up!!
-let g:airline#extensions#tabline#show_close_button = 1
+let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#close_symbol = 'X'
 let g:airline#extensions#tabline#show_tab_type = 1
 let g:airline#extensions#tabline#show_tab_nr = 0
@@ -23,15 +23,15 @@ let g:airline#extensions#tabline#tabs_label = ''
 
 " enable powerline fonts
 let g:airline_powerline_fonts = 1
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-let g:airline_right_alt_sep = ''
+" let g:airline_left_sep = ''
+" let g:airline_right_sep = ''
+" let g:airline_right_alt_sep = ''
 
 let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 
 " Switch to your current theme
-" let g:airline_theme = 'onedark'
+let g:airline_theme = 'bubblegum'
 
 " Always show tabs
 set showtabline=2
