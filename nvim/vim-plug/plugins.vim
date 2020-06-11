@@ -10,11 +10,16 @@ endif
 call plug#begin()
 Plug 'junegunn/vim-plug'
 
-Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'ryanoasis/vim-devicons'
 Plug 'ntpeters/vim-better-whitespace'
 Plug 'ap/vim-css-color'
+
+" Markdown
+" Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -51,6 +56,9 @@ Plug 'voldikss/vim-floaterm'
 " Start Screen
 Plug 'mhinz/vim-startify'
 
+" Automatic table formating, basic spreadsheet, like in org mode
+Plug 'dhruvasagar/vim-table-mode'
+
 call plug#end()
 
 " Automatically install missing plugins on startup
@@ -58,8 +66,4 @@ autocmd VimEnter *
   \  if len(filter(values(g:plugs), '!isdirectory(v:val.dir)'))
   \|   PlugInstall --sync | q
   \| endif
-
-" Highlight trailing whitespace; remove it on save
-let g:better_whitespace_enabled=1
-let g:strip_whitespace_on_save=1
 
