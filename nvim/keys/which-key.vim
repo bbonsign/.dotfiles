@@ -27,7 +27,7 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 " Single mappings
 let g:which_key_map[' '] = [ ':'                          , 'Command' ]
 let g:which_key_map['/'] = [ ':Commentary'                , 'comment' ]
-let g:which_key_map['.'] = [ ':e $MYVIMRC'                , 'open init' ]
+" let g:which_key_map['.'] = [ ':e $MYVIMRC'                , 'open init' ]
 let g:which_key_map[';'] = [ ':Commands'                  , 'commands' ]
 let g:which_key_map['='] = [ '<C-W>='                     , 'balance windows' ]
 let g:which_key_map[','] = [ 'Startify'                   , 'start screen' ]
@@ -37,12 +37,17 @@ let g:which_key_map['F'] = [ ':Files'                     , 'search files' ]
 let g:which_key_map['h'] = [ ':help'                      , 'help']
 let g:which_key_map['n'] = [ ':NERDTreeToggle'            , 'NERTree Toggle']
 let g:which_key_map['q'] = [ 'q'                          , 'quit' ]
-let g:which_key_map['R'] = [ ':source $MYVIMRC'           , 'reload config' ]
+" let g:which_key_map['R'] = [ ':source $MYVIMRC'           , 'reload config' ]
 let g:which_key_map['S'] = [ ':SSave'                     , 'save session' ]
 let g:which_key_map['T'] = [ ':Rg'                        , 'search text' ]
 let g:which_key_map['W'] = [ 'w'                          , 'write' ]
 
 " Group mappings
+let g:which_key_map['.'] = {
+      \ 'name' : '+vimrc' ,
+      \ '.' : [ ':e $MYVIMRC'                , 'open init' ]  ,
+      \ 'r' : [ ':source $MYVIMRC'           , 'reload config' ]
+      \ }
 
 " a is for actions
 let g:which_key_map.a = {

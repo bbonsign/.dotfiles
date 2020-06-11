@@ -5,11 +5,17 @@ let mapleader=" "
 " Use Ctrl-s to increment number at cursor since we remap C-a below
 nnoremap <C-s> <C-a>
 
-" shortcuts for ctrl-a and ctrl-e in insert/normal mode
+" Another way to exit insert mode
+" <C-c> is another built-in option in addition to <Esc>
+:inoremap kj <esc>
+
+" shortcuts for ctrl-a and ctrl-e in insert/normalcommand mode
 inoremap <C-e> <Esc>A
 inoremap <C-a> <Esc>I
 nnoremap <C-e> $
 nnoremap <C-a> ^
+cnoremap <C-e> <End>
+cnoremap <C-a> <Home>
 
 " Move by visual lines
 nnoremap j gj
