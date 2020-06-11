@@ -14,6 +14,7 @@ alias vim=nvim
 alias vi=nvim
 alias v=nvim
 
+set -xg EDITOR nvim
 
 if command -sq gls
     function ls --description "ls command of GNU coreutils"
