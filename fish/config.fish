@@ -13,6 +13,7 @@ set -xg FZF_ALT_C_OPTS "--preview 'tree -C {} | head -200'"
 alias vim=nvim
 alias vi=nvim
 alias v=nvim
+alias t=tmux
 
 # Set nvim to default editor
 # CTRL-x CTRL-x opens EDITOR for editing long commands
