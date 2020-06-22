@@ -23,30 +23,49 @@ autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
+" Define this command separately so that the <leader>h doesn't run
+" help as a command and bring up the help home page. Instead,
+" this will allow me to enter a search term
+" Trailing space means the prompt is ready for a new argument
+nnoremap <leader>h :help<space>
+vnoremap <leader>h :help<space>
+
+nnoremap <leader>M :Man<space>
+vnoremap <leader>M :Man<space>
+
+" Another way to access registers easily
+nnoremap <leader>r "
+vnoremap <leader>r "
+
+nnoremap <leader>R :registers<CR>
+vnoremap <leader>R :registers<CR>
 
 " Single mappings
-let g:which_key_map[' '] = [ ':'                          , 'Command' ]
+let g:which_key_map['r'] = 'register'
 let g:which_key_map['/'] = [ ':Commentary'                , 'comment' ]
-" let g:which_key_map['.'] = [ ':e $MYVIMRC'                , 'open init' ]
 let g:which_key_map[';'] = [ ':Commands'                  , 'commands' ]
-let g:which_key_map['='] = [ '<C-W>='                     , 'balance windows' ]
-let g:which_key_map[','] = [ 'Startify'                   , 'start screen' ]
+let g:which_key_map['='] = [ 'z='                         , 'correct spelling' ]
+let g:which_key_map[','] = ['Buffers'                     , 'fzf-buffer']
 let g:which_key_map['d'] = [ ':bd'                        , 'delete buffer']
 let g:which_key_map['e'] = [ ':CocCommand explorer'       , 'explorer' ]
 let g:which_key_map['F'] = [ ':Files'                     , 'search files' ]
-let g:which_key_map['h'] = [ ':help'                      , 'help']
+let g:which_key_map['h'] = 'help'
+let g:which_key_map['M'] = 'man pages'
 let g:which_key_map['n'] = [ ':NERDTreeToggle'            , 'NERTree Toggle']
 let g:which_key_map['q'] = [ 'q'                          , 'quit' ]
-" let g:which_key_map['R'] = [ ':source $MYVIMRC'           , 'reload config' ]
-let g:which_key_map['S'] = [ ':SSave'                     , 'save session' ]
+let g:which_key_map['r'] = 'access register'
+let g:which_key_map['R'] = 'registers'
 let g:which_key_map['T'] = [ ':Rg'                        , 'search text' ]
 let g:which_key_map['W'] = [ 'w'                          , 'write' ]
+let g:which_key_map['x'] = [ ':StripWhitespace'           , 'strip whitespace' ]
 
 " Group mappings
 let g:which_key_map['.'] = {
       \ 'name' : '+vimrc' ,
-      \ '.' : [ ':e $MYVIMRC'                , 'open init' ]  ,
-      \ 'r' : [ ':source $MYVIMRC'           , 'reload config' ]
+      \ '.' : [ ':e $MYVIMRC'                , 'open init' ],
+      \ 'r' : [ ':source $MYVIMRC'           , 'reload config' ],
+      \ 'h' : [ 'Startify'                   , 'start screen' ],
+      \ 'S' : [ ':SSave'                     , 'save session' ],
       \ }
 
 " a is for actions
@@ -56,6 +75,7 @@ let g:which_key_map.a = {
       \ 'n' : [':set nonumber!'          , 'line-numbers'],
       \ 'r' : [':set norelativenumber!'  , 'relative line nums'],
       \ 's' : [':let @/ = ""'            , 'remove search highlight'],
+      \ 'S' : [':setlocal spell!'        , 'toggle spelling in buffer' ],
       \ 't' : [':FloatermToggle'         , 'terminal'],
       \ 'v' : [':Vista!!'                , 'tag viewer'],
       \ }
@@ -63,44 +83,23 @@ let g:which_key_map.a = {
 " b is for buffer
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
+      \ 'b' : ['Buffers'   , 'fzf-buffer']      ,
       \ 'd' : ['bd'        , 'delete-buffer']   ,
       \ 'f' : ['bfirst'    , 'first-buffer']    ,
       \ 'h' : ['Startify'  , 'home-buffer']     ,
       \ 'l' : ['blast'     , 'last-buffer']     ,
       \ 'n' : ['bnext'     , 'next-buffer']     ,
+      \ 's' : ['Scratch()' , 'scratch buffer']     ,
       \ 'p' : ['bprevious' , 'previous-buffer'] ,
-      \ 'b' : ['Buffers'   , 'fzf-buffer']      ,
       \ }
 
-" s is for search
-let g:which_key_map.s = {
-      \ 'name' : '+search' ,
-      \ '/' : [':History/'              , 'history'],
-      \ ';' : [':Commands'              , 'commands'],
-      \ 'a' : [':Ag'                    , 'text Ag'],
-      \ 'b' : [':BLines'                , 'current buffer'],
-      \ 'B' : [':Buffers'               , 'open buffers'],
-      \ 'c' : [':Commits'               , 'commits'],
-      \ 'C' : [':BCommits'              , 'buffer commits'],
-      \ 'f' : [':Files'                 , 'files'],
-      \ 'g' : [':GFiles'                , 'git files'],
-      \ 'G' : [':GFiles?'               , 'modified git files'],
-      \ 'h' : [':History'               , 'file history'],
-      \ 'H' : [':History:'              , 'command history'],
-      \ 'l' : [':Lines'                 , 'lines'] ,
-      \ 'm' : [':Marks'                 , 'marks'] ,
-      \ 'M' : [':Maps'                  , 'normal maps'] ,
-      \ 'p' : [':Helptags'              , 'help tags'] ,
-      \ 'P' : [':Tags'                  , 'project tags'],
-      \ 's' : [':CocList snippets'      , 'snippets'],
-      \ 'S' : [':Colors'                , 'color schemes'],
-      \ 't' : [':Rg'                    , 'text Rg'],
-      \ 'T' : [':BTags'                 , 'buffer tags'],
-      \ 'w' : [':Windows'               , 'search windows'],
-      \ 'y' : [':Filetypes'             , 'file types'],
-      \ 'z' : [':FZF'                   , 'FZF'],
+" f is for file
+let g:which_key_map.f = {
+      \ 'name' : '+file' ,
+      \ 'f' : [':Files'           , 'search files'],
+      \ 's' : [':w'               , 'write file'],
+      \ 'w' : [':w'               , 'write file'],
       \ }
-      " \ 's' : [':Snippets'     , 'snippets'],
 
 " g is for git
 let g:which_key_map.g = {
@@ -168,6 +167,49 @@ let g:which_key_map.l = {
       \ 'Z' : [':CocEnable'                          , 'enable CoC'],
       \ }
 
+" S is for search
+let g:which_key_map.S = {
+      \ 'name' : '+search' ,
+      \ '/' : [':History/'              , 'history'],
+      \ ';' : [':Commands'              , 'commands'],
+      \ 'a' : [':Ag'                    , 'text Ag'],
+      \ 'b' : [':BLines'                , 'current buffer'],
+      \ 'B' : [':Buffers'               , 'open buffers'],
+      \ 'c' : [':Commits'               , 'commits'],
+      \ 'C' : [':BCommits'              , 'buffer commits'],
+      \ 'f' : [':Files'                 , 'files'],
+      \ 'g' : [':GFiles'                , 'git files'],
+      \ 'G' : [':GFiles?'               , 'modified git files'],
+      \ 'h' : [':History'               , 'file history'],
+      \ 'H' : [':History:'              , 'command history'],
+      \ 'l' : [':Lines'                 , 'lines'] ,
+      \ 'm' : [':Marks'                 , 'marks'] ,
+      \ 'M' : [':Maps'                  , 'normal maps'] ,
+      \ 'p' : [':Helptags'              , 'help tags'] ,
+      \ 'P' : [':Tags'                  , 'project tags'],
+      \ 's' : [':CocList snippets'      , 'snippets'],
+      \ 'S' : [':Colors'                , 'color schemes'],
+      \ 't' : [':Rg'                    , 'text Rg'],
+      \ 'T' : [':BTags'                 , 'buffer tags'],
+      \ 'w' : [':Windows'               , 'search windows'],
+      \ 'y' : [':Filetypes'             , 'file types'],
+      \ 'z' : [':FZF'                   , 'FZF'],
+      \ }
+      " \ 's' : [':Snippets'     , 'snippets'],
+
+" s is for spell
+let g:which_key_map.s = {
+      \ 'name' : '+spelling' ,
+      \ 'a' : ['zg'                         , 'add to wordlist' ],
+      \ 'f' : ['z='                         , 'fix spelling' ],
+      \ 'i' : ['zG'                         , 'ignore for session' ],
+      \ 'p' : ['[s'                         , 'prev misspelled word' ],
+      \ 'n' : [']s'                         , 'next misspelled word' ],
+      \ 's' : ['[s'                         , 'prev misspelled word' ],
+      \ 'S' : [':setlocal spell!'           , 'toggle spelling in buffer' ],
+      \ 'w' : ['zw'                         , 'mark word as wrong' ],
+      \ }
+
 " t is for terminal
 let g:which_key_map.t = {
       \ 'name' : '+terminal' ,
@@ -187,15 +229,16 @@ let g:which_key_map.t = {
 " w is for window
 let g:which_key_map.w = {
       \ 'name' : '+window' ,
+      \ '=' : ['<C-w>='                               , 'balance splits'],
       \ 'c' : ['<C-w>c'                               , 'close window'],
       \ 'h' : ['<C-w>h'                               , 'move left'],
       \ 'j' : ['<C-w>j'                               , 'move down'],
       \ 'k' : ['<C-w>k'                               , 'move up'],
       \ 'l' : ['<C-w>l'                               , 'move right'],
-      \ 'o' : ['<C-W>W'                               , 'other window'],
+      \ 'o' : ['<C-w>W'                               , 'other window'],
       \ 's' : [':split'                               , 'veritcal split'],
       \ 'v' : [':vsplit'                              , 'veritcal split'],
-      \ 'w' : ['<C-W>W'                               , 'other window'],
+      \ 'w' : ['<C-w>W'                               , 'other window'],
       \ }
 
 " Register which key map
