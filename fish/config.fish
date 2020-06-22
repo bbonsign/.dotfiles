@@ -19,7 +19,7 @@ alias t=tmux
 # CTRL-x CTRL-x opens EDITOR for editing long commands
 # Note: Alt-e and Alt-v also open EDITOR for editing commands
 set -xg EDITOR nvim
-bind \cx\cx edit_command_buffer
+bind \cx edit_command_buffer
 
 if command -sq gls
     function ls --description "ls command of GNU coreutils"
