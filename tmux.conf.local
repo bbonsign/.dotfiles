@@ -111,9 +111,9 @@ tmux_conf_theme_terminal_title='#h ❐ #S ● #I #W'
 tmux_conf_theme_window_status_fg='#8a8a8a'              # light gray
 tmux_conf_theme_window_status_bg='#080808'              # dark gray
 tmux_conf_theme_window_status_attr='none'
-tmux_conf_theme_window_status_format='#I #W'
+# tmux_conf_theme_window_status_format='#I #W'
 #tmux_conf_theme_window_status_format='#{circled_window_index} #W'
-#tmux_conf_theme_window_status_format='#I #W#{?window_bell_flag,🔔,}#{?window_zoomed_flag,🔍,}'
+tmux_conf_theme_window_status_format='#I #W#{?window_bell_flag,🔔,}#{?window_zoomed_flag, 🔍,}'
 
 # window current status style
 #   - built-in variables are:
@@ -126,9 +126,9 @@ tmux_conf_theme_window_status_format='#I #W'
 tmux_conf_theme_window_status_current_fg='#000000'      # black
 tmux_conf_theme_window_status_current_bg='#00afff'      # light blue
 tmux_conf_theme_window_status_current_attr='bold'
-tmux_conf_theme_window_status_current_format='#I #W'
+# tmux_conf_theme_window_status_current_format='#I #W'
 #tmux_conf_theme_window_status_current_format='#{circled_window_index} #W'
-#tmux_conf_theme_window_status_current_format='#I #W#{?window_zoomed_flag,🔍,}'
+tmux_conf_theme_window_status_current_format='#I #W#{?window_zoomed_flag, 🔍,}'
 
 # window activity status style
 tmux_conf_theme_window_status_activity_fg='default'
@@ -190,7 +190,7 @@ tmux_conf_theme_status_left_attr='bold,none,none'
 # status right style
 tmux_conf_theme_status_right_fg='#8a8a8a,#e4e4e4,#000000' # light gray, white, black
 tmux_conf_theme_status_right_bg='#080808,#b30055,#e4e4e4' # dark gray, red, white
-tmux_conf_theme_status_right_attr='none,none,bold'
+tmux_conf_theme_status_right_attr='bold,none,bold'
 
 # pairing indicator
 tmux_conf_theme_pairing='👓 '          # U+1F453
@@ -304,7 +304,33 @@ bind s split-window -v
 unbind '"'
 unbind %
 
+# Default key list doesn't show custom bindings; so use this instead
+bind ? list-keys -T prefix
+
+# Prefix+s shows session list by default, but is shadowed by my split screen
+# biding, so use a instead
+bind a choose-tree -s
+
 # Fix delay in switching modes in vim with <Esc>
 # https://github.com/neovim/neovim/wiki/FAQ#esc-in-tmux-or-gnu-screen-is-delayed
 set -sg escape-time 5
+
+
+##################################
+# TMUX Plugins Manager
+# https://github.com/tmux-plugins/tpm.git
+set-environment -g TMUX_PLUGIN_MANAGER_PATH '~/.tmux/plugins/'
+
+# See this for the following notation: https://github.com/tmux-plugins/tpm/issues/127
+# List of plugins
+set -g @tpm_plugins '           \
+   tmux-plugins/tpm             \
+   tmux-plugins/tmux-resurrect  \
+'
+
+if "test ! -d ~/.tmux/plugins/tpm" \
+   "run 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm'"
+
+# Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
+run -b '~/.tmux/plugins/tpm/tpm'
 
