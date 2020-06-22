@@ -30,6 +30,7 @@ Plug 'junegunn/gv.vim'
 Plug 'joom/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'andymass/vim-matchup' " Not all features seem to work
+Plug 'tpope/vim-repeat' " Not all features seem to work
 
 Plug 'glts/vim-radical'
 
@@ -56,8 +57,11 @@ Plug 'voldikss/vim-floaterm'
 " Start Screen
 Plug 'mhinz/vim-startify'
 
+" Breifly higlight yanked text
+Plug 'machakann/vim-highlightedyank'
+
 " Automatic table formating, basic spreadsheet, like in org mode
-Plug 'dhruvasagar/vim-table-mode'
+" Plug 'dhruvasagar/vim-table-mode'
 
 call plug#end()
 
