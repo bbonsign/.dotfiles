@@ -52,6 +52,11 @@ set smartcase
 " Enable searching as you type, rather than waiting till you press enter.
 set incsearch
 
+" Live highlight and substituion preview
+" 'split' is another option that shows preview of changes in temp split
+" window, useful for previews outside of the current view of the file
+set inccommand=nosplit
+
 " Unbind some useless/annoying default key bindings.
 nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
 
@@ -85,3 +90,21 @@ set nowritebackup
 " delays and poor user experience. Also from coc
 set updatetime=300
 
+" Recommended by VimWiki
+filetype plugin on
+
+" Open help in vertical splits. Seems to split across all windows,
+" not just in the active window
+" autocmd FileType help wincmd L
+
+" Open a scratch buffer in a split
+" TODO: Look for open scratch buffer to switch to first
+function! Scratch()
+    split
+    noswapfile hide enew
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    "setlocal nobuflisted
+    "lcd ~
+    file scratch
+endfunction
