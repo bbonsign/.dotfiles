@@ -60,8 +60,23 @@ Plug 'mhinz/vim-startify'
 " Breifly higlight yanked text
 Plug 'machakann/vim-highlightedyank'
 
+Plug 'rust-lang/rust.vim'
+
+" Syntax higlighting for Jinga.
+" Tries to auto detect
+Plug 'mitsuhiko/vim-jinja'
+
 " Automatic table formating, basic spreadsheet, like in org mode
 " Plug 'dhruvasagar/vim-table-mode'
+
+" More text objects
+Plug 'kana/vim-textobj-user'
+Plug 'kana/vim-textobj-entire'   " entire buffer: ae, ie
+Plug 'kana/vim-textobj-indent'   " common indentation level: ai, ii
+Plug 'kana/vim-textobj-line'     " current line w/out EOL character (e.g. as yy does): al, il
+Plug 'adriaanzon/vim-textobj-matchit'  " text object deterined by matchit pairs: am, im
+Plug 'whatyouhide/vim-textobj-xmlattr' " xml/html attribute key=value: ax, ix
+Plug 'jceb/vim-textobj-uri'      " uri/url text object: au, iu & go to open link on linux
 
 call plug#end()
 
