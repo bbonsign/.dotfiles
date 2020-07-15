@@ -22,6 +22,7 @@ source ~/.config/nvim/plug-config/floaterm.vim
 source ~/.config/nvim/plug-config/quickscope.vim
 source ~/.config/nvim/plug-config/sneak.vim
 source ~/.config/nvim/plug-config/startify.vim
+source ~/.config/nvim/plug-config/nerdtree.vim
 
 " Set theme
 source ~/.config/nvim/themes/onedark.vim
