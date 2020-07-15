@@ -67,6 +67,14 @@ nnoremap Y y$
 tnoremap <A-[> <C-\><C-n>
 " tnoremap <A-[> <Esc>
 
+" Fake css property text object
+" TODO: Look into creating one for real with vim-textobj-user plugin
+" the leading 'h' makes it work when the cursor is on the ';'
+onoremap <silent> a; :<C-U>normal! hf;F:Bvf;<CR>
+onoremap <silent> i; :<C-U>normal! hf;F:Bvt;<CR>
+xnoremap <silent> a; :<C-U>normal! hf;F:Bvf;<CR>
+xnoremap <silent> i; :<C-U>normal! hf;F:Bvt;<CR>
+
 
 " Completion related mappings
 " Use tab for trigger completion with characters ahead and navigate.

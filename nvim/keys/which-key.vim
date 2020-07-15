@@ -27,11 +27,11 @@ autocmd  FileType which_key set laststatus=0 noshowmode noruler
 " help as a command and bring up the help home page. Instead,
 " this will allow me to enter a search term
 " Trailing space means the prompt is ready for a new argument
-nnoremap <leader>h :help<space>
-vnoremap <leader>h :help<space>
+nnoremap <leader>hh :help<space>
+vnoremap <leader>hh :help<space>
 
-nnoremap <leader>M :Man<space>
-vnoremap <leader>M :Man<space>
+nnoremap <leader>hm :Man<space>
+vnoremap <leader>hm :Man<space>
 
 " Another way to access registers easily
 nnoremap <leader>r "
@@ -40,24 +40,35 @@ vnoremap <leader>r "
 nnoremap <leader>R :registers<CR>
 vnoremap <leader>R :registers<CR>
 
+" <leader>p or <leader>i append/insert single character at cursor, but stay in
+" normal mode (<leader>a is shadowed by actions below, hence the p).
+nnoremap \ a_<Esc>r
+nnoremap <Space>i i_<Esc>r
+nnoremap <Space>p a_<Esc>r
+
+nnoremap <Space>l; A;<Esc>
+
 " Single mappings
-let g:which_key_map['r'] = 'register'
-let g:which_key_map['/'] = [ ':Commentary'                , 'comment' ]
-let g:which_key_map[';'] = [ ':Commands'                  , 'commands' ]
-let g:which_key_map['='] = [ 'z='                         , 'correct spelling' ]
-let g:which_key_map[','] = ['Buffers'                     , 'fzf-buffer']
-let g:which_key_map['d'] = [ ':bd'                        , 'delete buffer']
-let g:which_key_map['e'] = [ ':CocCommand explorer'       , 'explorer' ]
-let g:which_key_map['F'] = [ ':Files'                     , 'search files' ]
-let g:which_key_map['h'] = 'help'
-let g:which_key_map['M'] = 'man pages'
-let g:which_key_map['n'] = [ ':NERDTreeToggle'            , 'NERTree Toggle']
-let g:which_key_map['q'] = [ 'q'                          , 'quit' ]
+let g:which_key_map['!'] = [':.!bash'                , 'send line to bash']
+let g:which_key_map['/'] = [':Commentary'            , 'comment']
+let g:which_key_map[';'] = [':Commands'              , 'commands']
+let g:which_key_map['='] = ['z='                     , 'correct spelling']
+let g:which_key_map[','] = ['Buffers'                , 'fzf-buffer']
+let g:which_key_map['d'] = ['%'                      , '%']
+let g:which_key_map['e'] = [':CocCommand explorer'   , 'explorer']
+let g:which_key_map['F'] = [':Files'                 , 'search files']
+let g:which_key_map['i'] = 'insert character'
+" let g:which_key_map['M'] = 'man pages'
+let g:which_key_map['m'] = ['%'                      , '%match']
+let g:which_key_map['n'] = [':NERDTreeToggle'        , 'NERTree Toggle']
+let g:which_key_map['p'] = 'append character'
+let g:which_key_map['q'] = ['q'                      , 'quit']
 let g:which_key_map['r'] = 'access register'
 let g:which_key_map['R'] = 'registers'
-let g:which_key_map['T'] = [ ':Rg'                        , 'search text' ]
-let g:which_key_map['W'] = [ 'w'                          , 'write' ]
-let g:which_key_map['x'] = [ ':StripWhitespace'           , 'strip whitespace' ]
+let g:which_key_map['T'] = [':Rg'                    , 'search text']
+let g:which_key_map['W'] = ['w'                      , 'write']
+let g:which_key_map['x'] = [':StripWhitespace'       , 'strip whitespace']
+
 
 " Group mappings
 let g:which_key_map['.'] = {
@@ -128,11 +139,16 @@ let g:which_key_map.g = {
       \ 'V' : [':GV!'                              , 'view buffer commits'],
       \ }
 
+" h is for help
+let g:which_key_map.h = {
+      \ 'name' : '+help' ,
+      \ }
+
 " l is for language server protocol
 let g:which_key_map.l = {
       \ 'name' : '+lsp' ,
       \ '.' : [':CocConfig'                          , 'config'],
-      \ ';' : ['<Plug>(coc-refactor)'                , 'refactor'],
+      \ ';' : 'append ;',
       \ 'a' : ['<Plug>(coc-codeaction)'              , 'line action'],
       \ 'A' : ['<Plug>(coc-codeaction-selected)'     , 'selected action'],
       \ 'b' : [':CocNext'                            , 'next action'],
@@ -143,6 +159,7 @@ let g:which_key_map.l = {
       \ 'e' : [':CocList extensions'                 , 'extensions'],
       \ 'f' : ['<Plug>(coc-format-selected)'         , 'format selected'],
       \ 'F' : ['<Plug>(coc-format)'                  , 'format'],
+      \ 'g' : ['<Plug>(coc-refactor)'                , 'refactor'],
       \ 'h' : ['<Plug>(coc-float-hide)'              , 'hide'],
       \ 'i' : ['<Plug>(coc-implementation)'          , 'implementation'],
       \ 'I' : [':CocList diagnostics'                , 'diagnostics'],
@@ -165,6 +182,15 @@ let g:which_key_map.l = {
       \ 'v' : [':Vista!!'                            , 'tag viewer'],
       \ 'z' : [':CocDisable'                         , 'disable CoC'],
       \ 'Z' : [':CocEnable'                          , 'enable CoC'],
+      \ }
+
+" Group mappings
+" TODO: Uses 'kj' for excape, currently. Change to something more staandard
+let g:which_key_map.o = {
+      \ 'name' : '+open line' ,
+      \ 'o' : ['Okjj^'        , 'open line above'],
+      \ 'b' : ['okjk^'        , 'open line below'],
+      \ 's' : ['okjkOkjj^'        , 'open two lines'],
       \ }
 
 " S is for search
@@ -236,7 +262,7 @@ let g:which_key_map.w = {
       \ 'k' : ['<C-w>k'                               , 'move up'],
       \ 'l' : ['<C-w>l'                               , 'move right'],
       \ 'o' : ['<C-w>W'                               , 'other window'],
-      \ 's' : [':split'                               , 'veritcal split'],
+      \ 's' : [':split'                               , 'horizontal split'],
       \ 'v' : [':vsplit'                              , 'veritcal split'],
       \ 'w' : ['<C-w>W'                               , 'other window'],
       \ }
