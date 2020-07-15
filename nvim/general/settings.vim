@@ -26,6 +26,7 @@ set undofile
 
 " Show line numbers.
 set number
+set relativenumber
 
 " Always show the status line at the bottom, even if you only have one window open.
 set laststatus=2
