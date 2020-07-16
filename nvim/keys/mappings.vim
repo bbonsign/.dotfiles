@@ -62,6 +62,10 @@ noremap <C-p> :Files<CR>
 " shift-y to yank to end of line, like D, C, etc
 nnoremap Y y$
 
+" Shortcut for C-x C-l line completion
+" Since C-x is my tmux prefix, line completion really needs C-x C-x C-l
+inoremap <C-l> <C-x><C-l>
+
 " Use <Esc> to go to normal mode in terminal
 " Then use Alt-[ to set the escape key to the underlying program in terminal
 tnoremap <A-[> <C-\><C-n>
@@ -74,6 +78,7 @@ onoremap <silent> a; :<C-U>normal! hf;F:Bvf;<CR>
 onoremap <silent> i; :<C-U>normal! hf;F:Bvt;<CR>
 xnoremap <silent> a; :<C-U>normal! hf;F:Bvf;<CR>
 xnoremap <silent> i; :<C-U>normal! hf;F:Bvt;<CR>
+
 
 
 " Completion related mappings
