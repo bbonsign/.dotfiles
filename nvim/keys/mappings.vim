@@ -65,6 +65,7 @@ nnoremap Y y$
 " Shortcut for C-x C-l line completion
 " Since C-x is my tmux prefix, line completion really needs C-x C-x C-l
 inoremap <C-l> <C-x><C-l>
+nnoremap <C-l> i<C-x><C-l>
 
 " Use <Esc> to go to normal mode in terminal
 " Then use Alt-[ to set the escape key to the underlying program in terminal
