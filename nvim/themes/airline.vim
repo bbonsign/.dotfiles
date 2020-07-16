@@ -41,7 +41,6 @@ let g:airline_theme = 'onedark'
 " let g:airline_section_a = "Mach 2"
 " let g:airline_section_a = ""
 let g:airline_section_y = ''
-let g:airline_section_z = ''
 let g:webdevicons_enable_airline_tabline = 1
 
 " set the CN (column number) symbol:
