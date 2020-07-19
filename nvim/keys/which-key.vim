@@ -46,11 +46,14 @@ nnoremap \ a_<Esc>r
 nnoremap <Space>i i_<Esc>r
 nnoremap <Space>p a_<Esc>r
 
-nnoremap <Space>l; A;<Esc>
+" Alternative to Ctrl+/ for commenting lines
+nnoremap <Space>/ :Commentary<CR>
+vnoremap <Space>/ :Commentary<CR>
 
 " Single mappings
 let g:which_key_map['!'] = [':.!bash'                , 'send line to bash']
-let g:which_key_map['/'] = [':Commentary'            , 'comment']
+" let g:which_key_map['/'] = [':Commentary'            , 'comment']
+let g:which_key_map['/'] = 'comment'
 let g:which_key_map[';'] = [':Commands'              , 'commands']
 let g:which_key_map['='] = ['z='                     , 'correct spelling']
 let g:which_key_map[','] = ['Buffers'                , 'fzf-buffer']
@@ -143,6 +146,9 @@ let g:which_key_map.g = {
 let g:which_key_map.h = {
       \ 'name' : '+help' ,
       \ }
+
+
+nnoremap <Space>l; A;<Esc>
 
 " l is for language server protocol
 let g:which_key_map.l = {
