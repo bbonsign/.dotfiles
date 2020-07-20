@@ -196,6 +196,7 @@ let g:which_key_map.o = {
       \ 'name' : '+open line' ,
       \ 'o' : ['Okjj^'        , 'open line above'],
       \ 'b' : ['okjk^'        , 'open line below'],
+      \ 'a' : ['okjkOkjj^'        , 'open two lines'],
       \ 's' : ['okjkOkjj^'        , 'open two lines'],
       \ }
 
