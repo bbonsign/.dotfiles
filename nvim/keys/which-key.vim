@@ -111,6 +111,7 @@ let g:which_key_map.b = {
 let g:which_key_map.f = {
       \ 'name' : '+file' ,
       \ 'f' : [':Files'           , 'search files'],
+      \ 'r' : [':earlier 1f'      , 'revert to last write'],
       \ 's' : [':w'               , 'write file'],
       \ 'w' : [':w'               , 'write file'],
       \ }
