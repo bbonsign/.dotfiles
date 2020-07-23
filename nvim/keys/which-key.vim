@@ -195,15 +195,19 @@ let g:which_key_map.l = {
 " TODO: Uses 'kj' for excape, currently. Change to something more staandard
 let g:which_key_map.o = {
       \ 'name' : '+open line' ,
-      \ 'o' : ['Okjj^'        , 'open line above'],
-      \ 'b' : ['okjk^'        , 'open line below'],
       \ 'a' : ['okjkOkjj^'        , 'open two lines'],
+      \ 'b' : ['okjk^'            , 'open line below'],
+      \ 'o' : ['Okjj^'            , 'open line above'],
       \ 's' : ['okjkOkjj^'        , 'open two lines'],
       \ }
+
+" Shortcut for starting a search+replace command in whole buffer
+nnoremap <leader>S% :%s/
 
 " S is for search
 let g:which_key_map.S = {
       \ 'name' : '+search' ,
+      \ '%' : 'serach+replace',
       \ '/' : [':History/'              , 'history'],
       \ ';' : [':Commands'              , 'commands'],
       \ 'a' : [':Ag'                    , 'text Ag'],
