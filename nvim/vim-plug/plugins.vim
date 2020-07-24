@@ -30,6 +30,7 @@ Plug 'junegunn/gv.vim'
 Plug 'joom/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'andymass/vim-matchup' " Not all features seem to work
+Plug 'dhruvasagar/vim-pairify'
 Plug 'tpope/vim-repeat' " Not all features seem to work
 
 Plug 'glts/vim-radical'
