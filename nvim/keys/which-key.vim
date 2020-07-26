@@ -82,16 +82,18 @@ let g:which_key_map['.'] = {
       \ 'S' : [ ':SSave'                     , 'save session' ],
       \ }
 
+nnoremap <Space>aa A_<Esc>r
 " a is for actions
 let g:which_key_map.a = {
       \ 'name' : '+actions' ,
+      \ 'a' : 'append char to line',
       \ 'e' : [':CocCommand explorer'    , 'explorer'],
       \ 'n' : [':set nonumber!'          , 'line-numbers'],
       \ 'r' : [':set norelativenumber!'  , 'relative line nums'],
       \ 's' : [':let @/ = ""'            , 'remove search highlight'],
       \ 'S' : [':setlocal spell!'        , 'toggle spelling in buffer' ],
       \ 't' : [':FloatermToggle'         , 'terminal'],
-      \ 'v' : [':Vista!!'                , 'tag viewer'],
+      \ 'v' : [':TagbarToggle'                , 'tag viewer'],
       \ }
 
 " b is for buffer
@@ -111,6 +113,7 @@ let g:which_key_map.b = {
 let g:which_key_map.f = {
       \ 'name' : '+file' ,
       \ 'f' : [':Files'           , 'search files'],
+      \ 'r' : [':earlier 1f'      , 'revert to last write'],
       \ 's' : [':w'               , 'write file'],
       \ 'w' : [':w'               , 'write file'],
       \ }
@@ -185,7 +188,7 @@ let g:which_key_map.l = {
       \ 't' : ['<Plug>(coc-type-definition)'         , 'type definition'],
       \ 'u' : [':CocListResume'                      , 'resume list'],
       \ 'U' : [':CocUpdate'                          , 'update CoC'],
-      \ 'v' : [':Vista!!'                            , 'tag viewer'],
+      \ 'v' : [':TagbarToggle'                       , 'tag viewer'],
       \ 'z' : [':CocDisable'                         , 'disable CoC'],
       \ 'Z' : [':CocEnable'                          , 'enable CoC'],
       \ }
@@ -194,15 +197,19 @@ let g:which_key_map.l = {
 " TODO: Uses 'kj' for excape, currently. Change to something more staandard
 let g:which_key_map.o = {
       \ 'name' : '+open line' ,
-      \ 'o' : ['Okjj^'        , 'open line above'],
-      \ 'b' : ['okjk^'        , 'open line below'],
       \ 'a' : ['okjkOkjj^'        , 'open two lines'],
+      \ 'b' : ['okjk^'            , 'open line below'],
+      \ 'o' : ['Okjj^'            , 'open line above'],
       \ 's' : ['okjkOkjj^'        , 'open two lines'],
       \ }
+
+" Shortcut for starting a search+replace command in whole buffer
+nnoremap <leader>S% :%s/
 
 " S is for search
 let g:which_key_map.S = {
       \ 'name' : '+search' ,
+      \ '%' : 'serach+replace',
       \ '/' : [':History/'              , 'history'],
       \ ';' : [':Commands'              , 'commands'],
       \ 'a' : [':Ag'                    , 'text Ag'],

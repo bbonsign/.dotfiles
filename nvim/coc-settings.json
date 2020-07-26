@@ -17,7 +17,7 @@
   "diagnostic.warningSign": " ",
   "diagnostic.infoSign": "",
   "diagnostic.hintSign": " ",
-  "diagnostic.virtualText": true, // this won't work with codelens when error on same line
+  "diagnostic.virtualText": false, // this won't work with codelens when error on same line
 
   // autoformat
   "coc.preferences.formatOnSaveFiletypes": [
@@ -34,16 +34,16 @@
 
   // Language Server settings
   "languageserver": {
-    "go": {
-      "command": "gopls",
-      "rootPatterns": [
-        "go.mod"
-      ],
-      "trace.server": "verbose",
-      "filetypes": [
-        "go"
-      ]
-    }
+//    "go": {
+//      "command": "gopls",
+//      "rootPatterns": [
+//        "go.mod"
+//      ],
+//      "trace.server": "verbose",
+//      "filetypes": [
+//        "go"
+//      ]
+//    }
   },
 
   "python.jediEnabled": false,

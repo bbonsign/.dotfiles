@@ -91,6 +91,9 @@ set nowritebackup
 " delays and poor user experience. Also from coc
 set updatetime=300
 
+" To prevent conflict with <space> in tagbar
+let g:tagbar_map_showproto = "K"
+
 " Recommended by VimWiki
 filetype plugin on
 

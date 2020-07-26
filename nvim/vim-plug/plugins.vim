@@ -30,6 +30,7 @@ Plug 'junegunn/gv.vim'
 Plug 'joom/vim-commentary'
 Plug 'tpope/vim-surround'
 Plug 'andymass/vim-matchup' " Not all features seem to work
+Plug 'dhruvasagar/vim-pairify'
 Plug 'tpope/vim-repeat' " Not all features seem to work
 
 Plug 'glts/vim-radical'
@@ -60,7 +61,11 @@ Plug 'mhinz/vim-startify'
 " Breifly higlight yanked text
 Plug 'machakann/vim-highlightedyank'
 
-Plug 'rust-lang/rust.vim'
+" Plug 'rust-lang/rust.vim'
+
+" Show tags in a side bar
+Plug 'majutsushi/tagbar'
+" Plug 'liuchengxu/vista.vim'
 
 " Syntax higlighting for Jinga.
 " Tries to auto detect
