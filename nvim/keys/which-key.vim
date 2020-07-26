@@ -82,9 +82,11 @@ let g:which_key_map['.'] = {
       \ 'S' : [ ':SSave'                     , 'save session' ],
       \ }
 
+nnoremap <Space>aa A_<Esc>r
 " a is for actions
 let g:which_key_map.a = {
       \ 'name' : '+actions' ,
+      \ 'a' : 'append char to line',
       \ 'e' : [':CocCommand explorer'    , 'explorer'],
       \ 'n' : [':set nonumber!'          , 'line-numbers'],
       \ 'r' : [':set norelativenumber!'  , 'relative line nums'],
