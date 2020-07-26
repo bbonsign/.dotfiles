@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "coc-css": ">=1.2.4",
     "coc-explorer": ">=0.7.19",
     "coc-fish": ">=1.0.11",
     "coc-floaterm": ">=0.0.7",
@@ -11,6 +12,7 @@
     "coc-python": ">=1.2.12",
     "coc-rls": ">=1.1.6",
     "coc-rust-analyzer": ">=0.7.13",
+    "coc-scssmodules": ">=0.2.0",
     "coc-sql": ">=0.2.27",
     "coc-tsserver": ">=1.5.3",
     "coc-vetur": ">=1.1.11",
