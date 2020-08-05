@@ -26,6 +26,7 @@ Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
+Plug 'airblade/vim-rooter'
 
 Plug 'joom/vim-commentary'
 Plug 'tpope/vim-surround'
@@ -40,6 +41,8 @@ Plug 'editorconfig/editorconfig-vim'
 
 Plug 'justinmk/vim-sneak'
 Plug 'unblevable/quick-scope'
+" Possibly replace quick-scope with:
+" Plug 'rhysd/clever-f.vim'
 
 Plug 'liuchengxu/vim-which-key'
 
