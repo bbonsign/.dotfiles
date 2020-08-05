@@ -28,10 +28,10 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
 " Use alt + arrows to resize windows
-nnoremap <silent> <M-Down>    :resize -2<CR>
-nnoremap <silent> <M-Up>    :resize +2<CR>
-nnoremap <silent> <M-Left>    :vertical resize -2<CR>
-nnoremap <silent> <M-Right>    :vertical resize +2<CR>
+nnoremap <silent> <M-Down> :resize -2<CR>
+nnoremap <silent> <M-Up> :resize +2<CR>
+nnoremap <silent> <M-Left> :vertical resize -2<CR>
+nnoremap <silent> <M-Right> :vertical resize +2<CR>
 
 " Alt +kj drag line up/down
 nnoremap <A-j> :m .+1<CR>==

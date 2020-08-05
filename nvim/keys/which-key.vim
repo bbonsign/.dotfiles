@@ -70,6 +70,7 @@ let g:which_key_map['r'] = 'access register'
 let g:which_key_map['R'] = 'registers'
 let g:which_key_map['T'] = [':Rg'                    , 'search text']
 let g:which_key_map['W'] = ['w'                      , 'write']
+let g:which_key_map['X'] = ['ciw \<Esc>'             , 'trim to one space between words']
 let g:which_key_map['x'] = [':StripWhitespace'       , 'strip whitespace']
 
 
@@ -198,13 +199,12 @@ let g:which_key_map.l = {
       \ }
 
 " Group mappings
-" TODO: Uses 'kj' for excape, currently. Change to something more staandard
 let g:which_key_map.o = {
       \ 'name' : '+open line' ,
-      \ 'a' : ['okjkOkjj^'        , 'open two lines'],
-      \ 'b' : ['okjk^'            , 'open line below'],
-      \ 'o' : ['Okjj^'            , 'open line above'],
-      \ 's' : ['okjkOkjj^'        , 'open two lines'],
+      \ 'a' : ['o\<Esc>kO\<Esc>j^'        , 'open two lines'],
+      \ 'b' : ['o\<Esc>k^'                , 'open line below'],
+      \ 'o' : ['O\<Esc>j^'                , 'open line above'],
+      \ 's' : ['o\<Esc>kO\<Esc>j^'        , 'open two lines'],
       \ }
 
 " Shortcut for starting a search+replace command in whole buffer
