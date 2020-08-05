@@ -43,12 +43,12 @@ vnoremap <leader>R :registers<CR>
 " <leader>p or <leader>i append/insert single character at cursor, but stay in
 " normal mode (<leader>a is shadowed by actions below, hence the p).
 nnoremap \ a_<Esc>r
-nnoremap <Space>i i_<Esc>r
-nnoremap <Space>p a_<Esc>r
+nnoremap <leader>i i_<Esc>r
+nnoremap <leader>p a_<Esc>r
 
 " Alternative to Ctrl+/ for commenting lines
-nnoremap <Space>/ :Commentary<CR>
-vnoremap <Space>/ :Commentary<CR>
+nnoremap <leader>/ :Commentary<CR>
+vnoremap <leader>/ :Commentary<CR>
 
 " Single mappings
 let g:which_key_map['!'] = [':.!bash'                , 'send line to bash']
@@ -82,11 +82,13 @@ let g:which_key_map['.'] = {
       \ 'S' : [ ':SSave'                     , 'save session' ],
       \ }
 
-nnoremap <Space>aa A_<Esc>r
+nnoremap <leader>aa A_<Esc>r
 " a is for actions
 let g:which_key_map.a = {
       \ 'name' : '+actions' ,
       \ 'a' : 'append char to line',
+      \ 'C' : [':Colors'                 , 'color scheme'],
+      \ 'c' : [':set cursorline!'        , 'toggle line hi-light'],
       \ 'e' : [':CocCommand explorer'    , 'explorer'],
       \ 'n' : [':set nonumber!'          , 'line-numbers'],
       \ 'r' : [':set norelativenumber!'  , 'relative line nums'],
@@ -148,10 +150,12 @@ let g:which_key_map.g = {
 " h is for help
 let g:which_key_map.h = {
       \ 'name' : '+help' ,
+      \ 'g' : [':help g'                , 'g commands'],
+      \ 'z' : [':help z'                , 'z commands'],
       \ }
 
 
-nnoremap <Space>l; A;<Esc>
+nnoremap <leader>l; A;<Esc>
 
 " l is for language server protocol
 let g:which_key_map.l = {
@@ -283,3 +287,4 @@ let g:which_key_map.w = {
 
 " Register which key map
 call which_key#register('<Space>', "g:which_key_map")
+

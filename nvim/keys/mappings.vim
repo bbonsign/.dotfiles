@@ -42,8 +42,8 @@ vnoremap <A-j> :m '>+1<CR>gv=gv
 vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Ctrl+h to stop highlighting search results
-vnoremap <C-n> :nohlsearch<cr>
-nnoremap <C-n> :nohlsearch<cr>
+vnoremap <silent> <C-n> :nohlsearch<CR>
+nnoremap <silent> <C-n> :nohlsearch<CR>
 
 " Double tab leader key (space bar for me) to start command mode
 nnoremap <leader><leader> :

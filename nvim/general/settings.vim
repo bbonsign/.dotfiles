@@ -77,9 +77,11 @@ set shiftwidth=2  " Change number of space characters inserted for indentation
 set smarttab      " Make tabbing realize when 2 vs 4
 set expandtab     " Converts tabs to spaces
 
-" Horizaontal splits below, vertical to the right
+" Horizontal splits below, vertical to the right
 set splitbelow
 set splitright
+
+highlight Comment cterm=italic gui=italic
 
 " Run :FZF for file selection + preview
 set rtp+=/usr/local/opt/fzf
