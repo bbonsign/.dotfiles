@@ -16,6 +16,10 @@ source ~/.config/nvim/general/settings.vim
 source ~/.config/nvim/keys/mappings.vim
 source ~/.config/nvim/keys/which-key.vim
 
+" Set theme
+source ~/.config/nvim/themes/onedark.vim
+source ~/.config/nvim/themes/airline.vim
+
 " Source plugin configurations
 source ~/.config/nvim/plug-config/fzf.vim
 source ~/.config/nvim/plug-config/floaterm.vim
@@ -23,8 +27,4 @@ source ~/.config/nvim/plug-config/quickscope.vim
 source ~/.config/nvim/plug-config/sneak.vim
 source ~/.config/nvim/plug-config/startify.vim
 source ~/.config/nvim/plug-config/nerdtree.vim
-
-" Set theme
-source ~/.config/nvim/themes/onedark.vim
-source ~/.config/nvim/themes/airline.vim
 
