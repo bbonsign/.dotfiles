@@ -67,3 +67,9 @@ uses to print markdown in the terminal nicely
 - go path setup
 
 ## Linux Setup
+To mimic the dual ctrl/esp remapping of caps lock that Karabiner provides for Mac,
+in Gnome Tweaks, under keyboards -> Additional Layouts, set "Caps Lock is also a Ctrl"
+under Caps Lock behavior and "Caps Lock as Ctrl" under Ctrl position. With the
+`xcape` command in config.fish, this should produce the desired effect.
+
+TODO: Look into making Return act as control when used in combination with other keys.
