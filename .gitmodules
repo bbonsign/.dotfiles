@@ -10,3 +10,6 @@
 [submodule ".nano"]
 	path = .nano
 	url = https://github.com/scopatz/nanorc.git
+[submodule "tpm"]
+	path = tpm
+	url = https://github.com/tmux-plugins/tpm.git

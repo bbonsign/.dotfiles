@@ -5,11 +5,17 @@ let mapleader=" "
 " Use Ctrl-s to increment number at cursor since we remap C-a below
 nnoremap <C-s> <C-a>
 
-" shortcuts for ctrl-a and ctrl-e in insert/normal mode
+" Another way to exit insert mode
+" <C-c> is another built-in option in addition to <Esc>
+:inoremap kj <esc>
+
+" shortcuts for ctrl-a and ctrl-e in insert/normalcommand mode
 inoremap <C-e> <Esc>A
 inoremap <C-a> <Esc>I
 nnoremap <C-e> $
 nnoremap <C-a> ^
+cnoremap <C-e> <End>
+cnoremap <C-a> <Home>
 
 " Move by visual lines
 nnoremap j gj
@@ -21,32 +27,85 @@ nnoremap <C-k> <C-w>k
 nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
 
-" Use alt + hjkl to resize windows
-nnoremap <silent> <M-j>    :resize -2<CR>
-nnoremap <silent> <M-k>    :resize +2<CR>
-nnoremap <silent> <M-h>    :vertical resize -2<CR>
-nnoremap <silent> <M-l>    :vertical resize +2<CR>
+" Use alt + arrows to resize windows
+nnoremap <silent> <M-Down> :resize -2<CR>
+nnoremap <silent> <M-Up> :resize +2<CR>
+nnoremap <silent> <M-Left> :vertical resize -2<CR>
+nnoremap <silent> <M-Right> :vertical resize +2<CR>
+
+" Alt +kj drag line up/down
+nnoremap <A-j> :m .+1<CR>==
+nnoremap <A-k> :m .-2<CR>==
+inoremap <A-j> <Esc>:m .+1<CR>==gi
+inoremap <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <A-j> :m '>+1<CR>gv=gv
+vnoremap <A-k> :m '<-2<CR>gv=gv
 
 " Ctrl+h to stop highlighting search results
-vnoremap <C-n> :nohlsearch<cr>
-nnoremap <C-n> :nohlsearch<cr>
+vnoremap <silent> <C-n> :nohlsearch<CR>
+nnoremap <silent> <C-n> :nohlsearch<CR>
 
 " Double tab leader key (space bar for me) to start command mode
 nnoremap <leader><leader> :
 vnoremap <leader><leader> :
+
+" Toggle comments in visual mode, from tpope/commentary plugin
+" Note that C-_ actually maps to C-/, which is what I want
+" https://stackoverflow.com/questions/9051837/how-to-map-c-to-toggle-comments-in-vim
+nnoremap <silent> <C-_> :Commentary<CR>
+vnoremap <silent> <C-_> :Commentary<CR>
+
+" Ctrl-p to fuzzy search files in pwd. :Files defined in fzf config
+" TODO: make search root the project root
+noremap <C-p> :Files<CR>
+
+" shift-y to yank to end of line, like D, C, etc
+nnoremap Y y$
+
+" Shortcut for C-x C-l line completion
+" Since C-x is my tmux prefix, line completion really needs C-x C-x C-l
+inoremap <C-l> <C-x><C-l>
+nnoremap <C-l> i<C-x><C-l>
+
+" Use <Esc> to go to normal mode in terminal
+" Then use Alt-[ to set the escape key to the underlying program in terminal
+tnoremap <A-[> <C-\><C-n>
+" tnoremap <A-[> <Esc>
+
+" Fake css property text object
+" TODO: Look into creating one for real with vim-textobj-user plugin
+" the leading 'h' makes it work when the cursor is on the ';'
+onoremap <silent> a; :<C-U>normal! hf;F:Bvf;<CR>
+onoremap <silent> i; :<C-U>normal! hf;F:Bvt;<CR>
+xnoremap <silent> a; :<C-U>normal! hf;F:Bvf;<CR>
+xnoremap <silent> i; :<C-U>normal! hf;F:Bvt;<CR>
+
+
+
+" Completion related mappings
+" Use tab for trigger completion with characters ahead and navigate.
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config.
+" From coc Readme
+inoremap <silent><expr> <TAB>
+      \ pumvisible() ? "\<C-n>" :
+      \ <SID>check_back_space() ? "\<TAB>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+
+function! s:check_back_space() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
 
 " Better nav for omnicomplete
 " <C-n> and <C-p> still work too
 inoremap <expr> <C-j> ("\<C-n>")
 inoremap <expr> <C-k> ("\<C-p>")
 
-" Toggle comments in visual mode, from tpope/commentary plugin
-" Note that C-_ actually maps to C-/, which is what I want
-" https://stackoverflow.com/questions/9051837/how-to-map-c-to-toggle-comments-in-vim
-nnoremap <C-_> :Commentary<CR>
-vnoremap <C-_> :Commentary<CR>
+" Map <C-space> to trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
 
+" <CR> to confirm coc-completion, use:
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
 
-" Save/write buffer to file
-nnoremap <Leader>fs :w<CR>
-nnoremap <Leader>fw :w<CR>

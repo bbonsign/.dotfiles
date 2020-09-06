@@ -9,7 +9,7 @@ endif
 
 autocmd ColorScheme * call onedark#set_highlight("Normal", { "fg": s:white }) " `bg` will not be styled since there is no `bg` setting
 
-hi Comment cterm=italic
+" hi Comment cterm=italic
 let g:onedark_hide_endofbuffer=1
 let g:onedark_terminal_italics=1
 let g:onedark_termcolors=256
@@ -26,4 +26,7 @@ endif
 
 " Make vertical separator between panes more distinct
 highlight VertSplit guibg=#232733 guifg=#2d3c85 ctermbg=black ctermfg=cyan
+
+" Make comments italized, when using a font with italics at least
+highlight Comment cterm=italic gui=italic
 

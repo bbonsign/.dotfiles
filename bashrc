@@ -4,3 +4,5 @@
 eval "$(starship init bash)"
 
 export PATH="$HOME/doom-emacs/bin/:$PATH"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash

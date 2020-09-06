@@ -23,79 +23,103 @@ autocmd! FileType which_key
 autocmd  FileType which_key set laststatus=0 noshowmode noruler
   \| autocmd BufLeave <buffer> set laststatus=2 noshowmode ruler
 
+" Define this command separately so that the <leader>h doesn't run
+" help as a command and bring up the help home page. Instead,
+" this will allow me to enter a search term
+" Trailing space means the prompt is ready for a new argument
+nnoremap <leader>hh :help<space>
+vnoremap <leader>hh :help<space>
+
+nnoremap <leader>hm :Man<space>
+vnoremap <leader>hm :Man<space>
+
+" Another way to access registers easily
+nnoremap <leader>r "
+vnoremap <leader>r "
+
+nnoremap <leader>R :registers<CR>
+vnoremap <leader>R :registers<CR>
+
+" <leader>p or <leader>i append/insert single character at cursor, but stay in
+" normal mode (<leader>a is shadowed by actions below, hence the p).
+nnoremap \ a_<Esc>r
+nnoremap <leader>i i_<Esc>r
+nnoremap <leader>p a_<Esc>r
+
+" Alternative to Ctrl+/ for commenting lines
+nnoremap <leader>/ :Commentary<CR>
+vnoremap <leader>/ :Commentary<CR>
 
 " Single mappings
-let g:which_key_map[' '] = [ ':'                          , 'Command' ]
-let g:which_key_map['/'] = [ ':Commentary'                , 'comment' ]
-let g:which_key_map['.'] = [ ':e $MYVIMRC'                , 'open init' ]
-let g:which_key_map[';'] = [ ':Commands'                  , 'commands' ]
-let g:which_key_map['='] = [ '<C-W>='                     , 'balance windows' ]
-let g:which_key_map[','] = [ 'Startify'                   , 'start screen' ]
-let g:which_key_map['d'] = [ ':bd'                        , 'delete buffer']
-let g:which_key_map['e'] = [ ':CocCommand explorer'       , 'explorer' ]
-let g:which_key_map['F'] = [ ':Files'                     , 'search files' ]
-let g:which_key_map['h'] = [ ':help'                      , 'help']
-let g:which_key_map['n'] = [ ':NERDTreeToggle'            , 'NERTree Toggle']
-let g:which_key_map['q'] = [ 'q'                          , 'quit' ]
-let g:which_key_map['R'] = [ ':source $MYVIMRC'           , 'reload config' ]
-let g:which_key_map['S'] = [ ':SSave'                     , 'save session' ]
-let g:which_key_map['T'] = [ ':Rg'                        , 'search text' ]
-let g:which_key_map['W'] = [ 'w'                          , 'write' ]
+let g:which_key_map['!'] = [':.!bash'                , 'send line to bash']
+" let g:which_key_map['/'] = [':Commentary'            , 'comment']
+let g:which_key_map['/'] = 'comment'
+let g:which_key_map[';'] = [':Commands'              , 'commands']
+let g:which_key_map['='] = ['z='                     , 'correct spelling']
+let g:which_key_map[','] = ['Buffers'                , 'fzf-buffer']
+let g:which_key_map['d'] = ['%'                      , '%']
+let g:which_key_map['e'] = [':CocCommand explorer'   , 'explorer']
+let g:which_key_map['F'] = [':Files'                 , 'search files']
+let g:which_key_map['i'] = 'insert character'
+" let g:which_key_map['M'] = 'man pages'
+let g:which_key_map['m'] = ['%'                      , '%match']
+let g:which_key_map['n'] = [':NERDTreeToggle'        , 'NERTree Toggle']
+let g:which_key_map['p'] = 'append character'
+let g:which_key_map['q'] = ['q'                      , 'quit']
+let g:which_key_map['r'] = 'access register'
+let g:which_key_map['R'] = 'registers'
+let g:which_key_map['T'] = [':Rg'                    , 'search text']
+let g:which_key_map['W'] = ['w'                      , 'write']
+let g:which_key_map['X'] = ['ciw \<Esc>'             , 'trim to one space between words']
+let g:which_key_map['x'] = [':StripWhitespace'       , 'strip whitespace']
+
 
 " Group mappings
+let g:which_key_map['.'] = {
+      \ 'name' : '+vimrc' ,
+      \ '.' : [ ':e $MYVIMRC'                , 'open init' ],
+      \ 'r' : [ ':source $MYVIMRC'           , 'reload config' ],
+      \ 'h' : [ 'Startify'                   , 'start screen' ],
+      \ 'S' : [ ':SSave'                     , 'save session' ],
+      \ }
 
+nnoremap <leader>aa A_<Esc>r
 " a is for actions
 let g:which_key_map.a = {
       \ 'name' : '+actions' ,
+      \ 'a' : 'append char to line',
+      \ 'C' : [':Colors'                 , 'color scheme'],
+      \ 'c' : [':set cursorline!'        , 'toggle line hi-light'],
       \ 'e' : [':CocCommand explorer'    , 'explorer'],
       \ 'n' : [':set nonumber!'          , 'line-numbers'],
       \ 'r' : [':set norelativenumber!'  , 'relative line nums'],
       \ 's' : [':let @/ = ""'            , 'remove search highlight'],
+      \ 'S' : [':setlocal spell!'        , 'toggle spelling in buffer' ],
       \ 't' : [':FloatermToggle'         , 'terminal'],
-      \ 'v' : [':Vista!!'                , 'tag viewer'],
+      \ 'v' : [':TagbarToggle'                , 'tag viewer'],
       \ }
 
 " b is for buffer
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
+      \ 'b' : ['Buffers'   , 'fzf-buffer']      ,
       \ 'd' : ['bd'        , 'delete-buffer']   ,
       \ 'f' : ['bfirst'    , 'first-buffer']    ,
       \ 'h' : ['Startify'  , 'home-buffer']     ,
       \ 'l' : ['blast'     , 'last-buffer']     ,
       \ 'n' : ['bnext'     , 'next-buffer']     ,
+      \ 's' : ['Scratch()' , 'scratch buffer']     ,
       \ 'p' : ['bprevious' , 'previous-buffer'] ,
-      \ 'b' : ['Buffers'   , 'fzf-buffer']      ,
       \ }
 
-" s is for search
-let g:which_key_map.s = {
-      \ 'name' : '+search' ,
-      \ '/' : [':History/'              , 'history'],
-      \ ';' : [':Commands'              , 'commands'],
-      \ 'a' : [':Ag'                    , 'text Ag'],
-      \ 'b' : [':BLines'                , 'current buffer'],
-      \ 'B' : [':Buffers'               , 'open buffers'],
-      \ 'c' : [':Commits'               , 'commits'],
-      \ 'C' : [':BCommits'              , 'buffer commits'],
-      \ 'f' : [':Files'                 , 'files'],
-      \ 'g' : [':GFiles'                , 'git files'],
-      \ 'G' : [':GFiles?'               , 'modified git files'],
-      \ 'h' : [':History'               , 'file history'],
-      \ 'H' : [':History:'              , 'command history'],
-      \ 'l' : [':Lines'                 , 'lines'] ,
-      \ 'm' : [':Marks'                 , 'marks'] ,
-      \ 'M' : [':Maps'                  , 'normal maps'] ,
-      \ 'p' : [':Helptags'              , 'help tags'] ,
-      \ 'P' : [':Tags'                  , 'project tags'],
-      \ 's' : [':CocList snippets'      , 'snippets'],
-      \ 'S' : [':Colors'                , 'color schemes'],
-      \ 't' : [':Rg'                    , 'text Rg'],
-      \ 'T' : [':BTags'                 , 'buffer tags'],
-      \ 'w' : [':Windows'               , 'search windows'],
-      \ 'y' : [':Filetypes'             , 'file types'],
-      \ 'z' : [':FZF'                   , 'FZF'],
+" f is for file
+let g:which_key_map.f = {
+      \ 'name' : '+file' ,
+      \ 'f' : [':Files'           , 'search files'],
+      \ 'r' : [':earlier 1f'      , 'revert to last write'],
+      \ 's' : [':w'               , 'write file'],
+      \ 'w' : [':w'               , 'write file'],
       \ }
-      " \ 's' : [':Snippets'     , 'snippets'],
 
 " g is for git
 let g:which_key_map.g = {
@@ -124,11 +148,21 @@ let g:which_key_map.g = {
       \ 'V' : [':GV!'                              , 'view buffer commits'],
       \ }
 
+" h is for help
+let g:which_key_map.h = {
+      \ 'name' : '+help' ,
+      \ 'g' : [':help g'                , 'g commands'],
+      \ 'z' : [':help z'                , 'z commands'],
+      \ }
+
+
+nnoremap <leader>l; A;<Esc>
+
 " l is for language server protocol
 let g:which_key_map.l = {
       \ 'name' : '+lsp' ,
       \ '.' : [':CocConfig'                          , 'config'],
-      \ ';' : ['<Plug>(coc-refactor)'                , 'refactor'],
+      \ ';' : 'append ;',
       \ 'a' : ['<Plug>(coc-codeaction)'              , 'line action'],
       \ 'A' : ['<Plug>(coc-codeaction-selected)'     , 'selected action'],
       \ 'b' : [':CocNext'                            , 'next action'],
@@ -139,6 +173,7 @@ let g:which_key_map.l = {
       \ 'e' : [':CocList extensions'                 , 'extensions'],
       \ 'f' : ['<Plug>(coc-format-selected)'         , 'format selected'],
       \ 'F' : ['<Plug>(coc-format)'                  , 'format'],
+      \ 'g' : ['<Plug>(coc-refactor)'                , 'refactor'],
       \ 'h' : ['<Plug>(coc-float-hide)'              , 'hide'],
       \ 'i' : ['<Plug>(coc-implementation)'          , 'implementation'],
       \ 'I' : [':CocList diagnostics'                , 'diagnostics'],
@@ -158,9 +193,65 @@ let g:which_key_map.l = {
       \ 't' : ['<Plug>(coc-type-definition)'         , 'type definition'],
       \ 'u' : [':CocListResume'                      , 'resume list'],
       \ 'U' : [':CocUpdate'                          , 'update CoC'],
-      \ 'v' : [':Vista!!'                            , 'tag viewer'],
+      \ 'v' : [':TagbarToggle'                       , 'tag viewer'],
       \ 'z' : [':CocDisable'                         , 'disable CoC'],
       \ 'Z' : [':CocEnable'                          , 'enable CoC'],
+      \ }
+
+" Group mappings
+let g:which_key_map.o = {
+      \ 'name' : '+open line' ,
+      \ 'a' : ['o\<Esc>kO\<Esc>j^'        , 'open two lines'],
+      \ 'b' : ['o\<Esc>k^'                , 'open line below'],
+      \ 'o' : ['O\<Esc>j^'                , 'open line above'],
+      \ 's' : ['o\<Esc>kO\<Esc>j^'        , 'open two lines'],
+      \ }
+
+" Shortcut for starting a search+replace command in whole buffer
+nnoremap <leader>S% :%s/
+
+" S is for search
+let g:which_key_map.S = {
+      \ 'name' : '+search' ,
+      \ '%' : 'serach+replace',
+      \ '/' : [':History/'              , 'history'],
+      \ ';' : [':Commands'              , 'commands'],
+      \ 'a' : [':Ag'                    , 'text Ag'],
+      \ 'b' : [':BLines'                , 'current buffer'],
+      \ 'B' : [':Buffers'               , 'open buffers'],
+      \ 'c' : [':Commits'               , 'commits'],
+      \ 'C' : [':BCommits'              , 'buffer commits'],
+      \ 'f' : [':Files'                 , 'files'],
+      \ 'g' : [':GFiles'                , 'git files'],
+      \ 'G' : [':GFiles?'               , 'modified git files'],
+      \ 'h' : [':History'               , 'file history'],
+      \ 'H' : [':History:'              , 'command history'],
+      \ 'l' : [':Lines'                 , 'lines'] ,
+      \ 'm' : [':Marks'                 , 'marks'] ,
+      \ 'M' : [':Maps'                  , 'normal maps'] ,
+      \ 'p' : [':Helptags'              , 'help tags'] ,
+      \ 'P' : [':Tags'                  , 'project tags'],
+      \ 's' : [':CocList snippets'      , 'snippets'],
+      \ 'S' : [':Colors'                , 'color schemes'],
+      \ 't' : [':Rg'                    , 'text Rg'],
+      \ 'T' : [':BTags'                 , 'buffer tags'],
+      \ 'w' : [':Windows'               , 'search windows'],
+      \ 'y' : [':Filetypes'             , 'file types'],
+      \ 'z' : [':FZF'                   , 'FZF'],
+      \ }
+      " \ 's' : [':Snippets'     , 'snippets'],
+
+" s is for spell
+let g:which_key_map.s = {
+      \ 'name' : '+spelling' ,
+      \ 'a' : ['zg'                         , 'add to wordlist' ],
+      \ 'f' : ['z='                         , 'fix spelling' ],
+      \ 'i' : ['zG'                         , 'ignore for session' ],
+      \ 'p' : ['[s'                         , 'prev misspelled word' ],
+      \ 'n' : [']s'                         , 'next misspelled word' ],
+      \ 's' : ['[s'                         , 'prev misspelled word' ],
+      \ 'S' : [':setlocal spell!'           , 'toggle spelling in buffer' ],
+      \ 'w' : ['zw'                         , 'mark word as wrong' ],
       \ }
 
 " t is for terminal
@@ -182,16 +273,18 @@ let g:which_key_map.t = {
 " w is for window
 let g:which_key_map.w = {
       \ 'name' : '+window' ,
+      \ '=' : ['<C-w>='                               , 'balance splits'],
       \ 'c' : ['<C-w>c'                               , 'close window'],
       \ 'h' : ['<C-w>h'                               , 'move left'],
       \ 'j' : ['<C-w>j'                               , 'move down'],
       \ 'k' : ['<C-w>k'                               , 'move up'],
       \ 'l' : ['<C-w>l'                               , 'move right'],
-      \ 'o' : ['<C-W>W'                               , 'other window'],
-      \ 's' : [':split'                               , 'veritcal split'],
+      \ 'o' : ['<C-w>W'                               , 'other window'],
+      \ 's' : [':split'                               , 'horizontal split'],
       \ 'v' : [':vsplit'                              , 'veritcal split'],
-      \ 'w' : ['<C-W>W'                               , 'other window'],
+      \ 'w' : ['<C-w>W'                               , 'other window'],
       \ }
 
 " Register which key map
 call which_key#register('<Space>', "g:which_key_map")
+

@@ -26,6 +26,7 @@ set undofile
 
 " Show line numbers.
 set number
+set relativenumber
 
 " Always show the status line at the bottom, even if you only have one window open.
 set laststatus=2
@@ -52,6 +53,11 @@ set smartcase
 " Enable searching as you type, rather than waiting till you press enter.
 set incsearch
 
+" Live highlight and substituion preview
+" 'split' is another option that shows preview of changes in temp split
+" window, useful for previews outside of the current view of the file
+set inccommand=nosplit
+
 " Unbind some useless/annoying default key bindings.
 nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
 
@@ -71,9 +77,11 @@ set shiftwidth=2  " Change number of space characters inserted for indentation
 set smarttab      " Make tabbing realize when 2 vs 4
 set expandtab     " Converts tabs to spaces
 
-" Horizaontal splits below, vertical to the right
+" Horizontal splits below, vertical to the right
 set splitbelow
 set splitright
+
+highlight Comment cterm=italic gui=italic
 
 " Run :FZF for file selection + preview
 set rtp+=/usr/local/opt/fzf
@@ -85,3 +93,24 @@ set nowritebackup
 " delays and poor user experience. Also from coc
 set updatetime=300
 
+" To prevent conflict with <space> in tagbar
+let g:tagbar_map_showproto = "K"
+
+" Recommended by VimWiki
+filetype plugin on
+
+" Open help in vertical splits. Seems to split across all windows,
+" not just in the active window
+" autocmd FileType help wincmd L
+
+" Open a scratch buffer in a split
+" TODO: Look for open scratch buffer to switch to first
+function! Scratch()
+    split
+    noswapfile hide enew
+    setlocal buftype=nofile
+    setlocal bufhidden=hide
+    "setlocal nobuflisted
+    "lcd ~
+    file scratch
+endfunction

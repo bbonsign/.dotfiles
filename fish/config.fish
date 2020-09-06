@@ -1,12 +1,21 @@
 starship init fish | source
 
-# set PATH <mydir> $PATH
+set -x PATH ~/.cargo/bin $PATH
+
+# Shows a preview of the file via bat
 set -xg FZF_DEFAULT_OPTS '--height=100% --preview="bat {} --color=always"'
+# Use --preview option to display the full command on the preview window.
+# Bind ? key for toggling the preview window.
+set -xg FZF_CTRL_R_OPTS "--preview 'echo {}' --preview-window down:3:hidden:wrap --bind '?:toggle-preview'"
+# Shows tree of the directory in the preview window
+set -xg FZF_ALT_C_OPTS "--preview 'tree -C {} | head -200'"
 
-alias vim=nvim
-alias vi=nvim
-alias v=nvim
 
+# Set nvim to default editor
+# CTRL-x CTRL-x opens EDITOR for editing long commands
+# Note: Alt-e and Alt-v also open EDITOR for editing commands
+set -xg EDITOR nvim
+bind \cx edit_command_buffer
 
 if command -sq gls
     function ls --description "ls command of GNU coreutils"

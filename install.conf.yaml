@@ -19,6 +19,7 @@
 - link:
     ~/.gitconfig:
     ~/.gitignore:
+    ~/.tldrrc:
     ~/.config/starship.toml: starship.toml
     ~/.config/fish:
       path: fish/*
