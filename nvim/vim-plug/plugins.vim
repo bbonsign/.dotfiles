@@ -39,7 +39,10 @@ Plug 'glts/vim-radical'
 Plug 'ciaranm/securemodelines'
 Plug 'editorconfig/editorconfig-vim'
 
+" Search by two characters
 Plug 'justinmk/vim-sneak'
+
+" Improved f/t (highlights etc)
 Plug 'unblevable/quick-scope'
 " Possibly replace quick-scope with:
 " Plug 'rhysd/clever-f.vim'
@@ -64,7 +67,9 @@ Plug 'mhinz/vim-startify'
 " Breifly higlight yanked text
 Plug 'machakann/vim-highlightedyank'
 
-" Plug 'rust-lang/rust.vim'
+" Align to character easily, e.g. add spaces to make '='
+" on the same column in several lines of assignments
+Plug 'tommcdo/vim-lion'
 
 " Show tags in a side bar
 Plug 'majutsushi/tagbar'
@@ -76,6 +81,7 @@ Plug 'mitsuhiko/vim-jinja'
 
 " Automatic table formating, basic spreadsheet, like in org mode
 " Plug 'dhruvasagar/vim-table-mode'
+" Plug 'jceb/vim-orgmode'
 
 " More text objects
 Plug 'kana/vim-textobj-user'
