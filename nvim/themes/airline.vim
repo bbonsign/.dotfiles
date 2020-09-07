@@ -27,7 +27,7 @@ let g:airline_powerline_fonts = 1
 " let g:airline_right_sep = ''
 " let g:airline_right_alt_sep = ''
 
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+" let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 
 
 " Switch to your current theme
@@ -46,3 +46,6 @@ let g:webdevicons_enable_airline_tabline = 1
 " set the CN (column number) symbol:
 " let g:airline_section_z = airline#section#create(["\uE0A1" . '%{line(".")}' . "\uE0A3" . '%{col(".")}'])
 
+" Disable coc-integration mainly b/c with python virtual envs, the virtual env
+" and architechure info take up too much space and hide the filename.  wtf?
+let g:airline#extensions#coc#enabled = 0
