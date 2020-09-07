@@ -62,7 +62,8 @@ I haven't looked into installing these with Homebrew yet, so for now its the lon
 - Docker: <https://docs.docker.com/docker-for-mac/install/>
 - Dropbox
 - Karibiner-Elements for keyboard remapping: <https://karabiner-elements.pqrs.org/>
-- Python packages installed with pip, eg linters/formatters
+- Python packages installed with pip, eg `pip3 install rich`, which the function md.fish
+uses to print markdown in the terminal nicely
 - go path setup
 
 ## Linux Setup

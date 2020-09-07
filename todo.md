@@ -12,12 +12,12 @@
 - [ ] Implement persistent buffer local spell ignore lists, see <https://vi.stackexchange.com/questions/9925/ignore-word-spelling-on-a-per-file-buffer-basis>
 - [ ] Vinfo plugin for reading GNU info in vim (closer behavior to emacs, hopefully): <https://sillybytes.net/vinfo/>
 - [ ] Set up which-key mappings for a localleader key, maybe '\'.
-- [ ] Write function to append ';' to lines in a region, if they don't have one. Currenly <leader>l; will append to one line at a time.
+- [x] Write function to append ';' to lines in a region, if they don't have one. Currenly <leader>l; will append to one line at a time.
 
 ## TMUX
 - [ ] Look into common actions that don't have bindings yet, e.g. spread panes evenly (currently leader+M1 for vertical layout)
 - [ ] Look into occasional flickering in tmux
-- [ ] Reinstall tmxinator to save sessions I don't need on every startup.
+- [ ] Reinstall tmuxinator to save sessions I don't need on every startup.
 - [ ] Set up saving neovim sessions along with the tmux sessions, and possibly some other running programs.
 
 ## Fish
@@ -37,7 +37,10 @@
 - [x] Set change workspace left/right to Cmd+H/L. Look into a way to add this to dotfiles or .macos file. Actually, Cmd+L overrides the browser mapping that focuses the url/search bar.
 
 ## Fonts
-- [ ] Set up an italic font for comments, at least in vim or kitty.  FiraCode Nerd doesn't have italics
+- [ ] FiraCode Nerd doesn't have italics, maybe find a patched font?
+
+## Python
+- [ ] Add startup file for interactive shell, mainly to add rich tracebacks: (<https://docs.python.org/3/tutorial/appendix.html#the-interactive-startup-file> and <https://rich.readthedocs.io/en/latest/traceback.html>)
 
 ## Programs to look into or install
 - Glances: cli/web-interface system status tool like htop: <https://github.com/nicolargo/glances>
