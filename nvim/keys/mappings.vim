@@ -17,15 +17,20 @@ nnoremap <C-a> ^
 cnoremap <C-e> <End>
 cnoremap <C-a> <Home>
 
+" Since ctrl-e is overwritten, use ctrl-h instead
+" ctrl-e scrolls up a line, ctrl-y down a line
+nnoremap <C-h> <C-e>
+vnoremap <C-h> <C-e>
+
 " Move by visual lines
 nnoremap j gj
 nnoremap k gk
 
 " quicker window movement
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+" nnoremap <C-j> <C-w>j
+" nnoremap <C-k> <C-w>k
+" nnoremap <C-h> <C-w>h
+" nnoremap <C-l> <C-w>l
 
 " Use alt + arrows to resize windows
 nnoremap <silent> <M-Down> :resize -2<CR>
@@ -44,6 +49,8 @@ vnoremap <A-k> :m '<-2<CR>gv=gv
 " Ctrl+h to stop highlighting search results
 vnoremap <silent> <C-n> :nohlsearch<CR>
 nnoremap <silent> <C-n> :nohlsearch<CR>
+vnoremap <silent> <leader>n :nohlsearch<CR>
+nnoremap <silent> <leader>n :nohlsearch<CR>
 
 " Double tab leader key (space bar for me) to start command mode
 nnoremap <leader><leader> :
@@ -80,6 +87,28 @@ onoremap <silent> i; :<C-U>normal! hf;F:Bvt;<CR>
 xnoremap <silent> a; :<C-U>normal! hf;F:Bvf;<CR>
 xnoremap <silent> i; :<C-U>normal! hf;F:Bvt;<CR>
 
+
+" Shortcut to use blackhole register "_ by default
+nnoremap d "_d
+vnoremap d "_d
+nnoremap D "_D
+vnoremap D "_D
+nnoremap c "_c
+vnoremap c "_c
+nnoremap C "_C
+vnoremap C "_C
+nnoremap x "_x
+vnoremap x "_x
+
+" Use '\' prefix for default behavior (deleted text -> default register)
+nnoremap \d d
+vnoremap \d d
+nnoremap \D D
+vnoremap \D D
+nnoremap \c c
+vnoremap \c c
+nnoremap \C C
+vnoremap \C C
 
 
 " Completion related mappings

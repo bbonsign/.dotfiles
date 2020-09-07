@@ -40,11 +40,16 @@ vnoremap <leader>r "
 nnoremap <leader>R :registers<CR>
 vnoremap <leader>R :registers<CR>
 
+" Another way to jump to marks
+nnoremap <leader>j '
+vnoremap <leader>j '
+
 " <leader>p or <leader>i append/insert single character at cursor, but stay in
+" If no character is chosen before going back to normal mode, a space is left.
 " normal mode (<leader>a is shadowed by actions below, hence the p).
-nnoremap \ a_<Esc>r
-nnoremap <leader>i i_<Esc>r
-nnoremap <leader>p a_<Esc>r
+nnoremap \ a<Space><Esc>r
+nnoremap <leader>i i<Space><Esc>r
+nnoremap <leader>p a<Space><Esc>r
 
 " Alternative to Ctrl+/ for commenting lines
 nnoremap <leader>/ :Commentary<CR>
@@ -61,9 +66,10 @@ let g:which_key_map['d'] = ['%'                      , '%']
 let g:which_key_map['e'] = [':CocCommand explorer'   , 'explorer']
 let g:which_key_map['F'] = [':Files'                 , 'search files']
 let g:which_key_map['i'] = 'insert character'
+let g:which_key_map['j'] = 'jump to mark'
 " let g:which_key_map['M'] = 'man pages'
 let g:which_key_map['m'] = ['%'                      , '%match']
-let g:which_key_map['n'] = [':NERDTreeToggle'        , 'NERTree Toggle']
+let g:which_key_map['n'] = 'nohlsearch'
 let g:which_key_map['p'] = 'append character'
 let g:which_key_map['q'] = ['q'                      , 'quit']
 let g:which_key_map['r'] = 'access register'
@@ -83,6 +89,7 @@ let g:which_key_map['.'] = {
       \ 'S' : [ ':SSave'                     , 'save session' ],
       \ }
 
+
 nnoremap <leader>aa A_<Esc>r
 " a is for actions
 let g:which_key_map.a = {
@@ -96,31 +103,37 @@ let g:which_key_map.a = {
       \ 's' : [':let @/ = ""'            , 'remove search highlight'],
       \ 'S' : [':setlocal spell!'        , 'toggle spelling in buffer' ],
       \ 't' : [':FloatermToggle'         , 'terminal'],
-      \ 'v' : [':TagbarToggle'                , 'tag viewer'],
+      \ 'v' : [':TagbarToggle'           , 'tag viewer'],
       \ }
+
 
 " b is for buffer
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
-      \ 'b' : ['Buffers'   , 'fzf-buffer']      ,
-      \ 'd' : ['bd'        , 'delete-buffer']   ,
-      \ 'f' : ['bfirst'    , 'first-buffer']    ,
-      \ 'h' : ['Startify'  , 'home-buffer']     ,
-      \ 'l' : ['blast'     , 'last-buffer']     ,
-      \ 'n' : ['bnext'     , 'next-buffer']     ,
-      \ 's' : ['Scratch()' , 'scratch buffer']     ,
-      \ 'p' : ['bprevious' , 'previous-buffer'] ,
+      \ 'b' : ['Buffers'   , 'fzf-buffer'],
+      \ 'd' : ['bd'        , 'delete-buffer'],
+      \ 'f' : ['bfirst'    , 'first-buffer'],
+      \ 'h' : ['Startify'  , 'home-buffer'],
+      \ 'l' : ['blast'     , 'last-buffer'],
+      \ 'n' : ['bnext'     , 'next-buffer'],
+      \ 's' : ['Scratch()' , 'scratch buffer'],
+      \ 'p' : ['bprevious' , 'previous-buffer'],
       \ }
+
+
+nnoremap <leader>fe :e<Space>
 
 " f is for file
 let g:which_key_map.f = {
       \ 'name' : '+file' ,
+      \ 'e' : 'edit file',
       \ 'f' : [':Files'           , 'search files'],
       \ 'r' : [':earlier 1f'      , 'revert to last write'],
       \ 's' : [':w'               , 'write file'],
       \ 'w' : [':w'               , 'write file'],
       \ }
 
+"
 " g is for git
 let g:which_key_map.g = {
       \ 'name' : '+git' ,
@@ -131,8 +144,8 @@ let g:which_key_map.g = {
       \ 'c' : [':Git commit'                       , 'commit'],
       \ 'd' : [':Git diff'                         , 'diff'],
       \ 'D' : [':Gdiffsplit'                       , 'diff split'],
-      \ 'g' : [':GGrep'                            , 'git grep'],
-      \ 'G' : [':Gstatus'                          , 'status'],
+      \ 'G' : [':GGrep'                            , 'git grep'],
+      \ 'g' : [':Gstatus'                          , 'status'],
       \ 'h' : [':GitGutterLineHighlightsToggle'    , 'highlight hunks'],
       \ 'H' : ['<Plug>(GitGutterPreviewHunk)'      , 'preview hunk'],
       \ 'j' : ['<Plug>(GitGutterNextHunk)'         , 'next hunk'],
@@ -152,6 +165,7 @@ let g:which_key_map.g = {
 let g:which_key_map.h = {
       \ 'name' : '+help' ,
       \ 'g' : [':help g'                , 'g commands'],
+      \ 't' : [':Helptags'              , 'fzf helptags'],
       \ 'z' : [':help z'                , 'z commands'],
       \ }
 
@@ -207,13 +221,15 @@ let g:which_key_map.o = {
       \ 's' : ['o\<Esc>kO\<Esc>j^'        , 'open two lines'],
       \ }
 
-" Shortcut for starting a search+replace command in whole buffer
-nnoremap <leader>S% :%s/
+" Shortcut for starting a search+replace command in whole buffer & in line
+nnoremap <leader>s% :%s/
+nnoremap <leader>s. :.s/
 
 " S is for search
-let g:which_key_map.S = {
+let g:which_key_map.s = {
       \ 'name' : '+search' ,
-      \ '%' : 'serach+replace',
+      \ '%' : 'search+replace in file',
+      \ '.' : 'search+replace in line',
       \ '/' : [':History/'              , 'history'],
       \ ';' : [':Commands'              , 'commands'],
       \ 'a' : [':Ag'                    , 'text Ag'],
@@ -235,23 +251,24 @@ let g:which_key_map.S = {
       \ 'S' : [':Colors'                , 'color schemes'],
       \ 't' : [':Rg'                    , 'text Rg'],
       \ 'T' : [':BTags'                 , 'buffer tags'],
-      \ 'w' : [':Windows'               , 'search windows'],
+      \ 'W' : [':Windows'               , 'search windows'],
+      \ 'w' : ['/\<C-r>\<C-w>\<CR>N'    , 'search word at cursor'],
       \ 'y' : [':Filetypes'             , 'file types'],
       \ 'z' : [':FZF'                   , 'FZF'],
       \ }
       " \ 's' : [':Snippets'     , 'snippets'],
 
 " s is for spell
-let g:which_key_map.s = {
+let g:which_key_map.S = {
       \ 'name' : '+spelling' ,
-      \ 'a' : ['zg'                         , 'add to wordlist' ],
-      \ 'f' : ['z='                         , 'fix spelling' ],
-      \ 'i' : ['zG'                         , 'ignore for session' ],
-      \ 'p' : ['[s'                         , 'prev misspelled word' ],
-      \ 'n' : [']s'                         , 'next misspelled word' ],
-      \ 's' : ['[s'                         , 'prev misspelled word' ],
-      \ 'S' : [':setlocal spell!'           , 'toggle spelling in buffer' ],
-      \ 'w' : ['zw'                         , 'mark word as wrong' ],
+      \ 'A' : ['zg'                         , 'add to wordlist' ],
+      \ 'F' : ['z='                         , 'fix spelling' ],
+      \ 'I' : ['zG'                         , 'ignore for session' ],
+      \ 'P' : ['[s'                         , 'prev misspelled word' ],
+      \ 'N' : [']s'                         , 'next misspelled word' ],
+      \ 'S' : ['[s'                         , 'prev misspelled word' ],
+      \ 'T' : [':setlocal spell!'           , 'toggle spelling in buffer' ],
+      \ 'W' : ['zw'                         , 'mark word as wrong' ],
       \ }
 
 " t is for terminal
@@ -273,16 +290,20 @@ let g:which_key_map.t = {
 " w is for window
 let g:which_key_map.w = {
       \ 'name' : '+window' ,
-      \ '=' : ['<C-w>='                               , 'balance splits'],
-      \ 'c' : ['<C-w>c'                               , 'close window'],
-      \ 'h' : ['<C-w>h'                               , 'move left'],
-      \ 'j' : ['<C-w>j'                               , 'move down'],
-      \ 'k' : ['<C-w>k'                               , 'move up'],
-      \ 'l' : ['<C-w>l'                               , 'move right'],
-      \ 'o' : ['<C-w>W'                               , 'other window'],
-      \ 's' : [':split'                               , 'horizontal split'],
-      \ 'v' : [':vsplit'                              , 'veritcal split'],
-      \ 'w' : ['<C-w>W'                               , 'other window'],
+      \ '=' : ['<C-w>='                   , 'balance splits'],
+      \ 'c' : ['<C-w>c'                   , 'close window'],
+      \ 'H' : ['<C-w>H'                   , 'move left'],
+      \ 'h' : ['<C-w>h'                   , 'change left'],
+      \ 'J' : ['<C-w>J'                   , 'move down'],
+      \ 'j' : ['<C-w>j'                   , 'change down'],
+      \ 'K' : ['<C-w>K'                   , 'move up'],
+      \ 'k' : ['<C-w>k'                   , 'change up'],
+      \ 'L' : ['<C-w>L'                   , 'move right'],
+      \ 'l' : ['<C-w>l'                   , 'change right'],
+      \ 'o' : ['<C-w>o'                   , 'only window'],
+      \ 's' : [':split'                   , 'horizontal split'],
+      \ 'v' : [':vsplit'                  , 'veritcal split'],
+      \ 'w' : ['<C-w>W'                   , 'other window'],
       \ }
 
 " Register which key map
