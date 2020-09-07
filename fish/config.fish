@@ -1,6 +1,6 @@
 starship init fish | source
 
-set -x PATH ~/.cargo/bin $PATH
+set -x PATH /home/linuxbrew/.linuxbrew/bin ~/.cargo/bin $PATH
 
 # Shows a preview of the file via bat
 set -xg FZF_DEFAULT_OPTS '--height=100% --preview="bat {} --color=always"'
@@ -16,6 +16,9 @@ set -xg FZF_ALT_C_OPTS "--preview 'tree -C {} | head -200'"
 # Note: Alt-e and Alt-v also open EDITOR for editing commands
 set -xg EDITOR nvim
 bind \cx edit_command_buffer
+
+# Setting this fixed 'clear' command not working
+set -xg TERMINFO /usr/share/terminfo
 
 if command -sq gls
     function ls --description "ls command of GNU coreutils"
@@ -61,3 +64,7 @@ if status --is-interactive
     set BASE16_SHELL "$HOME/.config/base16-shell/"
     source "$BASE16_SHELL/profile_helper.fish"
 end
+
+# fnm
+set PATH /home/bbonsign/.fnm $PATH
+fnm env --multi | source
