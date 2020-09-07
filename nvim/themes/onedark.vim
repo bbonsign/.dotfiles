@@ -30,3 +30,5 @@ highlight VertSplit guibg=#232733 guifg=#2d3c85 ctermbg=black ctermfg=cyan
 " Make comments italized, when using a font with italics at least
 highlight Comment cterm=italic gui=italic
 
+" Override the ugly yellow search results
+highlight Search guifg=white guibg=#007ACC ctermfg=white ctermbg=blue
