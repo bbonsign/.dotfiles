@@ -6,7 +6,7 @@
 	helper = osxkeychain
 [core]
 	excludesfile = /Users/bbonsign/.gitignore
-	editor = nano
+	editor = nvim
 [alias]
 	last = log -1 HEAD
 	st = status
