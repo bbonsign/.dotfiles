@@ -21,6 +21,8 @@
     ~/.gitignore:
     ~/.tldrrc:
     ~/.config/starship.toml: starship.toml
+    ~/.config/fd:
+      path: fd/*
     ~/.config/fish:
       path: fish/*
     ~/.bash_profile:
