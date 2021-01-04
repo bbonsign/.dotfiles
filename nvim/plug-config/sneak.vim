@@ -1,7 +1,7 @@
 " Prompt for sneak
-let g:sneak#prompt = '🔎'
+let g:sneak#prompt = ' '
 
-highlight Sneak guifg=black guibg=#296bb3 ctermfg=black ctermbg=blue
+highlight Sneak guifg=black guibg=#005996 ctermfg=black ctermbg=blue
 
 " The follow hl group is used when sneak has a number prefix, which I don't
 " often use
@@ -9,5 +9,12 @@ highlight Sneak guifg=black guibg=#296bb3 ctermfg=black ctermbg=blue
 
 
 " remap so I can use , and ; with f and t
-" map gS <Plug>Sneak_,
-" map gs <Plug>Sneak_;
+" Note: these don't modify the jump list (for ctrl-{i,o})
+map <BS> <Plug>Sneak_,
+map <CR> <Plug>Sneak_;
+
+" <CR> and <BS> work for next/prev match with these too
+" map f <Plug>Sneak_f
+" map F <Plug>Sneak_F
+" map t <Plug>Sneak_t
+" map T <Plug>Sneak_T

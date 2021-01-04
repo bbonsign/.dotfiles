@@ -1,19 +1,58 @@
 " Set Leader key to Space
 " Mappings using <leader> are set in ~/.config/nvim/keys/which-key.vim
 let mapleader=" "
+let maplocalleader="\\"
+
+" Easily enter command mode (no shift button!)
+" Swapped ; and : globally with Karabiner-Elements
+" nnoremap ; :
+" vnoremap ; :
+
+" The above messes up useing ';' for the next "f search"
+" Enter and Backspace are used in nvim/plug-config/sneak.vim
+" so the f-versions have an 'f' prefix.  This allows for vim-sneak and the
+" normal f & t searching to be used
+nnoremap f<CR> ;
+nnoremap f<BS> ,
+vnoremap f<CR> ;
+vnoremap f<BS> ,
+
+" Enter command window from noraml mode
+" note: enter command window with Ctrl-F when already at cmd line
+nnoremap q; q:
+vnoremap q; q:
 
 " Use Ctrl-s to increment number at cursor since we remap C-a below
 nnoremap <C-s> <C-a>
 
 " Another way to exit insert mode
-" <C-c> is another built-in option in addition to <Esc>
-:inoremap kj <esc>
+" <C-c> and <C-[> are other ways to exit insert mode
+" inoremap kj <Esc> -- remapped differently below, I dont use this much
+
+" Insert new line with correct indentation when cursor is on closing empty
+" delimiters, E.g. {} -> {
+"
+"                      }
+inoremap kj <Esc>i<CR><Esc>O
+nnoremap <leader>z i<CR><Esc>O
+
+" Let's write some λ's!!!
+inoremap <C-\> λ
+
+" Override s from vim-sneak to ys for vis-surround
+" vim-sneak isn't as usedul with easymotion installed
+nmap s ys
+
+" UndoTree
+nnoremap <leader>u :UndotreeToggle<CR>
 
 " shortcuts for ctrl-a and ctrl-e in insert/normalcommand mode
 inoremap <C-e> <Esc>A
 inoremap <C-a> <Esc>I
 nnoremap <C-e> $
 nnoremap <C-a> ^
+vnoremap <C-e> g_
+vnoremap <C-a> ^
 cnoremap <C-e> <End>
 cnoremap <C-a> <Home>
 
@@ -26,11 +65,20 @@ vnoremap <C-h> <C-e>
 nnoremap j gj
 nnoremap k gk
 
-" quicker window movement
-" nnoremap <C-j> <C-w>j
-" nnoremap <C-k> <C-w>k
-" nnoremap <C-h> <C-w>h
-" nnoremap <C-l> <C-w>l
+" " Consistent switching between vim/tmux splits
+" let g:tmux_navigator_no_mappings = 1
+" nnoremap <silent> <C-w>h :TmuxNavigateLeft<cr>
+" nnoremap <silent> <C-w>j :TmuxNavigateDown<cr>
+" nnoremap <silent> <C-w>k :TmuxNavigateUp<cr>
+" nnoremap <silent> <C-w>l :TmuxNavigateRight<cr>
+" " nnoremap <silent> <C-w>w :TmuxNavigatePrevious<cr>
+" nnoremap <silent> <C-w><C-h> :TmuxNavigateLeft<cr>
+" nnoremap <silent> <C-w><C-j> :TmuxNavigateDown<cr>
+" nnoremap <silent> <C-w><C-k> :TmuxNavigateUp<cr>
+" nnoremap <silent> <C-w><C-l> :TmuxNavigateRight<cr>
+" " nnoremap <silent> <C-w><C-w> :TmuxNavigatePrevious<cr>
+" " Disable tmux navigator when zooming the Vim pane
+" let g:tmux_navigator_disable_when_zoomed = 1
 
 " Use alt + arrows to resize windows
 nnoremap <silent> <M-Down> :resize -2<CR>
@@ -39,16 +87,18 @@ nnoremap <silent> <M-Left> :vertical resize -2<CR>
 nnoremap <silent> <M-Right> :vertical resize +2<CR>
 
 " Alt +kj drag line up/down
-nnoremap <A-j> :m .+1<CR>==
-nnoremap <A-k> :m .-2<CR>==
-inoremap <A-j> <Esc>:m .+1<CR>==gi
-inoremap <A-k> <Esc>:m .-2<CR>==gi
-vnoremap <A-j> :m '>+1<CR>gv=gv
-vnoremap <A-k> :m '<-2<CR>gv=gv
+nnoremap <silent> <A-j> :m .+1<CR>==
+nnoremap <silent> <A-k> :m .-2<CR>==
+inoremap <silent> <A-j> <Esc>:m .+1<CR>==gi
+inoremap <silent> <A-k> <Esc>:m .-2<CR>==gi
+vnoremap <silent> <A-j> :m '>+1<CR>gv=gv
+vnoremap <silent> <A-k> :m '<-2<CR>gv=gv
+
 
 " Ctrl+h to stop highlighting search results
-vnoremap <silent> <C-n> :nohlsearch<CR>
-nnoremap <silent> <C-n> :nohlsearch<CR>
+" vnoremap <silent> <C-n> :nohlsearch<CR>
+" nnoremap <silent> <C-n> :nohlsearch<CR>
+" inoremap <silent> <C-n> <Esc>:nohlsearch<CR>a
 vnoremap <silent> <leader>n :nohlsearch<CR>
 nnoremap <silent> <leader>n :nohlsearch<CR>
 
@@ -70,14 +120,40 @@ noremap <C-p> :Files<CR>
 nnoremap Y y$
 
 " Shortcut for C-x C-l line completion
-" Since C-x is my tmux prefix, line completion really needs C-x C-x C-l
 inoremap <C-l> <C-x><C-l>
 nnoremap <C-l> i<C-x><C-l>
+
+" FZF mode completion in insert mode
+" Since C-x is my tmux prefix, line completion really needs C-x C-x C-l
+imap <c-w> <plug>(fzf-complete-word)
+imap <c-f> <plug>(fzf-complete-path)
+imap <c-l> <plug>(fzf-complete-line)
+
+" Open a fuzzy finder based on the current completion options
+function! PInsert2(item)
+  let @z=a:item
+  norm "zp
+  call feedkeys('a')
+endfunction
+
+function! CompleteInf()
+  let nl=[]
+  let l=complete_info()
+  for k in l['items']
+    call add(nl, k['word']. ' : ' .k['info'] . ' '. k['menu'] )
+  endfor
+  call fzf#vim#complete(fzf#wrap({ 'source': nl,
+    \ 'reducer': { lines -> split(lines[0], '\zs :')[0] },
+    \ 'sink':function('PInsert2')}))
+endfunction
+
+imap <space><tab>  <CMD>:call CompleteInf()<CR>
+" =================================================
 
 " Use <Esc> to go to normal mode in terminal
 " Then use Alt-[ to set the escape key to the underlying program in terminal
 tnoremap <A-[> <C-\><C-n>
-" tnoremap <A-[> <Esc>
+tnoremap <C-]> <C-\><C-n>
 
 " Fake css property text object
 " TODO: Look into creating one for real with vim-textobj-user plugin
@@ -88,27 +164,19 @@ xnoremap <silent> a; :<C-U>normal! hf;F:Bvf;<CR>
 xnoremap <silent> i; :<C-U>normal! hf;F:Bvt;<CR>
 
 
-" Shortcut to use blackhole register "_ by default
-nnoremap d "_d
-vnoremap d "_d
-nnoremap D "_D
-vnoremap D "_D
-nnoremap c "_c
-vnoremap c "_c
-nnoremap C "_C
-vnoremap C "_C
+" Use the blackhole register "_ by default for x
 nnoremap x "_x
 vnoremap x "_x
-
-" Use '\' prefix for default behavior (deleted text -> default register)
-nnoremap \d d
-vnoremap \d d
-nnoremap \D D
-vnoremap \D D
-nnoremap \c c
-vnoremap \c c
-nnoremap \C C
-vnoremap \C C
+"
+" Use <space> prefix for default behavior (deleted text -> default register)
+nnoremap <space>d "_d
+vnoremap <space>d "_d
+nnoremap <space>D "_D
+vnoremap <space>D "_D
+nnoremap <space>c "_c
+vnoremap <space>c "_c
+nnoremap <space>C "_C
+vnoremap <space>C "_C
 
 
 " Completion related mappings
@@ -129,6 +197,7 @@ endfunction
 
 " Better nav for omnicomplete
 " <C-n> and <C-p> still work too
+" C-j isn't working
 inoremap <expr> <C-j> ("\<C-n>")
 inoremap <expr> <C-k> ("\<C-p>")
 
@@ -136,5 +205,15 @@ inoremap <expr> <C-k> ("\<C-p>")
 inoremap <silent><expr> <c-space> coc#refresh()
 
 " <CR> to confirm coc-completion, use:
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<CR>"
+inoremap <expr> <CR> pumvisible() ? "\<c-y>" : "\<cr>"
 
+" Use K to show documentation in preview window
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction

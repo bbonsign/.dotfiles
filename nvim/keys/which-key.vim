@@ -2,6 +2,10 @@
 nnoremap <silent> <leader> :silent <c-u> :silent WhichKey '<Space>'<CR>
 vnoremap <silent> <leader> :silent <c-u> :silent WhichKeyVisual '<Space>'<CR>
 
+nnoremap <silent> <localleader> :silent <c-u> :silent WhichKey '\'<CR>
+vnoremap <silent> <localleader> :silent <c-u> :silent WhichKeyVisual '\'<CR>
+
+
 " Create map to add keys to
 let g:which_key_map =  {}
 " Define a separator
@@ -33,13 +37,6 @@ vnoremap <leader>hh :help<space>
 nnoremap <leader>hm :Man<space>
 vnoremap <leader>hm :Man<space>
 
-" Another way to access registers easily
-nnoremap <leader>r "
-vnoremap <leader>r "
-
-nnoremap <leader>R :registers<CR>
-vnoremap <leader>R :registers<CR>
-
 " Another way to jump to marks
 nnoremap <leader>j '
 vnoremap <leader>j '
@@ -47,7 +44,7 @@ vnoremap <leader>j '
 " <leader>p or <leader>i append/insert single character at cursor, but stay in
 " If no character is chosen before going back to normal mode, a space is left.
 " normal mode (<leader>a is shadowed by actions below, hence the p).
-nnoremap \ a<Space><Esc>r
+" nnoremap \ a<Space><Esc>r
 nnoremap <leader>i i<Space><Esc>r
 nnoremap <leader>p a<Space><Esc>r
 
@@ -62,8 +59,8 @@ let g:which_key_map['/'] = 'comment'
 let g:which_key_map[';'] = [':Commands'              , 'commands']
 let g:which_key_map['='] = ['z='                     , 'correct spelling']
 let g:which_key_map[','] = ['Buffers'                , 'fzf-buffer']
-let g:which_key_map['d'] = ['%'                      , '%']
-let g:which_key_map['e'] = [':CocCommand explorer'   , 'explorer']
+" let g:which_key_map['d'] = ['%'                      , '%']
+let g:which_key_map['E'] = [':CocCommand explorer'   , 'explorer']
 let g:which_key_map['F'] = [':Files'                 , 'search files']
 let g:which_key_map['i'] = 'insert character'
 let g:which_key_map['j'] = 'jump to mark'
@@ -72,8 +69,6 @@ let g:which_key_map['m'] = ['%'                      , '%match']
 let g:which_key_map['n'] = 'nohlsearch'
 let g:which_key_map['p'] = 'append character'
 let g:which_key_map['q'] = ['q'                      , 'quit']
-let g:which_key_map['r'] = 'access register'
-let g:which_key_map['R'] = 'registers'
 let g:which_key_map['T'] = [':Rg'                    , 'search text']
 let g:which_key_map['W'] = ['w'                      , 'write']
 let g:which_key_map['X'] = ['ciw \<Esc>'             , 'trim to one space between words']
@@ -84,7 +79,7 @@ let g:which_key_map['x'] = [':StripWhitespace'       , 'strip whitespace']
 let g:which_key_map['.'] = {
       \ 'name' : '+vimrc' ,
       \ '.' : [ ':e $MYVIMRC'                , 'open init' ],
-      \ 'r' : [ ':source $MYVIMRC'           , 'reload config' ],
+      \ 'r' : [ ':source $MYVIMRC'           , 'reload config'],
       \ 'h' : [ 'Startify'                   , 'start screen' ],
       \ 'S' : [ ':SSave'                     , 'save session' ],
       \ }
@@ -121,9 +116,52 @@ let g:which_key_map.b = {
       \ }
 
 
-nnoremap <leader>fe :e<Space>
+
+let g:which_key_map.d = {
+      \ 'd' : '->black hole',
+      \ 'D' : '->black hole',
+      \ }
+
+" E for easymotion
+" for more ergonomic upper-case mappings
+let g:which_key_map.E = {
+      \ 'name': '+Easymotion' ,
+      \ '}' : ['<Plug>(easymotion-next)'           ,  'next'],
+      \ '{' : ['<Plug>(easymotion-previous)'       ,  'previous'],
+      \ 'E' : ['<Plug>(easymotion-ge)'             ,  'end of word above'],
+      \ 'F' : ['<Plug>(easymotion-overwin-f)'      ,  'overwin f'],
+      \ 'J' : ['<Plug>(easymotion-eol-j)'          ,  'eol-j'],
+      \ 'K' : ['<Plug>(easymotion-eol-k)'          ,  'eol-k'],
+      \ 'L' : ['<Plug>(easymotion-overwin-line)'   ,  'overwin line'],
+      \ 'N' : ['<Plug>(easymotion-N)'              ,  'N'],
+      \ 'W' : ['<Plug>(easymotion-overwin-w)'      ,  'overwin word'],
+      \ }
+
+" e for symotion
+let g:which_key_map.e = {
+      \ 'name': '+easymotion' ,
+      \ '.' : ['<Plug>(easymotion-repeat)'         ,  'repeat'],
+      \ ']' : ['<Plug>(easymotion-next)'           ,  'next'],
+      \ '[' : ['<Plug>(easymotion-previous)'       ,  'previous'],
+      \ 'b' : ['<Plug>(easymotion-b)'              ,  'word, above '],
+      \ 'E' : ['<Plug>(easymotion-ge)'             ,  'end of word above'],
+      \ 'e' : ['<Plug>(easymotion-e)'              ,  'end of word'],
+      \ 'f' : ['<Plug>(easymotion-f)'              ,  'f'],
+      \ 'J' : ['<Plug>(easymotion-eol-j)'          ,  'eol-j'],
+      \ 'j' : ['<Plug>(easymotion-j)'              ,  'lines up'],
+      \ 'K' : ['<Plug>(easymotion-eol-k)'          ,  'eol-k'],
+      \ 'k' : ['<Plug>(easymotion-k)'              ,  'line motion'],
+      \ 'l' : ['<Plug>(easymotion-bd-jk)'          ,  'lines'],
+      \ 'N' : ['<Plug>(easymotion-N)'              ,  'N'],
+      \ 'n' : ['<Plug>(easymotion-n)'              ,  'n'],
+      \ 's' : ['<Plug>(easymotion-sn)'             ,  'sn'],
+      \ 't' : ['<Plug>(easymotion-t)'              ,  't'],
+      \ 'w' : ['<Plug>(easymotion-w)'              ,  'word, below'],
+      \ }
+
 
 " f is for file
+nnoremap <leader>fe :e<Space>
 let g:which_key_map.f = {
       \ 'name' : '+file' ,
       \ 'e' : 'edit file',
@@ -165,6 +203,7 @@ let g:which_key_map.g = {
 let g:which_key_map.h = {
       \ 'name' : '+help' ,
       \ 'g' : [':help g'                , 'g commands'],
+      \ 's' : [':Helptags'              , 'fzf helptags'],
       \ 't' : [':Helptags'              , 'fzf helptags'],
       \ 'z' : [':help z'                , 'z commands'],
       \ }
@@ -185,8 +224,8 @@ let g:which_key_map.l = {
       \ 'd' : ['<Plug>(coc-definition)'              , 'definition'],
       \ 'D' : ['<Plug>(coc-declaration)'             , 'declaration'],
       \ 'e' : [':CocList extensions'                 , 'extensions'],
-      \ 'f' : ['<Plug>(coc-format-selected)'         , 'format selected'],
-      \ 'F' : ['<Plug>(coc-format)'                  , 'format'],
+      \ 'F' : ['<Plug>(coc-format-selected)'         , 'format selected'],
+      \ 'f' : ['<Plug>(coc-format)'                  , 'format'],
       \ 'g' : ['<Plug>(coc-refactor)'                , 'refactor'],
       \ 'h' : ['<Plug>(coc-float-hide)'              , 'hide'],
       \ 'i' : ['<Plug>(coc-implementation)'          , 'implementation'],
@@ -221,11 +260,30 @@ let g:which_key_map.o = {
       \ 's' : ['o\<Esc>kO\<Esc>j^'        , 'open two lines'],
       \ }
 
-" Shortcut for starting a search+replace command in whole buffer & in line
-nnoremap <leader>s% :%s/
-nnoremap <leader>s. :.s/
 
-" S is for search
+" Another way to access registers easily
+nmap <leader>r <Plug>(peekaboo)
+vmap <leader>r <Plug>(peekaboo)
+" The following aren't needed with the vim-peekaboo plugin
+" nnoremap <leader>R :registers<CR>
+" vnoremap <leader>R :registers<CR>
+let g:which_key_map.r = 'access register'
+
+" Short cuts for using vimslinme to send paragraphs to a repl in another tmux
+" pane.  Defined in ../plug-config/vim-slime.vim
+let g:which_key_map.R = {
+      \ 'name' : '+repl' ,
+      \ 'H' : 'send to pane left',
+      \ 'J' : 'send to pane below',
+      \ 'K' : 'send to left above',
+      \ 'L' : 'send to pane right',
+      \ }
+
+
+" s is for search
+" Shortcut for starting a search+replace current word in whole buffer & in line
+nnoremap <leader>s% :%s/<c-r>=expand("<cword>")<cr>//g<Left><Left>
+nnoremap <leader>s. :.s/<c-r>=expand("<cword>")<cr>//g<Left><Left>
 let g:which_key_map.s = {
       \ 'name' : '+search' ,
       \ '%' : 'search+replace in file',
@@ -243,8 +301,8 @@ let g:which_key_map.s = {
       \ 'h' : [':History'               , 'file history'],
       \ 'H' : [':History:'              , 'command history'],
       \ 'l' : [':Lines'                 , 'lines'] ,
-      \ 'm' : [':Marks'                 , 'marks'] ,
-      \ 'M' : [':Maps'                  , 'normal maps'] ,
+      \ 'M' : [':Marks'                 , 'marks'] ,
+      \ 'm' : [':Maps'                  , 'normal maps'] ,
       \ 'p' : [':Helptags'              , 'help tags'] ,
       \ 'P' : [':Tags'                  , 'project tags'],
       \ 's' : [':CocList snippets'      , 'snippets'],
@@ -258,14 +316,17 @@ let g:which_key_map.s = {
       \ }
       " \ 's' : [':Snippets'     , 'snippets'],
 
-" s is for spell
+
+" S is for Spell
 let g:which_key_map.S = {
       \ 'name' : '+spelling' ,
       \ 'A' : ['zg'                         , 'add to wordlist' ],
       \ 'F' : ['z='                         , 'fix spelling' ],
       \ 'I' : ['zG'                         , 'ignore for session' ],
-      \ 'P' : ['[s'                         , 'prev misspelled word' ],
-      \ 'N' : [']s'                         , 'next misspelled word' ],
+      \ 'P' : ['[sz='                       , 'fix prev misspelled word' ],
+      \ 'p' : ['[s'                         , 'prev misspelled word' ],
+      \ 'N' : [']sz='                       , 'fix next misspelled word' ],
+      \ 'n' : [']s'                         , 'next misspelled word' ],
       \ 'S' : ['[s'                         , 'prev misspelled word' ],
       \ 'T' : [':setlocal spell!'           , 'toggle spelling in buffer' ],
       \ 'W' : ['zw'                         , 'mark word as wrong' ],
@@ -288,6 +349,8 @@ let g:which_key_map.t = {
       \ }
 
 " w is for window
+" <leader>w{t,z} 'zooms' a widow by creating a new tab, which can be closed to
+" return to the previous splits
 let g:which_key_map.w = {
       \ 'name' : '+window' ,
       \ '=' : ['<C-w>='                   , 'balance splits'],
@@ -301,9 +364,13 @@ let g:which_key_map.w = {
       \ 'L' : ['<C-w>L'                   , 'move right'],
       \ 'l' : ['<C-w>l'                   , 'change right'],
       \ 'o' : ['<C-w>o'                   , 'only window'],
+      \ 'r' : ['<C-w>r'                   , 'rotate windows ->'],
+      \ 'R' : ['<C-w>R'                   , 'rotate windows <-'],
       \ 's' : [':split'                   , 'horizontal split'],
+      \ 't' : [':tab sp'                  , 'new tab w/ current buf'],
       \ 'v' : [':vsplit'                  , 'veritcal split'],
       \ 'w' : ['<C-w>W'                   , 'other window'],
+      \ 'z' : [':tab sp'                  , 'new tab w/ current buf'],
       \ }
 
 " Register which key map
