@@ -331,10 +331,14 @@ bind 'C-[' previous-window
 
 # Toggle status bar
 bind-key -r t set-option -g status
+
+bind w run-shell "tmux switch-client -t $(tmux list-sessions | fzf-tmux -p| awk '{print $1}' |sed 's/://')"
+
 # Fix delay in switching modes in vim with <Esc>
 # https://github.com/neovim/neovim/wiki/FAQ#esc-in-tmux-or-gnu-screen-is-delayed
 set -sg escape-time 5
 
+set -g @tmux-fzf-launch-key 'C-f'
 
 ##################################
 # TMUX Plugins Manager
@@ -343,14 +347,25 @@ set-environment -g TMUX_PLUGIN_MANAGER_PATH '~/.tmux/plugins/'
 
 # See this for the following notation: https://github.com/tmux-plugins/tpm/issues/127
 # List of plugins
+set -g @plugin 'tmux-plugins/tpm'
+set -g @plugin 'tmux-plugins/tmux-resurrect'
+set -g @plugin 'sainnhe/tmux-fzf'
+# set -g @plugin 'christoomey/vim-tmux-navigator'
+
+
+# See this for the following notation: https://github.com/tmux-plugins/tpm/issues/127
+# List of plugins
 set -g @tpm_plugins '           \
    tmux-plugins/tpm             \
    tmux-plugins/tmux-resurrect  \
-'
+   sainnhe/tmux-fzf             \
+   '
+   # christoomey/vim-tmux-navigator
 
+
+# Install TPM if it's missing
 if "test ! -d ~/.tmux/plugins/tpm" \
    "run 'git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm'"
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run -b '~/.tmux/plugins/tpm/tpm'
-
