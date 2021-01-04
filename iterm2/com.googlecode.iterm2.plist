@@ -22,6 +22,8 @@
 	<string>manual</string>
 	<key>AutoHideTmuxClientSession</key>
 	<false/>
+	<key>Command</key>
+	<string></string>
 	<key>Custom Color Presets</key>
 	<dict>
 		<key>base16-3024</key>
@@ -50216,6 +50218,20 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
+		<key>0x44-0x60000</key>
+		<dict>
+			<key>Action</key>
+			<integer>8</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
+		<key>0x55-0x60000</key>
+		<dict>
+			<key>Action</key>
+			<integer>9</integer>
+			<key>Text</key>
+			<string></string>
+		</dict>
 		<key>0x69-0x140000</key>
 		<dict>
 			<key>Action</key>
@@ -50223,24 +50239,24 @@
 			<key>Text</key>
 			<string>746873F6-28A7-4BDA-96A4-CC72E7D8FCD9</string>
 		</dict>
-		<key>0x9-0x40000</key>
+		<key>0x6a-0x80000</key>
 		<dict>
 			<key>Action</key>
-			<integer>32</integer>
+			<integer>6</integer>
 			<key>Text</key>
 			<string></string>
 		</dict>
-		<key>0xf700-0x300000</key>
+		<key>0x6b-0x80000</key>
 		<dict>
 			<key>Action</key>
 			<integer>7</integer>
 			<key>Text</key>
 			<string></string>
 		</dict>
-		<key>0xf701-0x300000</key>
+		<key>0x9-0x40000</key>
 		<dict>
 			<key>Action</key>
-			<integer>6</integer>
+			<integer>32</integer>
 			<key>Text</key>
 			<string></string>
 		</dict>
@@ -50293,21 +50309,7 @@
 			<key>Text</key>
 			<string></string>
 		</dict>
-		<key>0xf72c-0x20000</key>
-		<dict>
-			<key>Action</key>
-			<integer>9</integer>
-			<key>Text</key>
-			<string></string>
-		</dict>
 		<key>0xf72d-0x100000</key>
-		<dict>
-			<key>Action</key>
-			<integer>8</integer>
-			<key>Text</key>
-			<string></string>
-		</dict>
-		<key>0xf72d-0x20000</key>
 		<dict>
 			<key>Action</key>
 			<integer>8</integer>
@@ -50377,7 +50379,7 @@
 	<key>NSWindow Frame iTerm Window 0</key>
 	<string>0 378 1280 400 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
-	<string>598 232 570 423 0 0 1280 777 </string>
+	<string>2417 416 570 423 1280 0 1920 1057 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
 	<string>173 0 665 477 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 3</key>
@@ -52175,6 +52177,7 @@
 		<string>3.3.8</string>
 		<string>3.3.11</string>
 		<string>3.3.7</string>
+		<string>3.3.12</string>
 	</array>
 	<key>NoSyncBFPRecents</key>
 	<array>
@@ -52186,14 +52189,14 @@
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1280, 800}}</string>
 		<key>topLeft</key>
-		<string>{597, 633}</string>
+		<string>{521, 673}</string>
 	</dict>
 	<key>NoSyncFrame_SharedPreferences</key>
 	<dict>
 		<key>screenFrame</key>
 		<string>{{0, 0}, {1280, 800}}</string>
 		<key>topLeft</key>
-		<string>{127, 693}</string>
+		<string>{139, 657}</string>
 	</dict>
 	<key>NoSyncHaveUsedCopyMode</key>
 	<true/>
@@ -52202,7 +52205,7 @@
 	<key>NoSyncLastTipTime</key>
 	<real>602289147.02408803</real>
 	<key>NoSyncLaunchExperienceControllerRunCount</key>
-	<integer>63</integer>
+	<integer>74</integer>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile</key>
 	<true/>
 	<key>NoSyncNeverRemindPrefsChangesLostForFile_selection</key>
@@ -52987,11 +52990,11 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2020-06-28T17:16:11Z</date>
+	<date>2020-11-12T04:12:59Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>SUUpdateGroupIdentifier</key>
-	<integer>3401553076</integer>
+	<integer>3833495243</integer>
 	<key>SUUpdateRelaunchingMarker</key>
 	<false/>
 	<key>SeparateStatusBarsPerPane</key>
@@ -53021,7 +53024,7 @@
 	<key>findMode_iTerm</key>
 	<integer>0</integer>
 	<key>iTerm Version</key>
-	<string>3.3.11</string>
+	<string>3.3.12</string>
 	<key>kCPKSelectionViewPreferredModeKey</key>
 	<integer>0</integer>
 	<key>kCPKSelectionViewShowHSBTextFieldsKey</key>
