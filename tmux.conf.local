@@ -269,7 +269,11 @@ tmux_conf_theme_clock_style='24'
 # on macOS, this requires installing reattach-to-user-namespace, see README.md
 # on Linux, this requires xsel or xclip
 tmux_conf_copy_to_os_clipboard=false
+set -s set-clipboard off
 
+bind-key -T copy-mode-vi v send-keys -X begin-selection
+bind-key -T copy-mode-vi MouseDragEnd1Pane send -X copy-pipe-and-cancel "pbcopy"
+bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel "pbcopy"
 
 # -- user customizations -------------------------------------------------------
 # this is the place to override or undo settings
@@ -314,6 +318,19 @@ bind ? list-keys -T prefix
 # biding, so use a instead
 bind a choose-tree -s
 
+# In addition to predix+{h,j,k,l} to switch panes
+bind 'C-h' select-pane -L
+bind 'C-j' select-pane -D
+bind 'C-k' select-pane -U
+bind 'C-l' select-pane -R
+
+bind ']' next-window
+bind '[' previous-window
+bind 'C-]' next-window
+bind 'C-[' previous-window
+
+# Toggle status bar
+bind-key -r t set-option -g status
 # Fix delay in switching modes in vim with <Esc>
 # https://github.com/neovim/neovim/wiki/FAQ#esc-in-tmux-or-gnu-screen-is-delayed
 set -sg escape-time 5
