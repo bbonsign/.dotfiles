@@ -30,6 +30,7 @@ source ~/.config/nvim/plug-config/undotree.vim
 source ~/.config/nvim/plug-config/visual-multi.vim
 source ~/.config/nvim/plug-config/easymotion.vim
 source ~/.config/nvim/plug-config/sexp.vim
+source ~/.config/nvim/plug-config/tagbar.vim
 
 " General personal settings/mappings
 source ~/.config/nvim/general/settings.vim
