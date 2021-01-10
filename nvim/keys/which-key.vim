@@ -56,7 +56,7 @@ vnoremap <leader>/ :Commentary<CR>
 let g:which_key_map['!'] = [':.!bash'                , 'send line to bash']
 " let g:which_key_map['/'] = [':Commentary'            , 'comment']
 let g:which_key_map['/'] = 'comment'
-let g:which_key_map[';'] = [':Commands'              , 'commands']
+let g:which_key_map[':'] = [':Commands'              , 'commands']
 let g:which_key_map['='] = ['z='                     , 'correct spelling']
 let g:which_key_map[','] = ['Buffers'                , 'fzf-buffer']
 " let g:which_key_map['d'] = ['%'                      , '%']
@@ -289,7 +289,7 @@ let g:which_key_map.s = {
       \ '%' : 'search+replace in file',
       \ '.' : 'search+replace in line',
       \ '/' : [':History/'              , 'history'],
-      \ ';' : [':Commands'              , 'commands'],
+      \ ':' : [':Commands'              , 'commands'],
       \ 'a' : [':Ag'                    , 'text Ag'],
       \ 'b' : [':BLines'                , 'current buffer'],
       \ 'B' : [':Buffers'               , 'open buffers'],

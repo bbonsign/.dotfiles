@@ -19,8 +19,10 @@
 - [ ] Look into occasional flickering in tmux
 - [ ] Reinstall tmuxinator to save sessions I don't need on every startup.
 - [ ] Set up saving neovim sessions along with the tmux sessions, and possibly some other running programs.
+- [ ] Fix copy mode appending to system keyboard when using the kitty terminal: <https://unix.stackexchange.com/questions/580782/copy-pasting-from-tmux-includes-previous-copies>
 
 ## Fish
+- [ ] Clean up fish/config.fish: set path with universal variable an dmove gls function to fish/functions. Hopefully this speeds up start time. See: <https://fishshell.com/docs/current/tutorial.html?highlight=fish_user_paths#path>
 - [ ] Look into fzf man wrapper to allow searching man pages
 - [ ] Add alias for grep and sed to use -E for extended reg exs, and colorized output for grep
 

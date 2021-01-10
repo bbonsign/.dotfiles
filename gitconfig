@@ -2,19 +2,40 @@
 	name = Brian Bonsignore
 	email = bonsignore.brian@gmail.com
 	username = bbonsign
+
 [credential]
 	helper = osxkeychain
+
 [core]
 	excludesfile = /Users/bbonsign/.gitignore
 	editor = nvim
+  pager = delta
+
 [alias]
 	last = log -1 HEAD
 	st = status
 	unstage = reset HEAD --
+
+[interactive]
+  diffFilter = delta --color-only
+
+[delta]
+  features = side-by-side line-numbers decorations
+  whitespace-error-style = 22 reverse
+
+[delta "decorations"]
+  commit-decoration-style = bold yellow box ul
+  file-style = bold yellow ul
+  file-decoration-style = none
+
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+
 [hub]
 	protocol = https
+
+[init]
+	defaultBranch = main
