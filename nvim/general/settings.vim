@@ -97,6 +97,8 @@ set mouse+=a
 set smartindent
 set autoindent
 
+set scrolloff=8
+
 " tabs and spaces
 set tabstop=2     " Insert 2 spaces for tab
 set shiftwidth=2  " Change number of space characters inserted for indentation
@@ -115,6 +117,9 @@ set rtp+=/usr/local/opt/fzf
 " Recommended by coc
 set nobackup
 set nowritebackup
+
+set noswapfile
+
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience. Also from coc
 set updatetime=300
