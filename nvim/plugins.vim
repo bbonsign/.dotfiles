@@ -37,7 +37,7 @@ Plug 'christoomey/vim-tmux-navigator'
 
 " Markdown
 " Plug 'godlygeek/tabular'
-Plug 'plasticboy/vim-markdown'
+" Plug 'plasticboy/vim-markdown'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " Emmet: Expand html from keywords

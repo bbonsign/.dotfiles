@@ -31,6 +31,7 @@ source ~/.config/nvim/plug-config/visual-multi.vim
 source ~/.config/nvim/plug-config/easymotion.vim
 source ~/.config/nvim/plug-config/sexp.vim
 source ~/.config/nvim/plug-config/tagbar.vim
+" source ~/.config/nvim/plug-config/vim-markdown.vim
 
 " General personal settings/mappings
 source ~/.config/nvim/general/settings.vim

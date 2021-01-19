@@ -145,3 +145,22 @@ function! Scratch()
     "lcd ~
     file scratch
 endfunction
+
+" For the jrnl command.  It opens nvim with a temp file that starts with
+" 'jrnl...'
+augroup SpellCheckGroup
+  au! BufRead,BufNewFile,BufEnter jrnl* set filetype=markdown | set spell
+  au! BufRead,BufNewFile,BufEnter scrumbot set spell
+augroup END
+
+" Strip trailing white space on save
+augroup TrailingWhiteSpace
+  function! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+  endfun
+
+  autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
+augroup END

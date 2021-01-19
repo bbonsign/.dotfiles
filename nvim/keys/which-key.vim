@@ -209,13 +209,13 @@ let g:which_key_map.h = {
       \ }
 
 
-nnoremap <leader>l; A;<Esc>
+nnoremap <leader>l: A;<Esc>
 
 " l is for language server protocol
 let g:which_key_map.l = {
       \ 'name' : '+lsp' ,
       \ '.' : [':CocConfig'                          , 'config'],
-      \ ';' : 'append ;',
+      \ ':' : 'append ;',
       \ 'a' : ['<Plug>(coc-codeaction)'              , 'line action'],
       \ 'A' : ['<Plug>(coc-codeaction-selected)'     , 'selected action'],
       \ 'b' : [':CocNext'                            , 'next action'],
@@ -239,8 +239,8 @@ let g:which_key_map.l = {
       \ 'p' : ['<Plug>(coc-diagnostic-prev)'         , 'prev diagnostic'],
       \ 'P' : ['<Plug>(coc-diagnostic-prev-error)'   , 'prev error'],
       \ 'q' : ['<Plug>(coc-fix-current)'             , 'quickfix'],
-      \ 'r' : ['<Plug>(coc-rename)'                  , 'rename'],
-      \ 'R' : ['<Plug>(coc-references)'              , 'references'],
+      \ 'R' : ['<Plug>(coc-rename)'                  , 'rename'],
+      \ 'r' : ['<Plug>(coc-references)'              , 'references'],
       \ 's' : [':CocList -I symbols'                 , 'references'],
       \ 'S' : [':CocList snippets'                   , 'snippets'],
       \ 't' : ['<Plug>(coc-type-definition)'         , 'type definition'],
@@ -319,18 +319,26 @@ let g:which_key_map.s = {
 
 " S is for Spell
 let g:which_key_map.S = {
-      \ 'name' : '+spelling' ,
-      \ 'A' : ['zg'                         , 'add to wordlist' ],
-      \ 'F' : ['z='                         , 'fix spelling' ],
-      \ 'I' : ['zG'                         , 'ignore for session' ],
-      \ 'P' : ['[sz='                       , 'fix prev misspelled word' ],
-      \ 'p' : ['[s'                         , 'prev misspelled word' ],
-      \ 'N' : [']sz='                       , 'fix next misspelled word' ],
-      \ 'n' : [']s'                         , 'next misspelled word' ],
-      \ 'S' : ['[s'                         , 'prev misspelled word' ],
-      \ 'T' : [':setlocal spell!'           , 'toggle spelling in buffer' ],
-      \ 'W' : ['zw'                         , 'mark word as wrong' ],
+      \ 'name' : '+spelling',
+      \ 'A' : ['zg'                  , 'add to wordlist' ],
+      \ 'F' : ['z='                  , 'fix spelling' ],
+      \ 'i' : ['zG'                  , 'ignore for session' ],
+      \ 'P' : ['[sz='                , 'fix prev misspelled word' ],
+      \ 'p' : ['[s'                  , 'prev misspelled word' ],
+      \ 'N' : [']sz='                , 'fix next misspelled word' ],
+      \ 'n' : [']s'                  , 'next misspelled word' ],
+      \ 'S' : ['[s'                  , 'prev misspelled word' ],
+      \ 'T' : [':setlocal spell!'    , 'toggle spelling in buffer' ],
+      \ 'W' : ['zw'                  , 'mark word as wrong' ],
       \ }
+
+let g:which_key_map.S.I = {
+      \ 'name' : '+ignore',
+      \ 'I' : ['zG'                  , 'ignore for session' ],
+      \ 'P' : ['[szG'                , 'ignore previous' ],
+      \ 'N' : [']szG'                , 'ignore next' ],
+      \ }
+
 
 " t is for terminal
 let g:which_key_map.t = {
