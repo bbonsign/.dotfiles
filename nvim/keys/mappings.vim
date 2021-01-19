@@ -126,7 +126,7 @@ nnoremap <C-l> i<C-x><C-l>
 " FZF mode completion in insert mode
 " Since C-x is my tmux prefix, line completion really needs C-x C-x C-l
 imap <c-w> <plug>(fzf-complete-word)
-imap <c-f> <plug>(fzf-complete-path)
+imap <expr> <c-f> fzf#vim#complete#path('fd')
 imap <c-l> <plug>(fzf-complete-line)
 
 " Open a fuzzy finder based on the current completion options
@@ -167,16 +167,24 @@ xnoremap <silent> i; :<C-U>normal! hf;F:Bvt;<CR>
 " Use the blackhole register "_ by default for x
 nnoremap x "_x
 vnoremap x "_x
-"
+nnoremap d "_d
+vnoremap d "_d
+nnoremap D "_D
+vnoremap D "_D
+nnoremap c "_c
+vnoremap c "_c
+nnoremap C "_C
+vnoremap C "_C
+
 " Use <space> prefix for default behavior (deleted text -> default register)
-nnoremap <space>d "_d
-vnoremap <space>d "_d
-nnoremap <space>D "_D
-vnoremap <space>D "_D
-nnoremap <space>c "_c
-vnoremap <space>c "_c
-nnoremap <space>C "_C
-vnoremap <space>C "_C
+nnoremap <space>d d
+vnoremap <space>d d
+nnoremap <space>D D
+vnoremap <space>D D
+nnoremap <space>c c
+vnoremap <space>c c
+nnoremap <space>C C
+vnoremap <space>C C
 
 
 " Completion related mappings

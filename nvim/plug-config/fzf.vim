@@ -17,8 +17,9 @@ let g:fzf_tags_command = 'ctags -R'
 " Border color: change the 'highlight' option to a highlight group
 let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Function', 'border': 'sharp' } }
 
-let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
-let $FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/**'"
+" let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
+" let $FZF_DEFAULT_COMMAND = "fd --no-ignore --follow --ignore-file '~/.config/fd/ignore'"
+" let $FZF_DEFAULT_COMMAND="rg --files --hidden --glob '!.git/**' --glob '!site-packages/**'"
 "-g '!{node_modules,.git}'
 
 " Customize fzf colors to match your color scheme
@@ -50,7 +51,7 @@ command! -bang -nargs=? -complete=dir Files
  " Make Ripgrep ONLY search file contents and not filenames
 command! -bang -nargs=* Rg
   \ call fzf#vim#grep(
-  \   'rg --column --line-number --hidden --smart-case --no-heading --color=always '.shellescape(<q-args>), 1,
+  \   'rg --column --line-number --smart-case --no-heading --color=always '.shellescape(<q-args>), 1,
   \   <bang>0 ? fzf#vim#with_preview({'options': '--delimiter : --nth 4..'}, 'up:60%')
   \           : fzf#vim#with_preview({'options': '--delimiter : --nth 4.. -e'}, 'right:50%', '?'),
   \   <bang>0)

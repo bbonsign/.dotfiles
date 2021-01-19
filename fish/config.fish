@@ -13,10 +13,11 @@ set -xg FZF_CTRL_R_OPTS "--preview 'echo {}' --preview-window up:10:hidden:wrap 
 set -xg FZF_ALT_C_OPTS "--preview 'tree -C {} | head -200'"
 
 # See https://github.com/jethrokuan/fzf for variables to set
-set -xg FZF_CD_OPTS "--preview 'tree -C {} | head -200'"
-set -xg FZF_PREVIEW_FILE_CMD "bat --color=always --plain"
-set -xg FZF_PREVIEW_DIR_CMD "tree -C"
-set -xg FZF_ENABLE_OPEN_PREVIEW 1
+# This plug in is currently uninstalled
+# set -xg FZF_CD_OPTS "--preview 'tree -C {} | head -200'"
+# set -xg FZF_PREVIEW_FILE_CMD "bat --color=always --plain"
+# set -xg FZF_PREVIEW_DIR_CMD "tree -C"
+# set -xg FZF_ENABLE_OPEN_PREVIEW 1
 
 # Set nvim to default editor
 # CTRL-x opens EDITOR for editing long commands (C-x C-x in tmux)
