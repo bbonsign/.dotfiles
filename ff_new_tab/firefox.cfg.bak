@@ -1,0 +1,18 @@
+//
+var {classes: Cc, interfaces: Ci, utils: Cu} = Components;
+
+/* set new tab page */
+try {
+  Cu.import("resource:///modules/AboutNewTab.jsm");
+  var newTabURL = "file:///Users/bbonsign/.dotfiles/ff_new_tab/home.html";
+  AboutNewTab.newTabURL = newTabURL;
+  gBrowser.tabContainer.addEventListener("TabOpen", SetFocusOnPage, false);
+} catch (e) {Cu.reportError(e);} // report errors in the Browser Console
+
+// Optional: Don't place the caret in the location bar. Useful if you want a page's search box to have focus instead.
+function SetFocusOnPage() {
+  setTimeout(() => {
+    gBrowser.selectedBrowser.focus();
+  }, 0);
+}
+
