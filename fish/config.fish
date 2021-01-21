@@ -1,7 +1,13 @@
 starship init fish | source
 
-bind \cs _add_sudo
+# ctrl-s allows for search tab completions by default in fish, so for the moment the
+# binding below seems less useful
+# bind \cs _add_sudo
+
 # set -x PATH /home/linuxbrew/.linuxbrew/bin ~/.cargo/bin $PATH
+
+# bgcolor of the current tab completion selection
+set fish_color_search_match --background=4b719c
 
 set -xg FZF_DEFAULT_COMMAND "fd --color always --no-ignore --follow --ignore-file '$HOME/.config/fd/ignore'"
 set -xg FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
