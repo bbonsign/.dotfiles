@@ -31,6 +31,7 @@
     ~/.zshrc:
     ~/.config/kitty: kitty
     ~/.config/alacritty: alacritty
+    ~/.config/jrnl/jrnl.yaml: jrnl/jrnl.yaml
     ~/.tmux.conf: .tmux/.tmux.conf
     ~/.tmux.conf.local:
     ~/.config/coc/extensions/package.json: coc/package.json

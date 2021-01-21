@@ -13,3 +13,7 @@ The relevant files I added are:
 
 The regular Firefox home page can still be reached at:
 about:newtab
+
+On the new tab, focus still goes to the Firefox address bar automatically, and by default
+hitting Tab will focus some other menu items before the page.
+TODO: Make note of the setting to change in about:config to make tab focus the page directly

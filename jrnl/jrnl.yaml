@@ -1,0 +1,19 @@
+colors:
+  body: none
+  date: BLUE
+  tags: MAGENTA
+  title: GREEN
+default_hour: 9
+default_minute: 0
+editor: nvim
+encrypt: false
+highlight: true
+indent_character: '|'
+journals:
+  default: /Users/bbonsign/Dropbox/journals/journal.txt
+  qlair: /Users/bbonsign/Dropbox/journals/qlair.txt
+linewrap: 79
+tagsymbols: '@'
+template: false
+timeformat: '%Y-%m-%d %H:%M'
+version: v2.6
