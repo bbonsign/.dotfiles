@@ -1,13 +1,12 @@
 [user]
 	name = Brian Bonsignore
-	email = bonsignore.brian@gmail.com
-	username = bbonsign
+	useConfigOnly = true
 
 [credential]
 	helper = osxkeychain
 
 [core]
-	excludesfile = /Users/bbonsign/.gitignore
+	excludesfile = ~/.gitignore
 	editor = nvim
   pager = delta
 
