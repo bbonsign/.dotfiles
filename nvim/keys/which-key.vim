@@ -52,19 +52,25 @@ nnoremap <leader>p a<Space><Esc>r
 nnoremap <leader>/ :Commentary<CR>
 vnoremap <leader>/ :Commentary<CR>
 
+" The mapping takes a register (or * by default) and opens it in the cmdline-window.
+" Hit <cr> when you're done editing for setting the register.
+nnoremap <leader>M :<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<cr><c-f><left>
+
+
 " Single mappings
 let g:which_key_map['!'] = [':.!bash'                , 'send line to bash']
 " let g:which_key_map['/'] = [':Commentary'            , 'comment']
 let g:which_key_map['/'] = 'comment'
 let g:which_key_map[':'] = [':Commands'              , 'commands']
 let g:which_key_map['='] = ['z='                     , 'correct spelling']
-let g:which_key_map[','] = ['Buffers'                , 'fzf-buffer']
+let g:which_key_map['?'] = [':Maps'                  , 'normal maps']
+let g:which_key_map[','] = ['Buffers'                , 'fzf buffers']
 " let g:which_key_map['d'] = ['%'                      , '%']
 let g:which_key_map['E'] = [':CocCommand explorer'   , 'explorer']
 let g:which_key_map['F'] = [':Files'                 , 'search files']
 let g:which_key_map['i'] = 'insert character'
 let g:which_key_map['j'] = 'jump to mark'
-" let g:which_key_map['M'] = 'man pages'
+let g:which_key_map['M'] = 'edit register/macro'
 let g:which_key_map['m'] = ['%'                      , '%match']
 let g:which_key_map['n'] = 'nohlsearch'
 let g:which_key_map['p'] = 'append character'
@@ -75,7 +81,6 @@ let g:which_key_map['X'] = ['ciw \<Esc>'             , 'trim to one space betwee
 let g:which_key_map['x'] = [':StripWhitespace'       , 'strip whitespace']
 
 
-" Group mappings
 let g:which_key_map['.'] = {
       \ 'name' : '+vimrc' ,
       \ '.' : [ ':e $MYVIMRC'                , 'open init' ],
@@ -85,20 +90,44 @@ let g:which_key_map['.'] = {
       \ }
 
 
+nnoremap <leader><leader>h i<Space><Esc>l
+nnoremap <leader><leader>l a<Space><Esc>h
+nnoremap <leader><leader>< a<Space><Esc>hi<Space><Esc>l
+nnoremap <leader><leader>> a<Space><Esc>hi<Space><Esc>l
+nnoremap <leader><leader>. o<Esc>kO<Esc>j^
+nnoremap <leader><leader>k m':<c-u>put! =repeat(nr2char(10), v:count1)<cr>`'
+nnoremap <leader><leader>j m':<c-u>put =repeat(nr2char(10), v:count1)<cr>`'
+let g:which_key_map[' '] = {
+      \ 'name' : '+spaces' ,
+      \ '.' : 'lines above/below',
+      \ '>' : 'spaces left+right',
+      \ '<' : 'spaces left+right',
+      \ 'h' : 'space left',
+      \ 'j' : 'line below',
+      \ 'k' : 'line above',
+      \ 'l' : 'space right',
+      \ }
+
+
+
 nnoremap <leader>aa A_<Esc>r
+nnoremap <leader>a: A;<Esc>
 " a is for actions
 let g:which_key_map.a = {
       \ 'name' : '+actions' ,
+      \ ':' : 'append ;',
       \ 'a' : 'append char to line',
-      \ 'C' : [':Colors'                 , 'color scheme'],
+      \ 'C' : [':ColorizerToggle'        , 'toggle colorizer'],
       \ 'c' : [':set cursorline!'        , 'toggle line hi-light'],
       \ 'e' : [':CocCommand explorer'    , 'explorer'],
       \ 'n' : [':set nonumber!'          , 'line-numbers'],
       \ 'r' : [':set norelativenumber!'  , 'relative line nums'],
       \ 's' : [':let @/ = ""'            , 'remove search highlight'],
-      \ 'S' : [':setlocal spell!'        , 'toggle spelling in buffer' ],
+      \ 'S' : [':setlocal spell!'        , 'toggle spelling in buffer'],
       \ 't' : [':FloatermToggle'         , 'terminal'],
       \ 'v' : [':TagbarToggle'           , 'tag viewer'],
+      \ 'w' : [':set wrap!'              , 'toggle wrap'],
+      \ 'x' : [':ToggleWhitespace'       , 'toggle whitespace'],
       \ }
 
 
@@ -106,7 +135,8 @@ let g:which_key_map.a = {
 let g:which_key_map.b = {
       \ 'name' : '+buffer' ,
       \ 'b' : ['Buffers'   , 'fzf-buffer'],
-      \ 'd' : ['bd'        , 'delete-buffer'],
+      \ 'D' : ['BufDel!'   , 'delete-buffer, ignore changes'],
+      \ 'd' : ['BufDel'    , 'delete-buffer'],
       \ 'f' : ['bfirst'    , 'first-buffer'],
       \ 'h' : ['Startify'  , 'home-buffer'],
       \ 'l' : ['blast'     , 'last-buffer'],
@@ -184,8 +214,8 @@ let g:which_key_map.g = {
       \ 'D' : [':Gdiffsplit'                       , 'diff split'],
       \ 'G' : [':GGrep'                            , 'git grep'],
       \ 'g' : [':Gstatus'                          , 'status'],
-      \ 'h' : [':GitGutterLineHighlightsToggle'    , 'highlight hunks'],
-      \ 'H' : ['<Plug>(GitGutterPreviewHunk)'      , 'preview hunk'],
+      \ 'H' : [':GitGutterLineHighlightsToggle'    , 'highlight hunks'],
+      \ 'h' : ['<Plug>(GitGutterPreviewHunk)'      , 'preview hunk'],
       \ 'j' : ['<Plug>(GitGutterNextHunk)'         , 'next hunk'],
       \ 'k' : ['<Plug>(GitGutterPrevHunk)'         , 'prev hunk'],
       \ 'l' : [':Git log'                          , 'log'],
@@ -251,7 +281,7 @@ let g:which_key_map.l = {
       \ 'Z' : [':CocEnable'                          , 'enable CoC'],
       \ }
 
-" Group mappings
+" o is for open
 let g:which_key_map.o = {
       \ 'name' : '+open line' ,
       \ 'a' : ['o\<Esc>kO\<Esc>j^'        , 'open two lines'],
@@ -371,14 +401,16 @@ let g:which_key_map.w = {
       \ 'k' : ['<C-w>k'                   , 'change up'],
       \ 'L' : ['<C-w>L'                   , 'move right'],
       \ 'l' : ['<C-w>l'                   , 'change right'],
+      \ 'm' : [':MaximizerToggle!'        , 'maximizer toggle'],
       \ 'o' : ['<C-w>o'                   , 'only window'],
-      \ 'r' : ['<C-w>r'                   , 'rotate windows ->'],
       \ 'R' : ['<C-w>R'                   , 'rotate windows <-'],
+      \ 'r' : ['<C-w>r'                   , 'rotate windows ->'],
       \ 's' : [':split'                   , 'horizontal split'],
       \ 't' : [':tab sp'                  , 'new tab w/ current buf'],
       \ 'v' : [':vsplit'                  , 'veritcal split'],
-      \ 'w' : ['<C-w>W'                   , 'other window'],
-      \ 'z' : [':tab sp'                  , 'new tab w/ current buf'],
+      \ 'W' : ['<C-w>W'                   , 'other window <-'],
+      \ 'w' : ['<C-w>w'                   , 'other window ->'],
+      \ 'z' : [':MaximizerToggle!'        , 'maximizer toggle'],
       \ }
 
 " Register which key map

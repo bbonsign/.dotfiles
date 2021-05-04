@@ -32,3 +32,7 @@ highlight Comment cterm=italic gui=italic
 
 " Override the ugly yellow search results
 highlight Search guifg=white guibg=#007ACC ctermfg=white ctermbg=blue
+
+" Red Error text for CoC
+hi! CocErrorSign guifg=#B22222 gui=bold
+hi Pmenu guibg=#303344

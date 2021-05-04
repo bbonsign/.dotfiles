@@ -12,15 +12,19 @@ let maplocalleader="\\"
 " Enter and Backspace are used in nvim/plug-config/sneak.vim
 " so the f-versions have an 'f' prefix.  This allows for vim-sneak and the
 " normal f & t searching to be used
-nnoremap f<CR> ;
-nnoremap f<BS> ,
-vnoremap f<CR> ;
-vnoremap f<BS> ,
+nnoremap <CR> ;
+nnoremap <BS> ,
+" vnoremap <CR> ;
+" vnoremap <BS> ,
 
 " Enter command window from noraml mode
 " note: enter command window with Ctrl-F when already at cmd line
 nnoremap q; q:
 vnoremap q; q:
+
+" Run macro in the "q register with Q, inc over a visual selection
+nnoremap Q @q
+vnoremap Q :norm @q<cr>
 
 " Use Ctrl-s to increment number at cursor since we remap C-a below
 nnoremap <C-s> <C-a>
@@ -39,9 +43,15 @@ nnoremap <leader>z i<CR><Esc>O
 " Let's write some λ's!!!
 inoremap <C-\> λ
 
-" Override s from vim-sneak to ys for vis-surround
-" vim-sneak isn't as usedul with easymotion installed
+" Override s to ys for vim-surround
 nmap s ys
+vmap s S
+
+" TAB in normal mode will move to next window
+" SHIFT-TAB will go back
+" Commented out b/c TAB <-> <C-i>, which interferes with the jump stack
+" nnoremap <silent> <TAB> <C-w>w
+" nnoremap <silent> <S-TAB> <C-w>W
 
 " UndoTree
 nnoremap <leader>u :UndotreeToggle<CR>
@@ -86,7 +96,7 @@ nnoremap <silent> <M-Up> :resize +2<CR>
 nnoremap <silent> <M-Left> :vertical resize -2<CR>
 nnoremap <silent> <M-Right> :vertical resize +2<CR>
 
-" Alt +kj drag line up/down
+" Alt+{k,j} drag line up/down
 nnoremap <silent> <A-j> :m .+1<CR>==
 nnoremap <silent> <A-k> :m .-2<CR>==
 inoremap <silent> <A-j> <Esc>:m .+1<CR>==gi
@@ -102,9 +112,9 @@ vnoremap <silent> <A-k> :m '<-2<CR>gv=gv
 vnoremap <silent> <leader>n :nohlsearch<CR>
 nnoremap <silent> <leader>n :nohlsearch<CR>
 
-" Double tab leader key (space bar for me) to start command mode
-nnoremap <leader><leader> :
-vnoremap <leader><leader> :
+" Add blank lines. Accepts a count.
+nnoremap [<space>  m':<c-u>put! =repeat(nr2char(10), v:count1)<cr>`'
+nnoremap ]<space>  m':<c-u>put =repeat(nr2char(10), v:count1)<cr>`'
 
 " Toggle comments in visual mode, from tpope/commentary plugin
 " Note that C-_ actually maps to C-/, which is what I want
@@ -121,7 +131,10 @@ nnoremap Y y$
 
 " Shortcut for C-x C-l line completion
 inoremap <C-l> <C-x><C-l>
-nnoremap <C-l> i<C-x><C-l>
+
+" For sideways.vim plugin
+nnoremap <c-h> :SidewaysLeft<cr>
+nnoremap <c-l> :SidewaysRight<cr>
 
 " FZF mode completion in insert mode
 " Since C-x is my tmux prefix, line completion really needs C-x C-x C-l
@@ -158,10 +171,10 @@ tnoremap <C-]> <C-\><C-n>
 " Fake css property text object
 " TODO: Look into creating one for real with vim-textobj-user plugin
 " the leading 'h' makes it work when the cursor is on the ';'
-onoremap <silent> a; :<C-U>normal! hf;F:Bvf;<CR>
-onoremap <silent> i; :<C-U>normal! hf;F:Bvt;<CR>
-xnoremap <silent> a; :<C-U>normal! hf;F:Bvf;<CR>
-xnoremap <silent> i; :<C-U>normal! hf;F:Bvt;<CR>
+" onoremap <silent> a; :<C-U>normal! hf;F:Bvf;<CR>
+" onoremap <silent> i; :<C-U>normal! hf;F:Bvt;<CR>
+" xnoremap <silent> a; :<C-U>normal! hf;F:Bvf;<CR>
+" xnoremap <silent> i; :<C-U>normal! hf;F:Bvt;<CR>
 
 
 " Use the blackhole register "_ by default for x
@@ -186,6 +199,22 @@ vnoremap <space>c c
 nnoremap <space>C C
 vnoremap <space>C C
 
+
+" vim-gitgutter provides a hunk text-object accessible with `ih` and `ah`
+" This changes it to `ih` and `ah` as well as `ig` and `ag`
+omap ih <Plug>(GitGutterTextObjectInnerPending)
+omap ah <Plug>(GitGutterTextObjectOuterPending)
+xmap ih <Plug>(GitGutterTextObjectInnerVisual)
+xmap ah <Plug>(GitGutterTextObjectOuterVisual)
+nmap ]h <Plug>(GitGutterNextHunk)
+nmap [h <Plug>(GitGutterPrevHunk)
+
+omap ig <Plug>(GitGutterTextObjectInnerPending)
+omap ag <Plug>(GitGutterTextObjectOuterPending)
+xmap ig <Plug>(GitGutterTextObjectInnerVisual)
+xmap ag <Plug>(GitGutterTextObjectOuterVisual)
+nmap ]g <Plug>(GitGutterNextHunk)
+nmap [g <Plug>(GitGutterPrevHunk)
 
 " Completion related mappings
 " Use tab for trigger completion with characters ahead and navigate.
@@ -225,3 +254,9 @@ function! s:show_documentation()
     call CocAction('doHover')
   endif
 endfunction
+
+
+" Fugitive Conflict Resolution
+" nnoremap <leader>gd :Gvdiff<CR>
+nnoremap gdh :diffget //2<CR>
+nnoremap gdl :diffget //3<CR>
