@@ -57,14 +57,6 @@ if command -sq gls
         command gls -h $param $argv
     end
 
-    function ll --description "long ls command of GNU coreutils"
-        set -l param --color=auto
-        if isatty 1
-            set param $param --indicator-style=classify --group-directories-first
-        end
-        command gls -Alh $param $argv
-    end
-
     if not set -q LS_COLORS
         if command -sq gdircolors
             set -l colorfile
@@ -111,3 +103,12 @@ end
 
 set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
 test -f /Users/bbonsign/.ghcup/env ; and set -gx PATH $HOME/.cabal/bin /Users/bbonsign/.ghcup/bin $PATH
+
+
+# pyenv init
+if command -v pyenv 1>/dev/null 2>&1
+  pyenv init - | source
+end
+
+# Created by `userpath` on 2021-02-23 17:48:18
+set PATH $PATH /Users/bbonsign/.local/bin

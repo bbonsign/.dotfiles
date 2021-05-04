@@ -1,4 +1,4 @@
-# Defined in - @ line 1
-function lg --wraps='exa --all --long --git --group-directories-first --icons' --description 'alias lg exa --all --long --git --group-directories-first --icons'
-  exa --all --long --git --group-directories-first --icons $argv;
+# Defined via `source`
+function lg --wraps='exa -al --group-directories-first --git' --description 'alias lg=exa -al --group-directories-first --git'
+  exa -al --group-directories-first --git $argv; 
 end
