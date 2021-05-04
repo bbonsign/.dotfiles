@@ -1,17 +1,4 @@
 {
-  // coc-explorer settings
-  "explorer.width": 30,
-  "explorer.icon.enableNerdfont": true,
-  "explorer.previewAction.onHover": false,
-  //  "explorer.keyMappings": {
-  //    "<cr>": [
-  //      "expandable?",
-  //      "expand",
-  //      "open"
-  //    ],
-  //    "v": "open:vsplit"
-  //  },
-  // diagnostics
   "diagnostic.errorSign": " ",
   "diagnostic.warningSign": " ",
   "diagnostic.infoSign": "",
@@ -23,11 +10,11 @@
   // autoformat
   "coc.preferences.formatOnType": true,
   "coc.preferences.formatOnSaveFiletypes": [
-    "python",
+    // "python",
     // "markdown",
     // "json",
     "css",
-    "javascript",
+    /* "javascript", */
     // "html",
     "yaml",
     "haskell"
@@ -50,6 +37,14 @@
       "filetypes": [
         "haskell",
         "lhaskell"
+      ]
+    },
+    "lua": {
+      "cwd": "",
+      "command": "~/.lua-language-server/bin/macOS/lua-language-server",
+      "args": ["-E", "-e", "LANG=\"en\"", ".lua-language-server/main.lua"],
+      "filetypes": [
+        "lua"
       ]
     }
   },
