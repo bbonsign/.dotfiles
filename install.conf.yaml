@@ -1,4 +1,3 @@
-# chemacs setup might have to be fixed. 'Mine' profile isn't loading correctly
 # Notes that iterm2 settings are set in macos.sh, so it's not needed here.
 
 - defaults:
@@ -31,6 +30,7 @@
     ~/.zshrc:
     ~/.config/kitty: kitty
     ~/.config/alacritty: alacritty
+    ~/.config/doom: doom
     ~/.config/jrnl/jrnl.yaml: jrnl/jrnl.yaml
     ~/.config/tridactyl/tridactylrcl: tridactylrc
     ~/.tmux.conf: .tmux/.tmux.conf
@@ -40,11 +40,6 @@
       path: nvim/*
     ~/.nano: .nano
     ~/.nanorc:
-    ~/.emacs: chemacs/.emacs
-    ~/.emacs-profiles.el:
-    ~/.emacs.d:
-      path: emacs.d/*
-    ~/.doom.d: doom.d
     '~/Library/Application Support/Code/User/keybindings.json':
       if: '[ (uname) = Darwin ]'
       path: vscode/keybindings.json
