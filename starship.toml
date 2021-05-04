@@ -9,5 +9,8 @@ symbol = " "
 [golang]
 symbol = " "
 
+[lua]
+symbol = " "
+
 [aws]
 disabled = true
