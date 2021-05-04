@@ -1,6 +1,4 @@
-
 let g:startify_session_dir = '~/.config/nvim/session'
-
 
 let g:startify_lists = [
           \ { 'type': 'files',     'header': ['   Files']                        },
@@ -28,3 +26,11 @@ let g:startify_bookmarks = [
 
 let g:startify_enable_special = 0
 
+ let g:startify_custom_header = [
+            \ '' ,
+            \ '   _ __   ___  _____   _(_)_ __ ___' ,
+            \ '  | `_ \ / _ \/ _ \ \ / / | `_ ` _ \' ,
+            \ '  | | | |  __/ (_) \ V /| | | | | | |' ,
+            \ '  |_| |_|\___|\___/ \_/ |_|_| |_| |_|' ,
+            \ '' ,
+            \ ]
