@@ -49,6 +49,12 @@ make it the default shell
 echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
 chsh -s `which fish`
 ```
+To sync fish abbreviations (which are saved as universal variables),
+run 
+```shell
+abbr > abbr.fish
+```
+Loading these abbreviations is taken care of in `install.conf.yaml`
 
 ### Doom Emacs
 Installing emacs and doom:
@@ -68,6 +74,5 @@ I haven't looked into installing these with Homebrew yet, so for now its the lon
 - Karibiner-Elements for keyboard remapping: <https://karabiner-elements.pqrs.org/>
 - Python packages installed with pip, eg `pip3 install rich`, which the function md.fish
 uses to print markdown in the terminal nicely
-- go path setup
 
 ## Linux Setup
