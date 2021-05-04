@@ -15,7 +15,7 @@ let g:fzf_buffers_jump = 1
 let g:fzf_tags_command = 'ctags -R'
 
 " Border color: change the 'highlight' option to a highlight group
-let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Function', 'border': 'sharp' } }
+let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.98, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'Function', 'border': 'sharp' } }
 
 " let $FZF_DEFAULT_OPTS = '--layout=reverse --inline-info'
 " let $FZF_DEFAULT_COMMAND = "fd --no-ignore --follow --ignore-file '~/.config/fd/ignore'"

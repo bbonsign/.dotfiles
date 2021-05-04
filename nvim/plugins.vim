@@ -17,11 +17,13 @@ Plug 'terryma/vim-expand-region'
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'easymotion/vim-easymotion'
 
+" Mappings for g* and z*
+Plug 'haya14busa/vim-asterisk'
+
 Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin'
 
 Plug 'ryanoasis/vim-devicons'
-" Plug 'kyazdani42/nvim-web-devicons'  " In Lua, better alternative later?
 
 Plug 'ntpeters/vim-better-whitespace'
 
@@ -41,15 +43,15 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " Emmet: Expand html from keywords
-Plug 'mattn/emmet-vim'
+Plug 'mattn/emmet-vim', {'for': ['html', 'jinja', 'jinja2', 'htmljinja', 'htmldjango', 'vue', 'jsx', 'javascriptreact' ]}
 
 " Conceal anon functions with 𝝺
 " Plug 'calebsmith/vim-lambdify'
 
-" OPen files w/ cursor at line:column position
+" Open files w/ cursor at line:column position
 Plug 'wsdjeg/vim-fetch'
 
-Plug 'Olical/conjure', {'tag': 'v4.9.0'}
+Plug 'Olical/conjure', {'tag': 'v4.9.0', 'for': 'clojure'}
 Plug 'Olical/aniseed', { 'tag': 'v3.11.0' }
 
 " Git
@@ -70,12 +72,7 @@ Plug 'glts/vim-radical'
 Plug 'ciaranm/securemodelines'
 Plug 'editorconfig/editorconfig-vim'
 
-" Search by two characters
-Plug 'justinmk/vim-sneak'
-
 " Improved f/t (highlights etc)
-" Disabled b/c vim-sneak provides it's own version of f,t, and using those
-" means consistent keys for next match
 Plug 'unblevable/quick-scope'
 
 " Possibly replace quick-scope with:
@@ -85,10 +82,10 @@ Plug 'liuchengxu/vim-which-key'
 
 Plug 'joshdick/onedark.vim'
 
-Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " I can't get the following to work yet, but might be a good alternative
-" Plug 'glepnir/galaxyline.nvim', {'branch': 'main'}
+Plug 'glepnir/galaxyline.nvim', {'branch': 'main'}
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
@@ -96,17 +93,17 @@ Plug 'sheerun/vim-polyglot'
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 
-" Extend  " and @ to preview registers in normal mode
+" Extend " and @ to preview registers in normal mode
 Plug 'junegunn/vim-peekaboo'
 
 " For Haskell: fzf hoogle results
-Plug 'monkoose/fzf-hoogle.vim'
+" Plug 'monkoose/fzf-hoogle.vim'
 
 " Terminal - floating windows for fzf, etc.
 Plug 'voldikss/vim-floaterm'
 
-" Send commands to repl in other tmux split
-Plug 'jpalardy/vim-slime'
+" Better buffer deletion defaults
+Plug 'ojroques/nvim-bufdel'
 
 " Start Screen
 Plug 'mhinz/vim-startify'
@@ -126,11 +123,13 @@ Plug 'majutsushi/tagbar'
 
 " Syntax higlighting for Jinga.
 " Tries to auto detect
-Plug 'mitsuhiko/vim-jinja'
+Plug 'mitsuhiko/vim-jinja', {'for': ['jinja', 'jinja2', 'htmljinja', 'html']}
+
+" For tmux config files: hl, run commands w/ g!, man mage with K
+Plug 'tmux-plugins/vim-tmux'
 
 " Automatic table formating, basic spreadsheet, like in org mode
 " Plug 'dhruvasagar/vim-table-mode'
-" Plug 'jceb/vim-orgmode'
 
 " Improved pair & quotes text objects + arguments and separators
 Plug 'wellle/targets.vim'
@@ -139,10 +138,37 @@ Plug 'wellle/targets.vim'
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'   " entire buffer: ae, ie
 Plug 'kana/vim-textobj-indent'   " common indentation level: ai, ii
-" Plug 'kana/vim-textobj-line'     " current line w/out EOL character (e.g. as yy does): al, il
+Plug 'kana/vim-textobj-line'     " current line w/out EOL character (e.g. as yy does): al, il
 Plug 'adriaanzon/vim-textobj-matchit'  " text object deterined by matchit pairs: am, im
 Plug 'whatyouhide/vim-textobj-xmlattr' " xml/html attribute key=value: ax, ix
 Plug 'jceb/vim-textobj-uri'      " uri/url text object: au, iu & go to open link on linux
+Plug 'Julian/vim-textobj-variable-segment' "for internal word changes in camelCase, kebab-case, snake_case: av, iv
+
+" For toggling between single and multiline forms in language specific ways
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'AndrewRadev/tagalong.vim'
+Plug 'AndrewRadev/sideways.vim'
+
+" Toggles maximized windows
+Plug 'szw/vim-maximizer'
+
+" Debugger
+" Plug 'puremourning/vimspector'
+
+
+" Added since installing neovim-nightly
+Plug 'neovim/nvim-lspconfig'
+Plug 'nvim-lua/completion-nvim'
+Plug 'euclidianAce/BetterLua.vim'
+
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
+Plug 'Th3Whit3Wolf/one-nvim'
+Plug 'glepnir/zephyr-nvim'
+
 
 call plug#end()
 
