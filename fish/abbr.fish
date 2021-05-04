@@ -1,3 +1,5 @@
+#! /usr/bin/env fish
+
 abbr -a -U -- dj django-admin
 abbr -a -U -- ga 'git add -A'
 abbr -a -U -- gb 'git branch'
