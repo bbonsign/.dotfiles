@@ -50,6 +50,10 @@ echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
 chsh -s `which fish`
 ```
 
+### Doom Emacs
+Installing emacs and doom:
+<https://github.com/hlissner/doom-emacs/blob/develop/docs/getting_started.org#on-macos>
+
 ### Final steps/Other programs/TODO
 After Vscode is installed, install the extentions:
 ```shell
