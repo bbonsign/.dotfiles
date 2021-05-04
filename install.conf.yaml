@@ -32,11 +32,10 @@
     ~/.config/kitty: kitty
     ~/.config/alacritty: alacritty
     ~/.config/jrnl/jrnl.yaml: jrnl/jrnl.yaml
+    ~/.config/tridactyl/tridactylrcl: tridactylrc
     ~/.tmux.conf: .tmux/.tmux.conf
     ~/.tmux.conf.local:
     ~/.config/coc/extensions/package.json: coc/package.json
-    ~/.vim: nvim
-    ~/.vimrc: nvim/init.vim
     ~/.config/nvim/:
       path: nvim/*
     ~/.nano: .nano
