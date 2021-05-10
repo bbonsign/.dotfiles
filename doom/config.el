@@ -52,6 +52,8 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
+(setq left-fringe-width 10
+      right-fringe-width 10)
 
 (setq which-key-idle-delay 0.25
       which-key-idle-secondary-delay 0.25)
@@ -62,7 +64,7 @@
 
 
 ;; Shows buffers when using Spc-, for example
-;; (setq +ivy-buffer-preview t)
+(setq +ivy-buffer-preview t)
 
 (setq company-idle-delay 0.2)
 
@@ -83,7 +85,17 @@
 
 (all-the-icons-ivy-rich-mode 1)
 (ivy-rich-mode 1)
+;; Fuzzier matching: https://oremacs.com/2016/01/06/ivy-flx/
+;; (setq ivy-re-builders-alist
+;;       '((t . ivy--regex-fuzzy)))
 
+(use-package! writeroom-mode
+  :config
+  (setq +zen-text-scale 1.2
+        writeroom--mode-line-showing t
+        writeroom-mode-line-toggle-position 'mode-line-format)
+  (map! :leader
+        :desc "mode line" "tm" #'writeroom-toggle-mode-line))
 
 (map! "C-y" #'evil-scroll-line-up
       :nvomeg "C-t" #'evil-scroll-line-down
@@ -96,7 +108,10 @@
       "j" #'evilem-motion-next-line-first-non-blank
       "k" #'evilem-motion-previous-line-first-non-blank)
 
-(map! :leader :desc "Dired" :nv "od" #'dired-jump)
+
+(map! :leader
+      :desc "Dired" :nv "od" #'dired-jump
+      :desc "Resume last search" "hh" #'ivy-resume)
 
 
 (setq avy-style 'at)
@@ -127,6 +142,40 @@
 
 (map! :map dired-mode-map
       :n "." #'dired-hide-dotfiles-mode)
+
+
+(global-prettify-symbols-mode -1)
+
+
+(defun my-web-mode-hook ()
+  "Hooks for Web mode."
+  (setq web-mode-markup-indent-offset 2))
+(add-hook 'web-mode-hook  'my-web-mode-hook)
+
+
+
+(use-package! tree-sitter
+  :when (bound-and-true-p module-file-suffix)
+  :hook (prog-mode . tree-sitter-mode)
+  :hook (tree-sitter-after-on . tree-sitter-hl-mode)
+  :config
+  (require 'tree-sitter-langs)
+  (defadvice! doom-tree-sitter-fail-gracefully-a (orig-fn &rest args)
+    "Don't break with errors when current major mode lacks tree-sitter support."
+    :around #'tree-sitter-mode
+    (condition-case e
+        (apply orig-fn args)
+      (error
+       (unless (string-match-p (concat "^Cannot find shared library\\|"
+                                       "^No language registered\\|"
+                                       "cannot open shared object file")
+                            (error-message-string e))
+            (signal (car e) (cadr e)))))))
+
+
+(add-hook 'evil-jumps-post-jump-hook #'evil-scroll-line-to-center)
+(add-hook 'better-jumper-mode-hook #'evil-scroll-line-to-center)
+;; (add-hook 'magit-mode-hook (lambda () (magit-delta-mode +1)))
 
 
 (load! "+org")

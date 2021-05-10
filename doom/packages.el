@@ -53,6 +53,7 @@
 (package! major-mode-hydra)
 (package! all-the-icons-ivy-rich)
 (package! dired-hide-dotfiles)
+(package! tree-sitter)
+(package! tree-sitter-langs)
 
-
-an edit
+;; (package! magit-delta)
