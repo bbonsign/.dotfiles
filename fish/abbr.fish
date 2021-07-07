@@ -1,11 +1,17 @@
-#! /usr/bin/env fish
-
+abbr -a -U -- :b 'cd -'
+abbr -a -U -- :q clear
+abbr -a -U -- cleancontainers 'docker rm -v (docker ps -a -q -f status=exited)'
+abbr -a -U -- cleanimages 'docker rmi (docker images -q -f dangling=true)'
+abbr -a -U -- covlet 'pandoc --pdf-engine=xelatex --template=moderncv.tex source/letter.md -o output/coverletter-(git rev-parse --abbrev-ref HEAD).pdf'
+abbr -a -U -- current pwd\ \|\ awk\ -F\ \'/\'\ \ \'\{print\ \$NF\}\'
 abbr -a -U -- dj django-admin
 abbr -a -U -- ga 'git add -A'
 abbr -a -U -- gb 'git branch'
 abbr -a -U -- gch 'git checkout'
 abbr -a -U -- gcm 'git commit -m'
 abbr -a -U -- gdel 'git branch -d'
+abbr -a -U -- gl 'git log --oneline'
+abbr -a -U -- gll 'git log --graph --oneline --abbrev-commit --decorate --all'
 abbr -a -U -- glog 'git log --oneline'
 abbr -a -U -- gnew 'git checkout -b'
 abbr -a -U -- gst 'git status'
@@ -13,11 +19,19 @@ abbr -a -U -- gtrack 'git checkout --track'
 abbr -a -U -- guntrack 'git rm -r --cached'
 abbr -a -U -- gwt 'git worktree'
 abbr -a -U -- ipy ipython
+abbr -a -U -- lg 'l -G'
 abbr -a -U -- mang 'python manage.py'
 abbr -a -U -- moon 'curl wttr.in/moon'
+abbr -a -U -- mux tmuxinator
+abbr -a -U -- myip 'curl ifconfig.co'
 abbr -a -U -- pip 'python -m pip'
 abbr -a -U -- pipi 'python -m pip install'
+abbr -a -U -- pyhttp 'python -m http.server'
+abbr -a -U -- r 'weather curl wttr.in'
 abbr -a -U -- rbmaster 'git rebase master'
+abbr -a -U -- ripy ipython\ --ipython-dir\ .ipython/\ --profile=\(pwd\ \|\ awk\ -F\ \"/\"\ \'\{print\ \$NF\}\'\)
+abbr -a -U -- rmimages 'docker rmi (docker images -q -f dangling=true)'
+abbr -a -U -- tds 'trash .DS_Store'
 abbr -a -U -- venv 'python -m venv'
 abbr -a -U -- weather 'curl wttr.in'
 abbr -a -U -- zg lazygit
