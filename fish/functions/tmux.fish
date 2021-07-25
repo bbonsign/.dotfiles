@@ -1,3 +1,3 @@
-function tmux --description 'alias tmux=tmux -f "$HOME"/tmux/tmux.conf'
- command tmux -f "$HOME"/tmux/tmux.conf $argv; 
+function tmux --description 'alias tmux=tmux -f "$HOME"/.config/tmux/tmux.conf'
+ command tmux -f "$HOME"/.config/tmux/tmux.conf $argv; 
 end

@@ -179,8 +179,8 @@ tmux_conf_theme_right_separator_sub='\uE0B7'  #   PowerlineSymbols.otf font, see
 #     - #{uptime_s}
 #     - #{username}
 #     - #{username_ssh}
-tmux_conf_theme_status_left=' ❐ #S | ↑#{?uptime_y, #{uptime_y}y,}#{?uptime_d, #{uptime_d}d,}#{?uptime_h, #{uptime_h}h,}#{?uptime_m, #{uptime_m}m,} '
-tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %I:%M %p , %A %d %b | #{username}#{root} | #{hostname} '
+tmux_conf_theme_status_left=' ❐ #S'
+tmux_conf_theme_status_right='#{prefix}#{pairing}#{synchronized} #{?battery_status, #{battery_status},}#{?battery_bar, #{battery_bar},}#{?battery_percentage, #{battery_percentage},} , %I:%M %p , %A %d %b | #{username}#{root}'
 
 # status left style
 tmux_conf_theme_status_left_fg='#000000,#e4e4e4,#e4e4e4'  # black, white , white
@@ -305,6 +305,10 @@ set -g status-position top
 ##################################
 # Added by bbonsign
 
+# Style of key bindings used in command prompt
+# In particular, Esc now cancels the command :)
+set -g status-keys emacs
+
 # split panes using <prefix>+v or s
 bind v split-window -h
 bind s split-window -v
@@ -329,16 +333,17 @@ bind '[' previous-window
 bind 'C-]' next-window
 bind 'C-[' previous-window
 
+bind 'C-f' command-prompt -I "#W" "rename-window -- '%%'"
+bind ',' display-popup -EKR "fish -c tmuz-switch-session"
+bind '?' display-popup -h 90% -w 90% -EKR "fish -c fuzzy-list-keys"
+
 # Toggle status bar
 bind-key -r t set-option -g status
-
-# bind w run-shell "tmux switch-client -t $(tmux list-sessions | fzf-tmux -p| awk '{print $1}' |sed 's/://')"
 
 # Fix delay in switching modes in vim with <Esc>
 # https://github.com/neovim/neovim/wiki/FAQ#esc-in-tmux-or-gnu-screen-is-delayed
 set -sg escape-time 5
 
-set -g @tmux-fzf-launch-key 'C-f'
 
 ##################################
 # TMUX Plugins Manager
@@ -353,7 +358,6 @@ TMUX_COLORTAG_USE_POWERLINE=yes
 # List of plugins
 set -g @plugin 'tmux-plugins/tpm'
 set -g @plugin 'tmux-plugins/tmux-resurrect'
-set -g @plugin 'sainnhe/tmux-fzf'
 # set -g @plugin 'Determinant/tmux-colortag'
 # set -g @plugin 'christoomey/vim-tmux-navigator'
 
@@ -363,7 +367,6 @@ set -g @plugin 'sainnhe/tmux-fzf'
 set -g @tpm_plugins '           \
    tmux-plugins/tpm             \
    tmux-plugins/tmux-resurrect  \
-   sainnhe/tmux-fzf             \
    '
    # christoomey/vim-tmux-navigator
 

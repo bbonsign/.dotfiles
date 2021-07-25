@@ -1,3 +1,3 @@
-function mv --description 'alias mv=mv -s'
- command mv -s $argv; 
+function mv --description 'alias mv=mv -v'
+ command mv -v $argv; 
 end

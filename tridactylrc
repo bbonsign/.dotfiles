@@ -1,6 +1,6 @@
 " General Settings
 set configversion 2.0
-set theme base16-twilight
+set theme dark
 set hintfiltermode vimperator
 set hintchars 1234567890
 set smoothscroll true
@@ -13,6 +13,8 @@ bind J tabprev
 bind K tabnext
 bind <C-h> tabprev
 bind <C-l> tabnext
+bind <C-:> tabmove 0
+bind <C-'> tabmove $
 bind j scrollline 5
 bind k scrollline -5
 bind <A-p> pin
