@@ -12,7 +12,6 @@ Plug 'junegunn/vim-plug'
 
 Plug 'guns/vim-sexp'
 
-Plug 'terryma/vim-expand-region'
 
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'easymotion/vim-easymotion'
@@ -20,10 +19,7 @@ Plug 'easymotion/vim-easymotion'
 " Mappings for g* and z*
 Plug 'haya14busa/vim-asterisk'
 
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
-Plug 'Xuyuanp/nerdtree-git-plugin'
-
-Plug 'ryanoasis/vim-devicons'
+" Plug 'ryanoasis/vim-devicons'
 
 Plug 'ntpeters/vim-better-whitespace'
 
@@ -40,7 +36,7 @@ Plug 'christoomey/vim-tmux-navigator'
 " Markdown
 " Plug 'godlygeek/tabular'
 " Plug 'plasticboy/vim-markdown'
-Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
+" Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " Emmet: Expand html from keywords
 Plug 'mattn/emmet-vim', {'for': ['html', 'jinja', 'jinja2', 'htmljinja', 'htmldjango', 'vue', 'jsx', 'javascriptreact' ]}
@@ -51,8 +47,9 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'jinja', 'jinja2', 'htmljinja', 'htmldj
 " Open files w/ cursor at line:column position
 Plug 'wsdjeg/vim-fetch'
 
-Plug 'Olical/conjure', {'tag': 'v4.9.0', 'for': 'clojure'}
-Plug 'Olical/aniseed', { 'tag': 'v3.11.0' }
+Plug 'Olical/conjure', {'tag': 'v4.22.0'}
+Plug 'Olical/nvim-local-fennel', { 'tag': 'v2.11.0' }
+Plug 'Olical/aniseed', { 'tag': 'v3.20.0' }
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -78,16 +75,18 @@ Plug 'unblevable/quick-scope'
 " Possibly replace quick-scope with:
 " Plug 'rhysd/clever-f.vim'
 
-Plug 'liuchengxu/vim-which-key'
+Plug 'folke/which-key.nvim'
 
 Plug 'joshdick/onedark.vim'
+Plug 'glepnir/zephyr-nvim'
+Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 
 " Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " I can't get the following to work yet, but might be a good alternative
 Plug 'glepnir/galaxyline.nvim', {'branch': 'main'}
 
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 
 Plug 'junegunn/fzf'
@@ -106,10 +105,13 @@ Plug 'voldikss/vim-floaterm'
 Plug 'ojroques/nvim-bufdel'
 
 " Start Screen
-Plug 'mhinz/vim-startify'
+" Plug 'mhinz/vim-startify'
 
 " Breifly higlight yanked text
 Plug 'machakann/vim-highlightedyank'
+
+" Dim unfocused windows
+" Plug 'blueyed/vim-diminactive'
 
 " Align to character easily, e.g. add spaces to make '='
 " on the same column in several lines of assignments
@@ -139,10 +141,10 @@ Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'   " entire buffer: ae, ie
 Plug 'kana/vim-textobj-indent'   " common indentation level: ai, ii
 Plug 'kana/vim-textobj-line'     " current line w/out EOL character (e.g. as yy does): al, il
-Plug 'adriaanzon/vim-textobj-matchit'  " text object deterined by matchit pairs: am, im
 Plug 'whatyouhide/vim-textobj-xmlattr' " xml/html attribute key=value: ax, ix
 Plug 'jceb/vim-textobj-uri'      " uri/url text object: au, iu & go to open link on linux
 Plug 'Julian/vim-textobj-variable-segment' "for internal word changes in camelCase, kebab-case, snake_case: av, iv
+Plug 'RRethy/nvim-treesitter-textsubjects' " like expand-region, but using tree-sitter, ,/. to go down/up
 
 " For toggling between single and multiline forms in language specific ways
 Plug 'AndrewRadev/splitjoin.vim'
@@ -155,20 +157,24 @@ Plug 'szw/vim-maximizer'
 " Debugger
 " Plug 'puremourning/vimspector'
 
-
-" Added since installing neovim-nightly
-Plug 'neovim/nvim-lspconfig'
-Plug 'nvim-lua/completion-nvim'
-Plug 'euclidianAce/BetterLua.vim'
-
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
-Plug 'Th3Whit3Wolf/one-nvim'
-Plug 'glepnir/zephyr-nvim'
+Plug 'nvim-treesitter/playground' , {'do': ':TSInstall query'}
+Plug 'glepnir/dashboard-nvim'
 
+Plug 'nvim-telescope/telescope.nvim'
+Plug 'hrsh7th/nvim-compe'
+" Plug 'nvim-lua/completion-nvim'
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'euclidianAce/BetterLua.vim'
+Plug 'kabouzeid/nvim-lspinstall'
+Plug 'glepnir/lspsaga.nvim'
+Plug 'mhartington/formatter.nvim'
+Plug 'ray-x/lsp_signature.nvim'
 
 call plug#end()
 

@@ -1,6 +1,7 @@
 " Comments in Vimscript start with a `"`.
 
 scriptencoding utf-8
+set encoding=UTF-8
 
 " Vim is based on Vi. Setting `nocompatible` switches from the default
 " Vi-compatibility mode and enables useful Vim functionality. This
@@ -15,13 +16,10 @@ set nocompatible
 set clipboard=unnamedplus
 
 " Turn on syntax highlighting.
-"syntax on
-"set termguicolors
-"let base16colorspace=256
-"set background=dark
-"colorscheme onedark
-" colorscheme one-nvim " Uses Treesitter
-" colorscheme zephyr
+syntax on
+set termguicolors
+" let base16colorspace=256
+set background=dark
 
 " Allow persistent undo history
 set undofile
@@ -86,6 +84,10 @@ augroup end
 " window, useful for previews outside of the current view of the file
 set inccommand=nosplit
 
+" Show cursor line only normal mode and current window
+autocmd InsertLeave,WinEnter * set cursorline
+autocmd InsertEnter,WinLeave * set nocursorline
+
 " Unbind some useless/annoying default key bindings.
 nmap Q <Nop> " 'Q' in normal mode enters Ex mode. You almost never want this.
 
@@ -96,10 +98,11 @@ set noerrorbells visualbell t_vb=
 set mouse+=a
 
 " indentation stuff
-set smartindent
-set autoindent
+set smartindent  " For programming
+set autoindent   " Copy indent from current line when starting a new line
+set breakindent  " Use same indent for wrapped text
 
-set scrolloff=8
+" set scrolloff=8
 
 " tabs and spaces
 set tabstop=2     " Insert 2 spaces for tab
@@ -125,6 +128,8 @@ set noswapfile
 " Having longer updatetime (default is 4000 ms = 4 s) leads to noticeable
 " delays and poor user experience. Also from coc
 set updatetime=300
+
+set timeoutlen=300
 
 " To prevent conflict with <space> in tagbar
 let g:tagbar_map_showproto = "K"
@@ -187,5 +192,7 @@ xnoremap # :<C-u>call <SID>VSetSearch('?')<CR>?<C-R>=@/<CR><CR>
 "   vmap <leader>* :<C-u>call <SID>VSetSearch()<CR>:execute 'noautocmd vimgrep /' . @/ . '/ **'<CR>
 " endif
 
-
 let g:csv_nomap_cr = 1
+
+" Force write readonly files using sudo
+command! WS w !sudo tee %
