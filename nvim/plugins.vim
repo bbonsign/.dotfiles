@@ -57,6 +57,8 @@ Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-rooter'
+Plug 'TimUntersberger/neogit'
+Plug 'sindrets/diffview.nvim'
 
 Plug 'joom/vim-commentary'
 Plug 'tpope/vim-surround'

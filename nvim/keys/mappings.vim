@@ -31,6 +31,10 @@ vnoremap <C-c> <nop>
 nnoremap Q @q
 vnoremap Q :norm @q<cr>
 
+" quickfix conveniences
+nnoremap ]q :cnext<cr>
+nnoremap [q :cprevious<cr>
+
 " Keep selected region when indenting repeatedly
 vnoremap > >gv
 vnoremap < <gv
