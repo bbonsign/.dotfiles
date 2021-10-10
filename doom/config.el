@@ -64,7 +64,7 @@
 
 
 ;; Shows buffers when using Spc-, for example
-(setq +ivy-buffer-preview t)
+;; (setq +ivy-buffer-preview t)
 
 (setq company-idle-delay 0.2)
 
@@ -173,8 +173,8 @@
             (signal (car e) (cadr e)))))))
 
 
-(add-hook 'evil-jumps-post-jump-hook #'evil-scroll-line-to-center)
-(add-hook 'better-jumper-mode-hook #'evil-scroll-line-to-center)
+;; (add-hook 'evil-jumps-post-jump-hook #'evil-scroll-line-to-center)
+;; (add-hook 'better-jumper-mode-hook #'evil-scroll-line-to-center)
 ;; (add-hook 'magit-mode-hook (lambda () (magit-delta-mode +1)))
 
 
