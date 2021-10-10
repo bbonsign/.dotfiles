@@ -1,6 +1,7 @@
 [user]
 	name = Brian Bonsignore
 	useConfigOnly = true
+	email = bbonsign@users.noreply.github.com
 
 [credential]
 	helper = osxkeychain
@@ -8,22 +9,28 @@
 [core]
 	excludesfile = ~/.gitignore
 	editor = nvim
-  pager = delta
+  pager = bat -p
 
 [alias]
 	last = log -1 HEAD
 	st = status
 	unstage = reset HEAD --
 
+[color "decorate"]
+	head = bold white
+	branch = bold magenta
+	remotebranch = blue
+	tag = bold red
+
 [interactive]
   diffFilter = delta --color-only
 
 [delta]
-  features = side-by-side line-numbers decorations
+  features = line-numbers decorations
   whitespace-error-style = 22 reverse
 
 [delta "decorations"]
-  commit-decoration-style = bold yellow box ul
+  ; commit-decoration-style = bold yellow box ul
   file-style = bold yellow ul
   file-decoration-style = none
 

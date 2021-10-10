@@ -6,11 +6,30 @@ vicmd_symbol = "[❰](bold green)"
 [python]
 symbol = " "
 
+[elixir]
+symbol = " "
+style = "#5e3f9e"
+
+[docker_context]
+symbol = " "
+
+[elm]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
 [golang]
 symbol = " "
 
+[rust]
+symbol = " "
+
 [lua]
 symbol = " "
+
+[directory]
+read_only = " "
 
 [aws]
 disabled = true

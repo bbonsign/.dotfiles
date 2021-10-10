@@ -30,6 +30,8 @@ Temporary Items
 __pycache__
 .pyc
 .venv/
+pyrightconfig.json
+.python-version
 
 # VSCode
 .vscode
@@ -44,13 +46,17 @@ db.sqlite3
 node_modules
 
 
+# default session file name (after running :mksession, or :mks for short)
+Session.vim
 .vim/*
-
-pyrightconfig.json
-.python-version
 
 # Place for me to put some local files in a project that I don't want to commit
 .misc/*
 
 # Project level settings for projectile in emacs
 .projectile
+
+# For Elixir projects
+_build
+deps
+
