@@ -36,7 +36,7 @@ telescope.setup{
         ['<c-f>'] = actions.preview_scrolling_down,
     },
   },
-  winblend = 25,
+  winblend = 10,
   selection_strategy = "reset",
   -- sorting_strategy = "descending",
   sorting_strategy = "ascending",
@@ -74,8 +74,7 @@ telescope.setup{
 }
 
 --Add leader shortcuts
-vim.api.nvim_set_keymap('n', '<leader>t', [[<cmd>Telescope<cr>]], { noremap = true, silent = true})
-vim.api.nvim_set_keymap('n', 'gd', [[<cmd>Telescope lsp_definitions<cr>]], { noremap = true, silent = true})
+-- vim.api.nvim_set_keymap('n', 'gd', [[<cmd>Telescope lsp_definitions<cr>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', 'gr', [[<cmd>Telescope lsp_references<cr>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>ff', [[<cmd>lua require('telescope.builtin').find_files()<cr>]], { noremap = true, silent = true})
 vim.api.nvim_set_keymap('n', '<leader>,', [[<cmd>lua require('telescope.builtin').buffers()<cr>]], { noremap = true, silent = true})

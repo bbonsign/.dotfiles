@@ -1,20 +1,3 @@
-local wk = require("which-key")
-
--- non-prefixed leader maps
-wk.register({
-    ['!'] = {':.!fish<CR>', 'send line to fish'},
-    [':'] = {':Telescope commands<CR>', 'commands'},
-    [','] = {'<cmd>Telescope buffers<CR>', 'buffers'},
-    ['/'] = {':Commentary<CR>', 'comment'},
-    m = {
-        ":<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><c-f><left>",
-        "edit macro"
-    },
-    q = {':q<CR>', 'quit'},
-    X = {':norm ciw <CR>', 'trim to one space between words'},
-    x = {':StripWhitespace<CR>', 'strip whitespace'}
-}, {prefix = "<leader>"})
-
 -- Extract easymotion prefixes to share with e and j
 local easymotion_maps = {
     E = {
@@ -54,13 +37,32 @@ local easymotion_maps = {
     }
 }
 
+local wk = require("which-key")
+
+-- non-prefixed leader maps
+wk.register({
+    ['!'] = {':.!fish<CR>', 'send line to fish'},
+    ["`"] = {"<cmd>:e #<cr>", "Switch to Other Buffer"},
+    [':'] = {':Telescope commands<CR>', 'commands'},
+    [','] = {'<cmd>Telescope buffers<CR>', 'buffers'},
+    ["/"] = {"<cmd>Telescope live_grep<cr>", "Search"},
+    m = {
+        ":<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><c-f><left>",
+        "edit macro"
+    },
+    q = {':q<CR>', 'quit'},
+    X = {':norm ciw <CR>', 'trim to one space between words'},
+    x = {':StripWhitespace<CR>', 'strip whitespace'}
+}, {prefix = "<leader>"})
+
 -- prefixed leader keymaps
 wk.register({
     ['.'] = {
         name = '+home',
-        ['.'] = {':e $MYVIMRC', 'open init'},
-        r = {':source $MYVIMRC', 'reload config'},
+        ['.'] = {':e $MYVIMRC<CR>', 'open init'},
+        l = {'<C-U>:luafile %<CR>', 'luafile %'},
         h = {':Dashboard<CR>', 'start screen'},
+        r = {':source $MYVIMRC<CR>', 'reload config'},
         s = {':SessionSave<CR>', 'save session'}
     },
 
@@ -75,6 +77,19 @@ wk.register({
         l = {'a<Space><Esc>`[h', 'space right'}
     },
 
+    ["<tab>"] = {
+        name = "workspace",
+        ["]"] = {"<cmd>tabnext<CR>", "Next"},
+        ["["] = {"<cmd>tabprevious<CR>", "Previous"},
+        ["<tab>"] = {':tab split<CR>', 'new tab w/ current buf'},
+        c = {"<cmd>tabclose<CR>", "Close"},
+        d = {"<cmd>tabclose<CR>", "Close"},
+        f = {"<cmd>tabfirst<CR>", "First"},
+        l = {"<cmd>tablast<CR>", "Last"},
+        n = {"<cmd>tabnew<CR>", "Next"},
+        t = {':tab split<CR>', 'new tab w/ current buf'}
+    },
+
     a = {
         name = '+actions',
         [':'] = {'A;<Esc>', 'append ;'},
@@ -83,8 +98,8 @@ wk.register({
         c = {':set cursorline!<CR>', 'toggle line hi-light'},
         n = {':set nonumber!<CR>', 'line-numbers'},
         r = {':set norelativenumber!<CR>', 'relative line nums'},
-        s = {':let @/ = ""<CR>', 'remove search highlight'},
-        S = {':setlocal spell!<CR>', 'toggle spelling in buffer'},
+        S = {':let @/ = ""<CR>', 'remove search highlight'},
+        s = {':setlocal spell!<CR>', 'toggle spelling in buffer'},
         t = {':FloatermToggle<CR>', 'terminal'},
         v = {':TagbarToggle<CR>', 'tag viewer'},
         w = {':set wrap!<CR>', 'toggle wrap'},
@@ -110,6 +125,7 @@ wk.register({
 
     f = {
         name = "+file",
+        b = {"<cmd>Telescope file_browser<CR>", "Telescope File Browser"},
         f = {"<cmd>Telescope find_files<CR>", "Find File"},
         R = {':earlier 1f<CR>', 'revert to last write'},
         r = {"<cmd>Telescope oldfiles<CR>", "Open Recent File"},
@@ -150,15 +166,24 @@ wk.register({
         name = '+help',
         g = {':help g<CR>', 'g commands'},
         h = {':Telescope help_tags<CR>', 'Telescope helptags'},
-        m = {':Man<CR>', 'Man page for word'},
+        k = {"<cmd>:Telescope keymaps<cr>", "Key Maps"},
+        M = {':Man<CR>', 'Man page for word'},
+        m = {"<cmd>:Telescope man_pages<cr>", "Telescope Man Pages"},
+        o = {"<cmd>:Telescope vim_options<cr>", "Options"},
         z = {':help z<CR>', 'z commands'}
     },
 
     l = {
         name = '+lsp',
         [':'] = {'A;<Esc>', 'append ;'},
+        D = {':Telescope lsp_document_diagnostics<CR>', 'Doc Diagnostics'},
+        d = {':Lspsaga show_line_diagnostics<CR>', 'Show diagnostics'},
+        f = {':Format<CR>', 'Format'},
         h = {':SidewaysLeft<CR>', 'Move arg left'},
         l = {':SidewaysRight<CR>', 'Move arg right'},
+        s = {
+            ':Telescope lsp_dynamic_workspace_symbols<CR>', 'Telescope Symbols'
+        },
         T = {':LspStart<CR>', 'Start Lsp'},
         t = {':LspStop<CR>', 'Stop Lsp'}
     },
@@ -206,21 +231,74 @@ wk.register({
         m = {':Maps<CR>', 'normal maps'},
         S = {':Colors<CR>', 'color schemes'},
         T = {':BTags<CR>', 'buffer tags'},
+        t = {':Rg<CR>', 'text'},
         W = {':Windows<CR>', 'search windows'},
         y = {':Filetypes<CR>', 'file types'},
         z = {':FZF<CR>', 'FZF'}
     },
 
     T = {
-        name = '+terminal',
-        F = {':FloatermNew fzf<CR>', 'fzf'},
+        name = '+test+term',
+        F = {':TestFile<CR>', 'file'},
         G = {':FloatermNew lazygit<CR>', 'git'},
         D = {':FloatermNew lazydocker<CR>', 'docker'},
-        N = {':FloatermNew node<CR>', 'node'},
+        L = {':TestLast<CR>', 'last'},
+        N = {':TestNearest<CR>', 'nearest'},
         P = {':FloatermNew ipython<CR>', 'python'},
-        T = {':FloatermToggle<CR>', 'toggle'}
+        S = {':TestSuite<CR>', 'suite'},
+        T = {':FloatermToggle<CR>', 'toggle'},
+        V = {':TestVisit<CR>', 'visit'},
     },
 
+    t = {
+        name = '+telescope',
+        t = {':Telescope<CR>', 'Telescope'},
+        D = {':Telescope lsp_workspace_diagnostics<CR>', 'Proj Diagnostics'},
+        d = {':Telescope lsp_document_diagnostics<CR>', 'Doc Diagnostics'}
+    },
+
+    u = {
+        ['c'] = {'<cmd>lua require"dap".continue()<CR>', "description"},
+        ['sv'] = {'<cmd>lua require"dap".step_over()<CR>', "description"},
+        ['si'] = {'<cmd>lua require"dap".step_into()<CR>', "description"},
+        ['so'] = {'<cmd>lua require"dap".step_out()<CR>', "description"},
+        ['tb'] = {
+            '<cmd>lua require"dap".toggle_breakpoint()<CR>', "description"
+        },
+        ['sbr'] = {
+            '<cmd>lua require"dap".set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',
+            "description"
+        },
+        ['sbm'] = {
+            '<cmd>lua require"dap".set_breakpoint(nil, nil, vim.fn.input("Log point message: "))<CR>',
+            "description"
+        },
+        ['ro'] = {'<cmd>lua require"dap".repl.open()<CR>', "description"},
+        ['rl'] = {'<cmd>lua require"dap".repl.run_last()<CR>', "description"},
+        ['ui'] = {'<cmd>lua require"dapui".toggle()<CR>'},
+
+        -- telescope-dap
+        ['cc'] = {
+            '<cmd>lua require"telescope".extensions.dap.commands{}<CR>',
+            "description"
+        },
+        ['co'] = {
+            '<cmd>lua require"telescope".extensions.dap.configurations{}<CR>',
+            "description"
+        },
+        ['lb'] = {
+            '<cmd>lua require"telescope".extensions.dap.list_breakpoints{}<CR>',
+            "description"
+        },
+        ['v'] = {
+            '<cmd>lua require"telescope".extensions.dap.variables{}<CR>',
+            "description"
+        },
+        ['f'] = {
+            '<cmd>lua require"telescope".extensions.dap.frames{}<CR>',
+            "description"
+        }
+    },
     w = {
         name = "+window",
         ["="] = {'<C-w>=', 'balance splits'},
@@ -239,7 +317,7 @@ wk.register({
         R = {'<C-w>R', 'rotate windows <-'},
         r = {'<C-w>r', 'rotate windows ->'},
         s = {':split<CR>', 'horizontal split'},
-        t = {':tab sp<CR>', 'new tab w/ current buf'},
+        t = {':tab split<CR>', 'new tab w/ current buf'},
         v = {':vsplit<CR>', 'veritcal split'},
         W = {'<C-w>W', 'other window <-'},
         w = {'<C-w>w', 'other window ->'},

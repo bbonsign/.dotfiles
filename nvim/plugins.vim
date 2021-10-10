@@ -138,6 +138,8 @@ Plug 'tmux-plugins/vim-tmux'
 " Improved pair & quotes text objects + arguments and separators
 Plug 'wellle/targets.vim'
 
+Plug 'vim-test/vim-test'
+
 " More text objects
 Plug 'kana/vim-textobj-user'
 Plug 'kana/vim-textobj-entire'   " entire buffer: ae, ie
@@ -156,27 +158,33 @@ Plug 'AndrewRadev/sideways.vim'
 " Toggles maximized windows
 Plug 'szw/vim-maximizer'
 
-" Debugger
-" Plug 'puremourning/vimspector'
-
 Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-treesitter/playground' , {'do': ':TSInstall query'}
+Plug 'windwp/nvim-ts-autotag'
+
 Plug 'glepnir/dashboard-nvim'
 
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'hrsh7th/nvim-compe'
 " Plug 'nvim-lua/completion-nvim'
 
-Plug 'neovim/nvim-lspconfig'
 Plug 'euclidianAce/BetterLua.vim'
+Plug 'neovim/nvim-lspconfig'
 Plug 'kabouzeid/nvim-lspinstall'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'mhartington/formatter.nvim'
 Plug 'ray-x/lsp_signature.nvim'
+
+" Debugging
+" Plug 'puremourning/vimspector'
+Plug 'mfussenegger/nvim-dap'
+Plug 'nvim-telescope/telescope-dap.nvim'
+Plug 'mfussenegger/nvim-dap-python'
+Plug 'rcarriga/nvim-dap-ui'
 
 call plug#end()
 

@@ -3,19 +3,15 @@
 let mapleader=" "
 let maplocalleader="\\"
 
-" Easily enter command mode (no shift button!)
-" Swapped ; and : globally with Karabiner-Elements
-" nnoremap ; :
-" vnoremap ; :
-
 " The above messes up useing ';' for the next "f search"
 " Enter and Backspace are used in nvim/plug-config/sneak.vim
 " so the f-versions have an 'f' prefix.  This allows for vim-sneak and the
 " normal f & t searching to be used
-nnoremap <CR> ;
-nnoremap <BS> ,
-" vnoremap <CR> ;
-" vnoremap <BS> ,
+" nnoremap <CR> ;
+" nnoremap <BS> ,
+
+" highlight the visual selection after pressing enter.
+xnoremap <silent> <cr> "*y:silent! let searchTerm = '\V'.substitute(escape(@*, '\/'), "\n", '\\n', "g") <bar> let @/ = searchTerm <bar> echo '/'.@/ <bar> call histadd("search", searchTerm) <bar> set hls<cr>
 
 " Enter command window from noraml mode
 " note: enter command window with Ctrl-F when already at cmd line
@@ -42,9 +38,7 @@ vnoremap < <gv
 " Use Ctrl-s to increment number at cursor since we remap C-a below
 nnoremap <C-s> <C-a>
 
-" Another way to exit insert mode
-" <C-c> and <C-[> are other ways to exit insert mode
-" inoremap kj <Esc> -- remapped differently below, I dont use this much
+nnoremap <C-c> :nohlsearch<CR>
 
 " Insert new line with correct indentation when cursor is on closing empty
 " delimiters, E.g. {} -> {
@@ -61,7 +55,7 @@ nmap s ys
 vmap s S
 
 " UndoTree
-nnoremap <leader>u :UndotreeToggle<CR>
+nnoremap <leader>U :UndotreeToggle<CR>
 
 " shortcuts for ctrl-a and ctrl-e in insert/normalcommand mode
 inoremap <C-e> <Esc>A
@@ -101,10 +95,10 @@ nnoremap k gk
 " let g:tmux_navigator_disable_when_zoomed = 1
 
 " Use shift + arrows to resize windows
-nnoremap <silent> <S-Down> :resize -2<CR>
-nnoremap <silent> <S-Up> :resize +2<CR>
-nnoremap <silent> <S-Left> :vertical resize -2<CR>
-nnoremap <silent> <S-Right> :vertical resize +2<CR>
+nnoremap <silent> <A-Down> :resize -2<CR>
+nnoremap <silent> <A-Up> :resize +2<CR>
+nnoremap <silent> <A-Left> :vertical resize -2<CR>
+nnoremap <silent> <A-Right> :vertical resize +2<CR>
 
 " Alt+{k,j} drag line up/down
 nnoremap <silent> <A-j> :m .+1<CR>==
@@ -123,8 +117,10 @@ vnoremap <silent> <leader>n :nohlsearch<CR>
 nnoremap <silent> <leader>n :nohlsearch<CR>
 
 " Add blank lines. Accepts a count.
-nnoremap [<space> :<c-u>put! =repeat(nr2char(10), v:count1)<cr>']j
-nnoremap ]<space> :<c-u>put =repeat(nr2char(10), v:count1)<cr>'[k
+nnoremap [<space> O<Esc>
+" nnoremap [<space> :<c-u>put! =repeat(nr2char(10), v:count1)<cr>`[j
+" nnoremap ]<space> :<c-u>put =repeat(nr2char(10), v:count1)<cr>j
+nnoremap ]<space> o<Esc>
 
 " Toggle comments in visual mode, from tpope/commentary plugin
 " Note that C-_ actually maps to C-/, which is what I want
@@ -174,6 +170,9 @@ vnoremap <space>c c
 nnoremap <space>C C
 vnoremap <space>C C
 
+" Center line when jumping to search results
+nnoremap n nzz
+nnoremap N Nzz
 
 " vim-gitgutter provides a hunk text-object accessible with `ih` and `ah`
 " This changes it to `ih` and `ah` as well as `ig` and `ag`
@@ -190,6 +189,14 @@ xmap ig <Plug>(GitGutterTextObjectInnerVisual)
 xmap ag <Plug>(GitGutterTextObjectOuterVisual)
 nmap ]g <Plug>(GitGutterNextHunk)
 nmap [g <Plug>(GitGutterPrevHunk)
+
+" Redefine default keybinds for line text object (the l conflicts with
+" targets.vim)
+let g:textobj_line_no_default_key_mappings = 1
+omap i. <Plug>(textobj-line-i)
+omap a. <Plug>(textobj-line-a)
+xmap i. <Plug>(textobj-line-i)
+xmap a. <Plug>(textobj-line-a)
 
 " Completion related mappings
 " Use tab for trigger completion with characters ahead and navigate.
@@ -212,25 +219,14 @@ endfunction
 inoremap <expr> <C-j> ("\<C-n>")
 inoremap <expr> <C-k> ("\<C-p>")
 
+
 " <CR> to confirm coc-completion, use:
-inoremap <expr> <CR> pumvisible() ? "\<c-y>" : "\<cr>"
+" inoremap <expr> <CR> pumvisible() ? "\<c-y>" : "\<cr>"
 
 " Arrow keys search through history based on current token, but C-n/p
 " don't be default.  This gives the same behavior to both
 cnoremap <expr> <c-n> wildmenumode() ? "\<c-n>" : "\<down>"
 cnoremap <expr> <c-p> wildmenumode() ? "\<c-p>" : "\<up>"
-
-" Use K to show documentation in preview window
-" nnoremap <silent> K :call <SID>show_documentation()<CR>
-
-" function! s:show_documentation()
-"   if (index(['vim','help'], &filetype) >= 0)
-"     execute 'h '.expand('<cword>')
-"   else
-"     call CocAction('doHover')
-"   endif
-" endfunction
-
 
 " Fugitive Conflict Resolution
 " nnoremap <leader>gd :Gvdiff<CR>

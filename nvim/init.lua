@@ -2,6 +2,7 @@ vim.cmd('source ~/.config/nvim/old_init.vim')
 
 require('bb')
 require('settings')
+require('debug')
 
 -- Example config in Lua
 vim.g.tokyonight_style = "storm" -- Options: "night", "storm", or "day"
@@ -10,6 +11,9 @@ vim.g.tokyonight_sidebars = {"qf", "vista_kind", "terminal", "packer"}
 
 -- Change the "hint" color to the "orange" color, and make the "error" color bright red
 -- vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
+
+-- Highlight colors in css etc
+require'colorizer'.setup(nil, {css = true})
 
 -- Load the colorscheme
 vim.cmd [[colorscheme tokyonight]]
@@ -30,31 +34,35 @@ augroup end
 
 vim.g.indent_blankline_char = ""
 
-vim.api.nvim_set_keymap('n', '<leader>cr', [[<cmd>luafile %<CR>]],
-                        {noremap = true, silent = false})
-
 -- LSP settings
 
 local on_attach = function(client, bufnr)
     require("lsp_signature").on_attach() -- Note: add in lsp client on-attach
     vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
+    -- Turn off virtual text for diagnostics; use ]e/[e instead
+    vim.lsp.handlers['textDocument/publishDiagnostics'] =
+        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+            virtual_text = false,
+            signs = true,
+            underline = true,
+            update_in_insert = false
+        })
+
     local opts = {noremap = true, silent = true}
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi',
                                 [[<cmd>lua vim.lsp.buf.implementation()<CR>]],
-                                opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>',
-                                [[<cmd>lua vim.lsp.buf.signature_help()<CR>]],
-                                opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wa',
-                                [[<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>]],
                                 opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lr',
                                 [[<cmd>lua vim.lsp.buf.rename()<CR>]], opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>la',
                                 [[<cmd>lua vim.lsp.buf.code_action()<CR>]], opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', [[<cmd>lua vim.lsp.buf.signature_help()<CR>]], opts)
+    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wa', [[<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>]], opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD',
+                                '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd',
+                                '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
@@ -76,6 +84,10 @@ local function setup_servers()
 end
 
 setup_servers()
+
+-- require'lspconfig'.efm.setup({
+--   filetypes = {"elixir"}
+-- })
 
 -- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
 require'lspinstall'.post_install_hook = function()
@@ -101,7 +113,7 @@ require'compe'.setup {
     autocomplete = true,
     debug = false,
     min_length = 1,
-    preselect = 'enable',
+    preselect = 'disable',
     throttle_time = 80,
     source_timeout = 200,
     incomplete_delay = 400,
@@ -172,17 +184,17 @@ vim.api.nvim_exec([[
  " nnoremap <silent> <leader>ca :Lspsaga code_action<CR>
   vnoremap <silent> <leader>ca :<C-U>Lspsaga range_code_action<CR>
   nnoremap <silent> K :Lspsaga hover_doc<CR>
+  nnoremap <silent> <leader>lp :Lspsaga preview_definition<CR>
   nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
   nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
   nnoremap <silent> gs :Lspsaga signature_help<CR>
   nnoremap <silent> gR <cmd>lua require('lspsaga.rename').rename()<CR>
-  nnoremap <silent> <leader>cd <cmd>lua require'lspsaga.diagnostic'.show_line_diagnostics()<CR>
   nnoremap <silent> <leader>cd :Lspsaga show_line_diagnostics<CR>
-  nnoremap <silent> [e :Lspsaga diagnostic_jump_next<CR>
-  nnoremap <silent> ]e :Lspsaga diagnostic_jump_prev<CR>
+  nnoremap <silent> ]e :Lspsaga diagnostic_jump_next<CR>zz
+  nnoremap <silent> [e :Lspsaga diagnostic_jump_prev<CR>zz
   ]], true)
 
-cfg = {
+local cfg = {
     bind = true, -- This is mandatory, otherwise border config won't get registered.
     -- If you want to hook lspsaga or other signature handler, pls set to false
     doc_lines = 12, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
@@ -217,21 +229,22 @@ local prettierFmt = function()
         stdin = true
     }
 end
+
 -- Formatting
 require('formatter').setup({
     logging = false,
     filetype = {
-        css             = {prettierFmt},
-        html            = {prettierFmt},
-        javascript      = {prettierFmt},
+        css = {prettierFmt},
+        html = {prettierFmt},
+        javascript = {prettierFmt},
         javascriptreact = {prettierFmt},
-        json            = {prettierFmt},
-        less            = {prettierFmt},
-        markdown        = {prettierFmt},
-        typescript      = {prettierFmt},
+        json = {prettierFmt},
+        less = {prettierFmt},
+        markdown = {prettierFmt},
+        typescript = {prettierFmt},
         typescriptreact = {prettierFmt},
-        vue             = {prettierFmt},
-        yaml            = {prettierFmt},
+        vue = {prettierFmt},
+        yaml = {prettierFmt},
         elixir = {
             function()
                 return {exe = "mix", args = {"format"}, stdin = false}
@@ -262,14 +275,3 @@ require('formatter').setup({
 vim.api.nvim_set_keymap('n', '<leader>lf', '<cmd>Format<CR>',
                         {noremap = true, silent = true})
 
-require'nvim-treesitter.configs'.setup {
-    textsubjects = {
-        enable = true,
-        keymaps = {
-            ['.'] = 'textsubjects-smart',
-            [','] = 'textsubjects-container-outer'
-        }
-    }
-}
-
--- require('aniseed.env').init()

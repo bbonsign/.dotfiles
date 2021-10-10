@@ -1,6 +1,10 @@
+let g:VM_theme = 'nord'
+
 let g:VM_maps = {}
 let g:VM_maps['Add Cursor Down'] = '<C-j>'
 let g:VM_maps['Add Cursor Up'] = '<C-k>'
+
+let g:VM_mouse_mappings = 1
 
 let g:VM_Mono_hl   = 'DiffChange'
 let g:VM_Extend_hl = 'DiffAdd'
