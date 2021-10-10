@@ -9,6 +9,8 @@ node_modules
 go
 site-packages
 
+deps
+_build
 
 !.dotfiles
 !.config
