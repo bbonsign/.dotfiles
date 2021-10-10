@@ -76,3 +76,5 @@ I haven't looked into installing these with Homebrew yet, so for now its the lon
 uses to print markdown in the terminal nicely
 
 ## Linux Setup
+- https://askubuntu.com/questions/715306/xbacklight-no-outputs-have-backlight-property-no-sys-class-backlight-folder/1060843#1060843
+

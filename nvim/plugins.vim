@@ -88,7 +88,6 @@ Plug 'vim-airline/vim-airline-themes'
 " I can't get the following to work yet, but might be a good alternative
 Plug 'glepnir/galaxyline.nvim', {'branch': 'main'}
 
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sheerun/vim-polyglot'
 
 Plug 'junegunn/fzf'

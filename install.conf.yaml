@@ -31,11 +31,11 @@
     ~/.config/kitty: kitty
     ~/.config/alacritty: alacritty
     ~/.config/doom: doom
-    ~/.config/jrnl/jrnl.yaml: jrnl/jrnl.yaml
     ~/.config/tridactyl/tridactylrcl: tridactylrc
     ~/.config/tmux/tmux.conf: .tmux/.tmux.conf  # Make sure tmux is aliased to "tmux -f ..." to use this nonstandard location for tmux's config
     ~/.config/tmux/tmux.conf.local:
-    ~/.config/coc/extensions/package.json: coc/package.json
+    ~/.vim: nvim
+    ~/.vimrc: nvim/init.lua
     ~/.config/nvim/:
       path: nvim/*
     ~/.nano: .nano
@@ -55,10 +55,11 @@
 
 - create:
   - ~/projects
-  - ~/tmp
   - ~/.vim/undo
 
 - shell:
+  - [chsh -s $(which fish), Making fish the default shell]
   -
     command: ./fish/abbr.fish
     description: Read fish abbrs from fish/abbr.fish
+

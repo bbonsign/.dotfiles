@@ -1,7 +1,7 @@
 starship init fish | source
 
  # use asdf, add the following line to your ~/.config/fish/config.fish:
-source /usr/local/opt/asdf/libexec/asdf.fish
+# source /usr/local/opt/asdf/libexec/asdf.fish
 
 # option-ctrl-s
 bind \e\cs _add_sudo

@@ -4,7 +4,7 @@
 	email = bbonsign@users.noreply.github.com
 
 [credential]
-	helper = osxkeychain
+	; helper = osxkeychain
 
 [core]
 	excludesfile = ~/.gitignore
