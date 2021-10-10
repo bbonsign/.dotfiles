@@ -1,8 +1,10 @@
 starship init fish | source
 
-# ctrl-s allows for search tab completions by default in fish, so for the moment the
-# binding below seems less useful
-# bind \cs _add_sudo
+ # use asdf, add the following line to your ~/.config/fish/config.fish:
+source /usr/local/opt/asdf/libexec/asdf.fish
+
+# option-ctrl-s
+bind \e\cs _add_sudo
 
 # set -x PATH /home/linuxbrew/.linuxbrew/bin ~/.cargo/bin $PATH
 
@@ -12,11 +14,12 @@ set fish_color_search_match --background=4b719c
 set -xg FZF_DEFAULT_COMMAND "fd --color always --no-ignore --follow --ignore-file '$HOME/.config/fd/ignore'"
 set -xg FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
 set -xg FZF_ALT_C_COMMAND "$FZF_DEFAULT_COMMAND --type d"
-set -xg FZF_DEFAULT_OPTS '--ansi --inline-info --height=100% --pointer="⦿" --prompt=" " --color="pointer:#599fd8" --bind=ctrl-y:preview-up,ctrl-h:preview-down,ctrl-space:toggle-preview --preview-window=right:65%'
+set -xg FZF_DEFAULT_OPTS '--ansi --inline-info --height=100% --pointer="⦿" --prompt=" " --color="pointer:#599fd8" --bind=ctrl-u:preview-up,ctrl-d:preview-down,ctrl-space:toggle-preview --preview-window=right:65%'
 # Bind ? key for toggling the preview window.
 set -xg FZF_CTRL_R_OPTS "--preview 'echo {}' --preview-window up:10:hidden:wrap --bind '?:toggle-preview'"
 # Shows tree of the directory in the preview window
 set -xg FZF_ALT_C_OPTS "--preview 'tree -C {} | head -200'"
+
 
 # See https://github.com/jethrokuan/fzf for variables to set
 # This plug in is currently uninstalled
@@ -75,20 +78,15 @@ if command -sq gls
 end
 
 
-# # Set my keybindings
-# set -g fish_key_bindings hybrid_bindings
-
-# # Emulates vim's cursor shape behavior
-# # Set the normal and visual mode cursors to a block
+# # # Set my keybindings
+# set fish_key_bindings hybrid_bindings
+# Emulates vim's cursor shape behavior
+# Set the normal and visual mode cursors to a block
 # set fish_cursor_default block
-# # Set the insert mode cursor to a line
+# Set the insert mode cursor to a line
 # set fish_cursor_insert line
-# # Set the replace mode cursor to an underscore
+# Set the replace mode cursor to an underscore
 # set fish_cursor_replace_one underscore
-# # The following variable can be used to configure cursor shape in
-# # visual mode, but due to fish_cursor_default, is redundant here
-# set fish_cursor_visual block
-
 
 # Base16 Shell
 # if status --is-interactive
@@ -107,7 +105,7 @@ test -f /Users/bbonsign/.ghcup/env ; and set -gx PATH $HOME/.cabal/bin /Users/bb
 
 # pyenv init
 if command -v pyenv 1>/dev/null 2>&1
-  pyenv init - | source
+  pyenv init --path | source
 end
 
 # Created by `userpath` on 2021-02-23 17:48:18
