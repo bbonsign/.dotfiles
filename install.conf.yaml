@@ -28,6 +28,8 @@
     ~/.bashrc:
     ~/.bash_aliases:
     ~/.zshrc:
+    ~/.config/dunst:
+      if: '[ (uname) = Linux ]'
     ~/.config/i3:
       if: '[ (uname) = Linux ]'
     ~/.config/rofi:
