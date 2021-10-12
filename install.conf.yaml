@@ -30,6 +30,10 @@
     ~/.zshrc:
     ~/.config/i3:
       if: '[ (uname) = Linux ]'
+    ~/.config/rofi:
+      if: '[ (uname) = Linux ]'
+    ~/.config/sxhkd:
+      if: '[ (uname) = Linux ]'
     ~/.config/kitty: kitty
     ~/.config/doom: doom
     ~/.config/tridactyl/tridactylrcl: tridactylrc
