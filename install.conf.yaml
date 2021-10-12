@@ -51,16 +51,16 @@
       if: '[ (uname) = Darwin ]'
       path: karabiner/*
     ~/.config/neofetch/config.conf: neofetch/config.conf
-    ~/.moc:
-      path: moc/*
+    # ~/.moc:
+    #   path: moc/*
 
 - create:
   - ~/projects
   - ~/.vim/undo
 
 - shell:
-  - [chsh -s $(which fish), Making fish the default shell]
+  # - [chsh -s $(which fish), Making fish the default shell]
   -
-    command: ./fish/abbr.fish
+    command: fish ./fish/abbr.fish
     description: Read fish abbrs from fish/abbr.fish
 
