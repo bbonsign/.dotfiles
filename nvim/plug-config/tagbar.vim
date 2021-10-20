@@ -1,3 +1,5 @@
+let g:tagbar_ignore_anonymous = 1
+
 let g:tagbar_width = 40
 let g:tagbar_zoomwidth = 100
 
@@ -65,7 +67,8 @@ let g:tagbar_map_closefold = 'h'
 " let g:tagbar_map_prevfold = ''
 
 " Toggle sort order between name and file order. default: s
-" let g:tagbar_map_togglesort = ''
+let g:tagbar_map_togglesort = 's'
+let g:tagbar_sort = 0
 
 " Toggle the |g:tagbar_autoclose| option. default: c
 let g:tagbar_map_toggleautoclose = ''

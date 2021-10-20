@@ -44,7 +44,8 @@ wk.register({
     ['!'] = {':.!fish<CR>', 'send line to fish'},
     ["`"] = {"<cmd>:e #<cr>", "Switch to Other Buffer"},
     [':'] = {':Telescope commands<CR>', 'commands'},
-    [','] = {'<cmd>Telescope buffers<CR>', 'buffers'},
+    [','] = {':Buffers<CR>', 'fzf-buffer'},
+    -- [','] = {'<cmd>Telescope buffers<CR>', 'buffers'},
     ["/"] = {"<cmd>Telescope live_grep<cr>", "Search"},
     m = {
         ":<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><c-f><left>",
@@ -126,11 +127,12 @@ wk.register({
     f = {
         name = "+file",
         b = {"<cmd>Telescope file_browser<CR>", "Telescope File Browser"},
-        f = {"<cmd>Telescope find_files<CR>", "Find File"},
+        f = {':Files<CR>', 'files'},
+        -- f = {"<cmd>Telescope find_files<CR>", "Find File"},
         R = {':earlier 1f<CR>', 'revert to last write'},
-        r = {"<cmd>Telescope oldfiles<CR>", "Open Recent File"},
-        n = {"<cmd>enew<CR>", "New File"},
-        s = {"<cmd>write<CR>", "Write File"},
+        r = {":Telescope oldfiles<CR>", "Open Recent File"},
+        n = {":enew<CR>", "New File"},
+        s = {":write<CR>", "Write File"},
         w = {":write<CR>", "Write File"}
     },
 

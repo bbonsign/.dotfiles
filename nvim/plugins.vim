@@ -123,7 +123,7 @@ Plug 'tommcdo/vim-lion'
 
 " Show tags in a side bar
 Plug 'majutsushi/tagbar'
-" Plug 'liuchengxu/vista.vim'
+Plug 'liuchengxu/vista.vim'
 
 " Syntax higlighting for Jinga.
 " Tries to auto detect
