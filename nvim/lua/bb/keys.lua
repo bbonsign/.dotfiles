@@ -102,7 +102,8 @@ wk.register({
         S = {':let @/ = ""<CR>', 'remove search highlight'},
         s = {':setlocal spell!<CR>', 'toggle spelling in buffer'},
         t = {':FloatermToggle<CR>', 'terminal'},
-        v = {':TagbarToggle<CR>', 'tag viewer'},
+        v = {':Vista!!<CR>', 'tag viewer'},
+        -- v = {':TagbarToggle<CR>', 'tag viewer'},
         w = {':set wrap!<CR>', 'toggle wrap'},
         x = {':ToggleWhitespace<CR>', 'toggle whitespace'}
     },
