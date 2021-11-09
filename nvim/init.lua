@@ -20,7 +20,6 @@ vim.cmd [[colorscheme tokyonight]]
 
 vim.g.indent_blankline_char = "" -- No indent guides
 
-require('lsp_signature')
 
 -- Remap escape to leave terminal mode
 vim.api.nvim_exec([[
@@ -63,14 +62,14 @@ local on_attach = function(client, bufnr)
                                 '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
     vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd',
                                 '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+    vim.api.nvim_buf_set_keymap(bufnr, 'n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
     -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
 end
 
@@ -164,35 +163,35 @@ vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
 
 -- lspsaga
-require('lspsaga').init_lsp_saga({
-    max_preview_lines = 20,
-    code_action_icon = '',
-    code_action_keys = {quit = {'q', '<C-c>', '<Esc>'}},
-    rename_action_keys = {quit = {'<C-c>', '<Esc>'}},
-    finder_action_keys = {
-        open = 'o',
-        vsplit = 's',
-        split = 'i',
-        quit = {'q', '<C-c>', '<Esc>'},
-        scroll_down = '<C-f>',
-        scroll_up = '<C-b>'
-    },
-    border_style = "double"
-})
-vim.api.nvim_exec([[
-  nnoremap <silent> gh :Lspsaga lsp_finder<CR>
- " nnoremap <silent> <leader>ca :Lspsaga code_action<CR>
-  vnoremap <silent> <leader>ca :<C-U>Lspsaga range_code_action<CR>
-  nnoremap <silent> K :Lspsaga hover_doc<CR>
-  nnoremap <silent> <leader>lp :Lspsaga preview_definition<CR>
-  nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
-  nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
-  nnoremap <silent> gs :Lspsaga signature_help<CR>
-  nnoremap <silent> gR <cmd>lua require('lspsaga.rename').rename()<CR>
-  nnoremap <silent> <leader>cd :Lspsaga show_line_diagnostics<CR>
-  nnoremap <silent> ]e :Lspsaga diagnostic_jump_next<CR>zz
-  nnoremap <silent> [e :Lspsaga diagnostic_jump_prev<CR>zz
-  ]], true)
+-- require('lspsaga').init_lsp_saga({
+--     max_preview_lines = 20,
+--     code_action_icon = '',
+--     code_action_keys = {quit = {'q', '<C-c>', '<Esc>'}},
+--     rename_action_keys = {quit = {'<C-c>', '<Esc>'}},
+--     finder_action_keys = {
+--         open = 'o',
+--         vsplit = 's',
+--         split = 'i',
+--         quit = {'q', '<C-c>', '<Esc>'},
+--         scroll_down = '<C-f>',
+--         scroll_up = '<C-b>'
+--     },
+--     border_style = "double"
+-- })
+-- vim.api.nvim_exec([[
+--   nnoremap <silent> gh :Lspsaga lsp_finder<CR>
+--  " nnoremap <silent> <leader>ca :Lspsaga code_action<CR>
+--   vnoremap <silent> <leader>ca :<C-U>Lspsaga range_code_action<CR>
+--   nnoremap <silent> K :Lspsaga hover_doc<CR>
+--   nnoremap <silent> <leader>lp :Lspsaga preview_definition<CR>
+--   nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
+--   nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
+--   nnoremap <silent> gs :Lspsaga signature_help<CR>
+--   nnoremap <silent> gR <cmd>lua require('lspsaga.rename').rename()<CR>
+--   nnoremap <silent> <leader>cd :Lspsaga show_line_diagnostics<CR>
+--   nnoremap <silent> ]e :Lspsaga diagnostic_jump_next<CR>zz
+--   nnoremap <silent> [e :Lspsaga diagnostic_jump_prev<CR>zz
+--   ]], true)
 
 local cfg = {
     bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -219,8 +218,7 @@ local cfg = {
     -- deprecate !!
     -- decorator = {"`", "`"}  -- this is no longer needed as nvim give me a handler and it allow me to highlight active parameter in floating_window
 }
-
-require'lsp_signature'.on_attach(cfg)
+-- require'lsp_signature'.on_attach(cfg)
 
 local prettierFmt = function()
     return {

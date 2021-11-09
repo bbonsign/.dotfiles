@@ -70,3 +70,6 @@ telescope.setup{
     buffer_previewer_maker = require'telescope.previewers'.buffer_previewer_maker
   }
 }
+
+
+vim.api.nvim_set_keymap('n', 'gr', [[<cmd>Telescope lsp_references<cr>]], { noremap = true, silent = true})

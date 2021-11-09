@@ -334,8 +334,6 @@ bind 'C-l' select-pane -R
 
 bind ']' next-window
 bind '[' previous-window
-bind 'C-]' next-window
-bind 'C-[' previous-window
 
 bind 'C-f' command-prompt -I "#W" "rename-window -- '%%'"
 bind ',' display-popup -EKR "fish -c tmuz-switch-session"
@@ -346,7 +344,7 @@ bind-key -r t set-option -g status
 
 # Fix delay in switching modes in vim with <Esc>
 # https://github.com/neovim/neovim/wiki/FAQ#esc-in-tmux-or-gnu-screen-is-delayed
-set -sg escape-time 5
+set -sg escape-time 0
 
 
 ##################################
@@ -381,3 +379,5 @@ if "test ! -d ~/.tmux/plugins/tpm" \
 
 # Initialize TMUX plugin manager (keep this line at the very bottom of tmux.conf)
 run -b '~/.tmux/plugins/tpm/tpm'
+
+# vim: set ft=bash
