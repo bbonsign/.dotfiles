@@ -39,12 +39,8 @@
     ~/.config/kitty: kitty
     ~/.config/doom: doom
     ~/.config/tridactyl/tridactylrcl: tridactylrc
-    ~/.config/tmux/tmux.conf: .tmux/.tmux.conf  # Make sure tmux is aliased to "tmux -f ..." to use this nonstandard location for tmux's config
-    ~/.config/tmux/tmux.conf.local:
-    ~/.vim: nvim
-    ~/.vimrc: nvim/init.lua
-    ~/.config/nvim/:
-      path: nvim/*
+    ~/.tmux.conf:
+    ~/.config/nvim:
     ~/.nano: .nano
     ~/.nanorc:
     '~/Library/Application Support/Code/User/keybindings.json':
