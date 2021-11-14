@@ -15,9 +15,9 @@ super + Return
 	kitty
 
 # Rofi
-super + {space,Tab}
-	rofi -show {run,window}
+super + {Tab}
+	rofi -show {window}
 
-# Adjust screen brightness
-XF86MonBrightness{Down,Up}
-  xbacklight {-10,+10} && xbacklight -get | notify brightness
+#Adjust screen brightness
+{_,shift + }XF86MonBrightness{Down,Up}
+  xbacklight {-5,-10,+5,+10} && xbacklight -get | notify brightness

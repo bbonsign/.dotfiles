@@ -1,0 +1,1 @@
+/home/bbonsign/.asdf/completions/asdf.fish
