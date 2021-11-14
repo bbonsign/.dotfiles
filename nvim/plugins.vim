@@ -171,8 +171,14 @@ Plug 'windwp/nvim-ts-autotag'
 Plug 'glepnir/dashboard-nvim'
 
 Plug 'nvim-telescope/telescope.nvim'
-Plug 'hrsh7th/nvim-compe'
-" Plug 'nvim-lua/completion-nvim'
+
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/vim-vsnip'
+Plug 'onsails/lspkind-nvim'
 
 Plug 'euclidianAce/BetterLua.vim'
 Plug 'neovim/nvim-lspconfig'
@@ -180,6 +186,7 @@ Plug 'kabouzeid/nvim-lspinstall'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'mhartington/formatter.nvim'
 Plug 'ray-x/lsp_signature.nvim'
+Plug 'folke/lsp-colors.nvim'
 
 " Debugging
 " Plug 'puremourning/vimspector'
