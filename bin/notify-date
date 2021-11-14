@@ -1,0 +1,17 @@
+#! /usr/bin/env fish
+
+set TIME (date +'%l:%M %p  %Z')
+set DATE (date +'%A %d, %B')
+set DATETIME (date +'%A %d, %B
+%l:%M %p  %Z')
+
+set ACTION (dunstify --action="time,time" --action="date,date" --action="datetime,datetime" -h string:fgcolor:#00A1FF $DATETIME)
+
+switch $ACTION
+  case "time"
+    echo $TIME | xclip -sel clip
+  case "date"
+    echo $DATE | xclip -sel clip
+  case "datetime"
+    echo (date +'%A %d, %B, %l:%M %p  %Z') | xclip -sel clip
+end
