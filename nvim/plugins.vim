@@ -47,13 +47,14 @@ Plug 'mattn/emmet-vim', {'for': ['html', 'jinja', 'jinja2', 'htmljinja', 'htmldj
 " Open files w/ cursor at line:column position
 Plug 'wsdjeg/vim-fetch'
 
-Plug 'Olical/conjure', {'tag': 'v4.22.0'}
-Plug 'Olical/nvim-local-fennel', { 'tag': 'v2.11.0' }
-Plug 'Olical/aniseed', { 'tag': 'v3.20.0' }
+Plug 'Olical/conjure'
+Plug 'Olical/nvim-local-fennel'
+Plug 'Olical/aniseed'
 
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-rhubarb'
 Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-rooter'
@@ -82,11 +83,12 @@ Plug 'folke/which-key.nvim'
 Plug 'joshdick/onedark.vim'
 Plug 'glepnir/zephyr-nvim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+Plug 'projekt0n/github-nvim-theme'
 
 " Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-" I can't get the following to work yet, but might be a good alternative
-Plug 'glepnir/galaxyline.nvim', {'branch': 'main'}
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'glepnir/galaxyline.nvim', {'branch': 'main'}
+Plug 'nvim-lualine/lualine.nvim'
 
 Plug 'sheerun/vim-polyglot'
 
@@ -161,6 +163,7 @@ Plug 'nvim-lua/popup.nvim'
 Plug 'nvim-lua/plenary.nvim'
 
 Plug 'kyazdani42/nvim-web-devicons'
+
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}  " We recommend updating the parsers on update
 Plug 'nvim-treesitter/playground' , {'do': ':TSInstall query'}
 Plug 'windwp/nvim-ts-autotag'
