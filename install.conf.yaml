@@ -13,58 +13,80 @@
       recursive: true
 
 - shell:
-  - [git submodule update --init --recursive, Installing submodules]
+    - [git submodule update --init --recursive, Installing submodules]
 
 - link:
     ~/.gitconfig:
+
     ~/.gitignore:
-    ~/.tldrrc:
-    ~/.iex.exs: iex.exs
+
+    ~/.local/bin: bin
+
+    ~/.iex.exs:
+
     ~/.config/starship.toml: starship.toml
+
     ~/.config/fd:
       path: fd/*
+
     ~/.config/fish:
       path: fish/*
+
     ~/.bash_profile:
+
     ~/.bashrc:
+
     ~/.bash_aliases:
+
     ~/.zshrc:
+      ~/.tldrrc:
+
     ~/.config/dunst:
-      if: '[ (uname) = Linux ]'
+      if: "[ (uname) = Linux ]"
+
     ~/.config/i3:
-      if: '[ (uname) = Linux ]'
+      if: "[ (uname) = Linux ]"
+
     ~/.config/rofi:
-      if: '[ (uname) = Linux ]'
+      if: "[ (uname) = Linux ]"
+
     ~/.config/sxhkd:
-      if: '[ (uname) = Linux ]'
+      if: "[ (uname) = Linux ]"
+
     ~/.config/kitty: kitty
+
     ~/.config/doom: doom
+
     ~/.config/tridactyl/tridactylrcl: tridactylrc
+
     ~/.tmux.conf:
+
     ~/.config/nvim:
+
     ~/.nano: .nano
+
     ~/.nanorc:
-    '~/Library/Application Support/Code/User/keybindings.json':
-      if: '[ (uname) = Darwin ]'
+
+    "~/Library/Application Support/Code/User/keybindings.json":
+      if: "[ (uname) = Darwin ]"
       path: vscode/keybindings.json
     ~/.config/Code/User/keybindings.json:
-      if: '[ (uname) = Linux ]'
+      if: "[ (uname) = Linux ]"
       path: vscode/keybindings.json
+
     ~/.config/karabiner:
-      if: '[ (uname) = Darwin ]'
+      if: "[ (uname) = Darwin ]"
       path: karabiner/*
+
     ~/.config/neofetch/config.conf: neofetch/config.conf
-    ~/.local/bin: bin
+
     # ~/.moc:
     #   path: moc/*
 
 - create:
-  - ~/projects
-  - ~/.vim/undo
+    - ~/projects
+    - ~/.vim/undo
 
 - shell:
-  # - [chsh -s $(which fish), Making fish the default shell]
-  -
-    command: fish ./fish/abbr.fish
-    description: Read fish abbrs from fish/abbr.fish
-
+    - command: fish ./fish/abbr.fish
+      description: Read fish abbrs from fish/abbr.fish
