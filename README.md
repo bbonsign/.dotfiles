@@ -50,7 +50,7 @@ echo "/usr/local/bin/fish" | sudo tee -a /etc/shells
 chsh -s `which fish`
 ```
 To sync fish abbreviations (which are saved as universal variables),
-run 
+run
 ```shell
 abbr > abbr.fish
 ```
@@ -77,4 +77,6 @@ uses to print markdown in the terminal nicely
 
 ## Linux Setup
 - https://askubuntu.com/questions/715306/xbacklight-no-outputs-have-backlight-property-no-sys-class-backlight-folder/1060843#1060843
-
+- for pacman color output, uncomment `Color` in `/etc/pacman.conf`
+- pulseaudio got bluetooth headphones working
+- Make a list of programs to install
