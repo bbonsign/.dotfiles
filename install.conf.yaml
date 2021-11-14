@@ -19,6 +19,7 @@
     ~/.gitconfig:
     ~/.gitignore:
     ~/.tldrrc:
+    ~/.iex.exs: iex.exs
     ~/.config/starship.toml: starship.toml
     ~/.config/fd:
       path: fd/*

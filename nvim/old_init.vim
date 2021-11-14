@@ -29,6 +29,7 @@ source ~/.config/nvim/plug-config/sexp.vim
 source ~/.config/nvim/plug-config/tagbar.vim
 source ~/.config/nvim/plug-config/maximizer.vim
 source ~/.config/nvim/plug-config/vim-asterisk.vim
+source ~/.config/nvim/plug-config/vista.vim
 " source ~/.config/nvim/plug-config/vim-markdown.vim
 
 " General personal settings/mappings
