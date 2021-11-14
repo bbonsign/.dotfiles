@@ -1,7 +1,7 @@
 " Set Leader key to Space
 " Mappings using <leader> are set in ~/.config/nvim/keys/which-key.vim
 let mapleader=" "
-let maplocalleader="\\"
+let maplocalleader=","
 
 " The above messes up useing ';' for the next "f search"
 " Enter and Backspace are used in nvim/plug-config/sneak.vim
