@@ -101,7 +101,7 @@ mode "$mode_system" {
 ################# Leader + e
 set $edit  : (e)macs, (i)3, (p)icom
 mode "$edit" {
-    bindsym e exec emacsclient -c -a=''; mode "default"
+    bindsym e exec --no-startup-id emacsclient --eval "(emacs-everywhere)"; mode "default"
     bindsym i exec --no-startup-id kitty --execute nvim ~/.config/i3/config; mode "default"
     bindsym p exec --no-startup-id kitty --execute nvim ~/.config/picom.conf; mode "default"
 
