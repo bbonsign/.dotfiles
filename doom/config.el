@@ -58,7 +58,7 @@
 (setq which-key-idle-delay 0.25
       which-key-idle-secondary-delay 0.25)
 
-(setq evil-goggles-duration 0.4)
+(setq evil-goggles-duration 0.5)
 
 ; (setq +lua-lsp-dir "~/.lua-language-server")
 
@@ -178,3 +178,12 @@
 
 
 (load! "+org")
+
+;; Don't keep a bunch of previously visited dired buffers around
+(setq dired-kill-when-opening-new-dired-buffer t)
+
+;; s/S don't need to be evil-snipe
+(remove-hook 'doom-first-input-hook #'evil-snipe-mode)
+
+;; Use s in normal and visual mode to add delimiters
+(map! :nom "s" #'evil-embrace-evil-surround-region)
