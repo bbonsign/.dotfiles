@@ -34,19 +34,6 @@ bind \cx edit_command_buffer
 # open man pages in neovim
 set -xg MANPAGER 'nvim +Man!'
 
-# Setting this fixed 'clear' command not working
-# set -xg TERMINFO /usr/share/terminfo
-
-
-
-# xcape allows left control to act as ESC when used alone (not as a modifier)
-# Karabiner-elements does this on Mac, so this makes it possible for linux too
-# set os (uname)
-# if test "$os" = "Linux"
-# 	xcape -e 'Control_L=Escape'
-# end
-
-
 set fish_cursor_visual block
 if command -sq gls
     function ls --description "ls command of GNU coreutils"
@@ -85,20 +72,11 @@ end
 # Set the replace mode cursor to an underscore
 # set fish_cursor_replace_one underscore
 
-# Base16 Shell
-# if status --is-interactive
-#     set BASE16_SHELL "$HOME/.config/base16-shell/"
-#     source "$BASE16_SHELL/profile_helper.fish"
-# end
 
 # fnm - fast node manager
 # set PATH /home/bbonsign/.fnm $PATH
 # fnm env --multi | source
 # ghcup-env
-
-set -q GHCUP_INSTALL_BASE_PREFIX[1]; or set GHCUP_INSTALL_BASE_PREFIX $HOME
-test -f /Users/bbonsign/.ghcup/env ; and set -gx PATH $HOME/.cabal/bin /Users/bbonsign/.ghcup/bin $PATH
-
 
 # pyenv init
 if command -v pyenv 1>/dev/null 2>&1
@@ -108,5 +86,11 @@ end
 # Created by `userpath` on 2021-02-23 17:48:18
 set PATH $PATH /Users/bbonsign/.local/bin
 
-# use asdf, add the following line to your ~/.config/fish/config.fish:
-source ~/.asdf/asdf.fish
+set os (uname)
+if test "$os" = "Linux"
+    source ~/.asdf/asdf.fish
+else
+    # Mac/homebrew
+    source /usr/local/opt/asdf/libexec/asdf.fish
+end
+
