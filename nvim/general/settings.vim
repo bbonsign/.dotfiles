@@ -130,6 +130,7 @@ set noswapfile
 set updatetime=300
 
 set timeoutlen=300
+set ttimeoutlen=0
 
 " To prevent conflict with <space> in tagbar
 let g:tagbar_map_showproto = "K"

@@ -1,10 +1,7 @@
 starship init fish | source
 
- # use asdf, add the following line to your ~/.config/fish/config.fish:
-source /usr/local/opt/asdf/libexec/asdf.fish
-
-# option-ctrl-s
 bind \e\cs _add_sudo
+# option-ctrl-s
 
 # set -x PATH /home/linuxbrew/.linuxbrew/bin ~/.cargo/bin $PATH
 
@@ -44,10 +41,10 @@ set -xg MANPAGER 'nvim +Man!'
 
 # xcape allows left control to act as ESC when used alone (not as a modifier)
 # Karabiner-elements does this on Mac, so this makes it possible for linux too
-set os (uname)
-if test "$os" = "Linux"
-	xcape -e 'Control_L=Escape'
-end
+# set os (uname)
+# if test "$os" = "Linux"
+# 	xcape -e 'Control_L=Escape'
+# end
 
 
 set fish_cursor_visual block
@@ -110,3 +107,6 @@ end
 
 # Created by `userpath` on 2021-02-23 17:48:18
 set PATH $PATH /Users/bbonsign/.local/bin
+
+# use asdf, add the following line to your ~/.config/fish/config.fish:
+source ~/.asdf/asdf.fish

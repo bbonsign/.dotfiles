@@ -1,0 +1,28 @@
+#! /bin/bash
+
+send_notification() {
+	TODAY=$(date '+%-d')
+	HEAD=$(cal "$1" | head -n1)
+	if [ "$2" -ge 3 ]; then
+		BODY=$(cal "$1" | tail -n7 | sed -z "s|$TODAY|<u><b>$TODAY</b></u>|g")
+		FOOT="\n                                                               "
+	else
+		BODY=$(cal "$1" | tail -n7 | sed -z "s|$TODAY|<u><b>$TODAY</b></u>|1")
+		FOOT="\n                   "
+	fi
+	dunstify -h string:x-canonical-private-synchronous:calendar \
+		"$HEAD" "$BODY$FOOT" -u NORMAL
+}
+
+handle_action() {
+		send_notification "-${DIFF}" "${DIFF}"
+}
+
+
+case $1 in
+	"curr") DIFF=1;;
+	"-3") DIFF=3;;
+	"") DIFF=1;;
+esac
+
+handle_action

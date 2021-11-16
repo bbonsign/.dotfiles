@@ -1,3 +1,4 @@
 .install.conf.yaml.swp
 
 nvim/sessions/default.vim
+nvim/plugged

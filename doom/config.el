@@ -19,13 +19,13 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 13 :weight 'medium)
-      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 13))
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 16 :weight 'medium)
+      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 16))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-vibrant)
+(setq doom-theme 'doom-one)
 
 
 ;; This determines the style of line numbers in effect. If set to `nil', line
@@ -58,9 +58,9 @@
 (setq which-key-idle-delay 0.25
       which-key-idle-secondary-delay 0.25)
 
-(setq evil-goggles-duration 0.4)
+(setq evil-goggles-duration 0.5)
 
-(setq +lua-lsp-dir "~/.lua-language-server")
+; (setq +lua-lsp-dir "~/.lua-language-server")
 
 
 ;; Shows buffers when using Spc-, for example
@@ -108,14 +108,12 @@
       "j" #'evilem-motion-next-line-first-non-blank
       "k" #'evilem-motion-previous-line-first-non-blank)
 
+(setq avy-style 'at)
+(setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?: ?w ?e ?r ?t ?y ?u ?i ?o ?x ?c ?v ?b ?n ?m ?q ?p ?z ?m))
 
 (map! :leader
       :desc "Dired" :nv "od" #'dired-jump
       :desc "Resume last search" "hh" #'ivy-resume)
-
-
-(setq avy-style 'at)
-(setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?: ?w ?e ?r ?t ?y ?u ?i ?o ?x ?c ?v ?b ?n ?m ?q ?p ?z ?m))
 
 ;; Increases left-fringe-width for magit overview. It wasn't shoing the collapse
 ;; markers very clearly by default
@@ -143,6 +141,7 @@
 (map! :map dired-mode-map
       :n "." #'dired-hide-dotfiles-mode)
 
+(map! :map doom-leader-workspace-map "k" #'+workspace/delete)
 
 (global-prettify-symbols-mode -1)
 
@@ -179,3 +178,12 @@
 
 
 (load! "+org")
+
+;; Don't keep a bunch of previously visited dired buffers around
+(setq dired-kill-when-opening-new-dired-buffer t)
+
+;; s/S don't need to be evil-snipe
+(remove-hook 'doom-first-input-hook #'evil-snipe-mode)
+
+;; Use s in normal and visual mode to add delimiters
+(map! :nom "s" #'evil-embrace-evil-surround-region)

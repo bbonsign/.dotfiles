@@ -1,0 +1,30 @@
+#!/bin/bash
+ACTION=$( echo "lock
+shutdown
+reboot
+logout
+suspend
+hibernate" | rofi -dmenu -p "Select desired action:")
+
+case "$ACTION" in
+    lock)
+        i3exit lock
+        ;;
+    logout)
+        i3-msg exit
+        ;;
+    suspend)
+        i3exit suspend
+        ;;
+    hibernate)
+        i3lock hibernate
+        ;;
+    reboot)
+        i3exit reboot
+        ;;
+    shutdown)
+        i3exit shutdown
+        ;;
+    *)
+esac
+

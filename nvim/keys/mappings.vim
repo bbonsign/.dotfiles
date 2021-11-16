@@ -1,7 +1,7 @@
 " Set Leader key to Space
 " Mappings using <leader> are set in ~/.config/nvim/keys/which-key.vim
 let mapleader=" "
-let maplocalleader="\\"
+let maplocalleader=","
 
 " The above messes up useing ';' for the next "f search"
 " Enter and Backspace are used in nvim/plug-config/sneak.vim
@@ -203,11 +203,11 @@ xmap a. <Plug>(textobj-line-a)
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config.
 " From coc Readme
-inoremap <silent><expr> <TAB>
-      \ pumvisible() ? "\<C-n>" :
-      \ <SID>check_back_space() ? "\<TAB>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+" inoremap <silent><expr> <TAB>
+"       \ pumvisible() ? "\<C-n>" :
+"       \ <SID>check_back_space() ? "\<TAB>" :
+"       \ coc#refresh()
+" inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
 
 function! s:check_back_space() abort
   let col = col('.') - 1
