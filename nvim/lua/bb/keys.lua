@@ -1,6 +1,6 @@
 -- Extract easymotion prefixes to share with e and j
 local easymotion_maps = {
-    E = {
+    alt = {
         name = '+Easymotion',
         ['}'] = {'<Plug>(easymotion-next)', 'next'},
         ['{'] = {'<Plug>(easymotion-previous)', 'previous'},
@@ -13,7 +13,7 @@ local easymotion_maps = {
         W = {'<Plug>(easymotion-overwin-w)', 'overwin word'}
     },
 
-    e = {
+    main = {
         name = '+easymotion',
         ['.'] = {'<Plug>(easymotion-repeat)', 'repeat'},
         [']'] = {'<Plug>(easymotion-next)', 'next'},
@@ -28,6 +28,7 @@ local easymotion_maps = {
         j = {'<Plug>(easymotion-j)', 'lines up'},
         K = {'<Plug>(easymotion-eol-k)', 'eol-k'},
         k = {'<Plug>(easymotion-k)', 'line motion'},
+        L = {'<Plug>(easymotion-bd-jk)', 'lines'},
         l = {'<Plug>(easymotion-lineforward)', 'line forward'},
         N = {'<Plug>(easymotion-N)', 'N'},
         n = {'<Plug>(easymotion-n)', 'n'},
@@ -38,6 +39,9 @@ local easymotion_maps = {
 }
 
 local wk = require("which-key")
+
+-- non-prefixed leader maps
+wk.register({s = easymotion_maps.main, S = easymotion_maps.alt}, {prefix = "g"})
 
 -- non-prefixed leader maps
 wk.register({
@@ -120,10 +124,10 @@ wk.register({
         p = {':bprevious<CR>', 'previous-buffer'}
     },
 
-    E = easymotion_maps.E,
-    e = easymotion_maps.e,
-    J = easymotion_maps.E,
-    j = easymotion_maps.e,
+    E = easymotion_maps.alt,
+    e = easymotion_maps.main,
+    J = easymotion_maps.alt,
+    j = easymotion_maps.main,
 
     f = {
         name = "+file",
@@ -250,7 +254,7 @@ wk.register({
         P = {':FloatermNew ipython<CR>', 'python'},
         S = {':TestSuite<CR>', 'suite'},
         T = {':FloatermToggle<CR>', 'toggle'},
-        V = {':TestVisit<CR>', 'visit'},
+        V = {':TestVisit<CR>', 'visit'}
     },
 
     t = {
