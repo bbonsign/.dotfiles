@@ -20,7 +20,9 @@
 
     ~/.gitignore:
 
-    ~/.local/bin: bin
+    ~/.local/bin:
+      if: "[ (uname) = Linux ]"
+      path: bin
 
     ~/.iex.exs:
 
