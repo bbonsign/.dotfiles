@@ -119,6 +119,7 @@ wk.register({
         d = {':BufDel<CR>', 'delete-buffer'},
         f = {':bfirst<CR>', 'first-buffer'},
         h = {':Dashboard<CR>', 'home-buffer'},
+        k = {':BufDel<CR>', 'delete-buffer'},
         l = {':blast<CR>', 'last-buffer'},
         n = {':bnext<CR>', 'next-buffer'},
         p = {':bprevious<CR>', 'previous-buffer'}
