@@ -280,9 +280,10 @@ mode "$resize" {
 }
 
 ################# Leader + r
-set $rofi  Rofi: (0|s)ystem, (o)pen, (w)indow
+set $rofi  Rofi: (0|s)ystem, (b)luetooth, (o)pen, (w)indow
 mode "$rofi" {
     bindsym 0 exec --no-startup-id rofi-system; mode "default"
+    bindsym b exec --no-startup-id rofi-bluetooth; mode "default"
     bindsym s exec --no-startup-id rofi-system; mode "default"
     bindsym o exec --no-startup-id rofi -show run; mode "default"
     bindsym w exec --no-startup-id rofi -show window; mode "default"
