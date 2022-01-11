@@ -51,7 +51,7 @@ Session.vim
 .vim/*
 
 # Place for me to put some local files in a project that I don't want to commit
-.misc/*
+**/.misc/*
 
 # Project level settings for projectile in emacs
 .projectile
