@@ -12,13 +12,13 @@ require('debug')
 -- vim.g.tokyonight_colors = { hint = "orange", error = "#ff0000" }
 
 -- Load the colorscheme
--- vim.cmd [[colorscheme tokyonight]]
-require('github-theme').setup({
-    theme_style="dimmed",
-    sidebars = {"qf", "vista_kind", "terminal", "packer"},
-  -- Change the "hint" color to the "orange" color, and make the "error" color bright red
-  colors = {hint = "orange", error = "#990000"}
-  })
+vim.cmd [[colorscheme tokyonight]]
+-- require('github-theme').setup({
+--     theme_style="dimmed",
+--     sidebars = {"qf", "vista_kind", "terminal", "packer"},
+--   -- Change the "hint" color to the "orange" color, and make the "error" color bright red
+--   colors = {hint = "orange", error = "#990000"}
+--   })
 
 -- Highlight colors in css etc
 require'colorizer'.setup(nil, {css = true})
