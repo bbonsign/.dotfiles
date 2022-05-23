@@ -9,12 +9,13 @@
 [core]
 	excludesfile = ~/.gitignore
 	editor = nvim
-  pager = bat -p
+  pager = delta
 
 [alias]
 	last = log -1 HEAD
 	st = status
 	unstage = reset HEAD --
+	clone-bare = "git-clone-bare"
 
 [color "decorate"]
 	head = bold white
@@ -25,7 +26,13 @@
 [interactive]
   diffFilter = delta --color-only
 
+[merge]
+	conflictstyle = diff3
+
 [delta]
+	; hyperlinks = true
+	navigate = true
+	side-by-side = true
   features = line-numbers decorations
   whitespace-error-style = 22 reverse
 
@@ -46,5 +53,7 @@
 [init]
 	defaultBranch = main
 [credential "https://github.com"]
-	helper = 
+	helper =
 	helper = !/usr/bin/gh auth git-credential
+[worktree]
+	guessRemote = true
