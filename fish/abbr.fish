@@ -26,6 +26,7 @@ abbr -a -U -- cleanimages 'docker rmi (docker images -q -f dangling=true)'
 abbr -a -U -- covlet 'pandoc --pdf-engine=xelatex --template=moderncv.tex source/letter.md -o output/coverletter-(git rev-parse --abbrev-ref HEAD).pdf'
 abbr -a -U -- current pwd\ \|\ awk\ -F\ \'/\'\ \ \'\{print\ \$NF\}\'
 abbr -a -U -- dj django-admin
+abbr -a -U -- e 'nvim '
 abbr -a -U -- ga 'git add -A'
 abbr -a -U -- gau 'git add -u'
 abbr -a -U -- gb 'git branch'
