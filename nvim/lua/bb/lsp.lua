@@ -127,13 +127,13 @@ lsp_installer.on_server_ready(function(server)
     local opts = {on_attach = on_attach, update_capabilities = capabilities}
 
     -- (optional) Customize the options passed to the server
-    if server.name == "tailwindcss" then
-        local _on_attach = opts.on_attach
-        opts.on_attach = function(client, bufnr)
-            _on_attach(client, bufnr)
-            require'.tailwindcss_colorizer'.on_attach(bufnr)
-        end
-    end
+    -- if server.name == "tailwindcss" then
+    --     local _on_attach = opts.on_attach
+    --     opts.on_attach = function(client, bufnr)
+    --         _on_attach(client, bufnr)
+    --         require'.tailwindcss_colorizer'.on_attach(bufnr)
+    --     end
+    -- end
 
     -- This setup() function is exactly the same as lspconfig's setup function.
     -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
