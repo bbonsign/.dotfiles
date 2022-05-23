@@ -38,6 +38,7 @@ def draw_tab(
             screen.cursor.x -= 2
             screen.draw('…')
         screen.draw(' ')
+        screen.draw(f'S[{tab.num_windows}] ' if tab.layout_name == 'stack' else '')
         draw_sep(right_sep)
         draw_sep(' ')
 
