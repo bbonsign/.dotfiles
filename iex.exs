@@ -1,4 +1,6 @@
-IO.puts "#{IO.ANSI.blue}  #{IO.ANSI.magenta}   Welcome to Elixir   #{IO.ANSI.blue}  #{IO.ANSI.reset}\n"
+alias IO.ANSI
+
+IO.puts "#{ANSI.blue}  #{ANSI.magenta}   Welcome to Elixir   #{ANSI.blue}  #{ANSI.reset}\n"
 
 # Editor to open code in using `open` function
 System.put_env("ELIXIR_EDITOR", "kitty --execute nvim __FILE__:__LINE__ &")
@@ -20,14 +22,14 @@ IEx.configure(
     doc_title: [:yellow, :bright, :underline],
   ],
   default_prompt:
-    "#{IO.ANSI.green}%prefix#{IO.ANSI.reset}" <>
-    "[#{IO.ANSI.magenta}#{IO.ANSI.reset}" <>
-    "#{IO.ANSI.cyan}%counter#{IO.ANSI.reset}]",
+    "#{ANSI.green}%prefix#{ANSI.reset}" <>
+    "[#{ANSI.magenta}#{ANSI.reset}" <>
+    "#{ANSI.cyan}%counter#{ANSI.reset}]",
   alive_prompt:
-    "#{IO.ANSI.green}%prefix#{IO.ANSI.reset}" <>
-    "(#{IO.ANSI.yellow}%node#{IO.ANSI.reset}) " <>
-    "[#{IO.ANSI.magenta}#{IO.ANSI.reset}" <>
-    "#{IO.ANSI.cyan}%counter#{IO.ANSI.reset}]",
+    "#{ANSI.green}%prefix#{ANSI.reset}" <>
+    "(#{ANSI.yellow}%node#{ANSI.reset}) " <>
+    "[#{ANSI.magenta}#{ANSI.reset}" <>
+    "#{ANSI.cyan}%counter#{ANSI.reset}]",
   history_size: 50,
   inspect: [
     pretty: true,
