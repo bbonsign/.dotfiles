@@ -51,8 +51,8 @@ nnoremap <C-c> :nohlsearch<CR>
 inoremap <C-\> λ
 
 " Override s to ys for vim-surround
-nmap s ys
-vmap s S
+" nmap s ys
+" xmap s <Plug>VSurround
 
 " UndoTree
 nnoremap <leader>U :UndotreeToggle<CR>
@@ -129,7 +129,7 @@ nnoremap <silent> <C-_> :Commentary<CR>
 vnoremap <silent> <C-_> :Commentary<CR>
 
 " Ctrl-p to fuzzy search files in pwd. :Files defined in fzf config
-noremap <C-p> :Files<CR>
+noremap <C-p> :FzfLua files<CR>
 
 " shift-y to yank to end of line, like D, C, etc
 nnoremap Y y$
@@ -176,19 +176,19 @@ nnoremap N Nzz
 
 " vim-gitgutter provides a hunk text-object accessible with `ih` and `ah`
 " This changes it to `ih` and `ah` as well as `ig` and `ag`
-omap ih <Plug>(GitGutterTextObjectInnerPending)
-omap ah <Plug>(GitGutterTextObjectOuterPending)
-xmap ih <Plug>(GitGutterTextObjectInnerVisual)
-xmap ah <Plug>(GitGutterTextObjectOuterVisual)
-nmap ]h <Plug>(GitGutterNextHunk)
-nmap [h <Plug>(GitGutterPrevHunk)
+" omap ih <Plug>(GitGutterTextObjectInnerPending)
+" omap ah <Plug>(GitGutterTextObjectOuterPending)
+" xmap ih <Plug>(GitGutterTextObjectInnerVisual)
+" xmap ah <Plug>(GitGutterTextObjectOuterVisual)
+" nmap ]h <Plug>(GitGutterNextHunk)
+" nmap [h <Plug>(GitGutterPrevHunk)
 
-omap ig <Plug>(GitGutterTextObjectInnerPending)
-omap ag <Plug>(GitGutterTextObjectOuterPending)
-xmap ig <Plug>(GitGutterTextObjectInnerVisual)
-xmap ag <Plug>(GitGutterTextObjectOuterVisual)
-nmap ]g <Plug>(GitGutterNextHunk)
-nmap [g <Plug>(GitGutterPrevHunk)
+" omap ig <Plug>(GitGutterTextObjectInnerPending)
+" omap ag <Plug>(GitGutterTextObjectOuterPending)
+" xmap ig <Plug>(GitGutterTextObjectInnerVisual)
+" xmap ag <Plug>(GitGutterTextObjectOuterVisual)
+" nmap ]g <Plug>(GitGutterNextHunk)
+" nmap [g <Plug>(GitGutterPrevHunk)
 
 " Redefine default keybinds for line text object (the l conflicts with
 " targets.vim)
@@ -232,3 +232,6 @@ cnoremap <expr> <c-p> wildmenumode() ? "\<c-p>" : "\<up>"
 " nnoremap <leader>gd :Gvdiff<CR>
 nnoremap gdh :diffget //2<CR>
 nnoremap gdl :diffget //3<CR>
+
+xmap S <Plug>(vsnip-select-text)<CR>
+nmap S <Plug>(vsnip-select-text)

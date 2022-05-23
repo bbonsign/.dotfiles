@@ -1,50 +1,8 @@
-local on_attach = function(client, bufnr)
-    -- require("lsp_signature").on_attach() -- Note: add in lsp client on-attach
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-
-    -- Turn off virtual text for diagnostics; use ]e/[e instead
-    vim.lsp.handlers['textDocument/publishDiagnostics'] =
-        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-            virtual_text = false,
-            signs = true,
-            underline = true,
-            update_in_insert = false
-        })
-
-    local opts = {noremap = true, silent = true}
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gi',
-                                [[<cmd>lua vim.lsp.buf.implementation()<CR>]],
-                                opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>lr',
-                                [[<cmd>lua vim.lsp.buf.rename()<CR>]], opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>la',
-                                [[<cmd>lua vim.lsp.buf.code_action()<CR>]], opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gD',
-                                '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gd',
-                                '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', 'K',
-                                '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', '[e',
-                                '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>',
-                                opts)
-    vim.api.nvim_buf_set_keymap(bufnr, 'n', ']e',
-                                '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>',
-                                opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wa', [[<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>]], opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<C-k>', [[<cmd>lua vim.lsp.buf.signature_help()<CR>]], opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
-    -- vim.api.nvim_buf_set_keymap(bufnr, 'n', '<leader>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
-end
-
 -- Complettion
 -- Set completeopt to have a better completion experience
 -- vim.o.completeopt="menuone,noinsert"
-
+-- vim.g.coq_settings = { auto_start = 'shut-up' }
+-- require('coq')
 -- Setup nvim-cmp.
 local cmp = require('cmp')
 local has_words_before = function()
@@ -81,6 +39,7 @@ end
 
 local lspkind = require("lspkind")
 cmp.setup({
+    preselect = cmp.PreselectMode.None,
     snippet = {
         -- REQUIRED - you must specify a snippet engine
         expand = function(args)
@@ -101,14 +60,14 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({select = true})
     },
     sources = {
-        {name = "nvim_lua"}, {name = "nvim_lsp"}, {name = "vsnip"},
-        -- {name = "vim-dadbod-completion"}, {name = "spell", keyword_length = 7},
-        {
+        {name = "nvim_lsp"}, {name = "vsnip"}, {name = "nvim_lua"}, {
             name = "buffer",
-            opts = {get_bufnrs = function()
-                return vim.api.nvim_list_bufs()
-            end}
-        }, {name = "emoji"}, {name = "path"}
+            options = {
+                get_bufnrs = function()
+                    return vim.api.nvim_list_bufs()
+                end
+            }
+        }, {name = "path"}, {name = "emoji"}
     },
     documentation = {
         border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}
@@ -119,13 +78,13 @@ cmp.setup({
                                           lspkind.presets.default[vim_item.kind],
                                           vim_item.kind)
             vim_item.menu = ({
-                nvim_lsp = "ﲳ",
+                nvim_lsp = " ",
                 nvim_lua = "",
                 treesitter = "",
                 path = "ﱮ",
                 buffer = "﬘",
                 zsh = "",
-                vsnip = "",
+                vsnip = " ",
                 spell = "暈"
             })[entry.source.name]
 
@@ -138,30 +97,45 @@ cmp.setup({
 cmp.setup.cmdline('/', {sources = {{name = 'buffer'}}})
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
--- cmp.setup.cmdline(':', {
---     sources = cmp.config.sources({{name = 'path'}}, {{name = 'cmdline'}})
--- })
+cmp.setup.cmdline(':', {
+    sources = cmp.config.sources({{name = 'path'}}, {{name = 'cmdline'}})
+})
 
 -- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp
-                                                                     .protocol
-                                                                     .make_client_capabilities())
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
 
--- Set up for kabouzeid/nvim-lspinstall
-local function setup_servers()
-    require'lspinstall'.setup()
-    local servers = require'lspinstall'.installed_servers()
-    for _, server in pairs(servers) do
-        require'lspconfig'[server].setup({
-            on_attach = on_attach,
-            capabilities = capabilities
+-- Set up for williamboman/nvim-lsp-installer
+local on_attach = function(client, bufnr)
+    -- require("lsp_signature").on_attach() -- Note: add in lsp client on-attach
+    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+    -- Turn off virtual text for diagnostics; use ]e/[e instead
+    vim.lsp.handlers['textDocument/publishDiagnostics'] =
+        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+            virtual_text = false,
+            signs = true,
+            underline = true,
+            update_in_insert = false
         })
-    end
 end
 
--- Automatically reload after `:LspInstall <server>` so we don't have to restart neovim
-require'lspinstall'.post_install_hook = function()
-    setup_servers() -- reload installed servers
-    vim.cmd("bufdo e") -- this triggers the FileType autocmd that starts the server
-end
-setup_servers()
+local lsp_installer = require("nvim-lsp-installer")
+-- Register a handler that will be called for all installed servers.
+-- Alternatively, you may also register handlers on specific server instances instead (see example below).
+lsp_installer.on_server_ready(function(server)
+    local opts = {on_attach = on_attach, update_capabilities = capabilities}
+
+    -- (optional) Customize the options passed to the server
+    if server.name == "tailwindcss" then
+        local _on_attach = opts.on_attach
+        opts.on_attach = function(client, bufnr)
+            _on_attach(client, bufnr)
+            require'.tailwindcss_colorizer'.on_attach(bufnr)
+        end
+    end
+
+    -- This setup() function is exactly the same as lspconfig's setup function.
+    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+    server:setup(opts)
+end)

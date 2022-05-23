@@ -51,7 +51,7 @@ wk.register({
     [';'] = {':FzfLua commands<CR>', 'commands'},
     [','] = {':FzfLua buffers<CR>', 'fzf-buffer'},
     -- [','] = {'<cmd>Telescope buffers<CR>', 'buffers'},
-    ["/"] = {"<cmd>Telescope live_grep<cr>", "Search"},
+    ["/"] = {"<cmd>FzfLua<CR>", "FzfLua"},
     m = {
         ":<c-u><c-r><c-r>='let @'. v:register .' = '. string(getreg(v:register))<CR><c-f><left>",
         "edit macro"
@@ -103,6 +103,7 @@ wk.register({
         C = {':ColorizerToggle<CR>', 'toggle colorizer'},
         c = {':set cursorline!<CR>', 'toggle line hi-light'},
         n = {':set nonumber!<CR>', 'line-numbers'},
+        R = {':RooterToggle<CR>', 'toggle rooter'},
         r = {':set norelativenumber!<CR>', 'relative line nums'},
         S = {':let @/ = ""<CR>', 'remove search highlight'},
         s = {':setlocal spell!<CR>', 'toggle spelling in buffer'},
@@ -127,6 +128,13 @@ wk.register({
         p = {':bprevious<CR>', 'previous-buffer'}
     },
 
+    c = {
+        name = '+code',
+        D = {':FzfLua lsp_workspace_diagnostics<CR>', 'workspace diagnostics'},
+        d = {':FzfLua lsp_document_diagnostics<CR>', 'doc diagnostics'},
+        f = {':Format<CR>', 'format buffer'},
+    },
+
     E = easymotion_maps.alt,
     e = easymotion_maps.main,
     J = easymotion_maps.alt,
@@ -144,35 +152,36 @@ wk.register({
 
     g = {
         name = '+git',
-        a = {':Git add %<CR>', 'add current'},
-        A = {':Git add .<CR>', 'add all'},
+        a = {':Git add %<CR>', 'add current file'},
+        A = {':Git add .<CR>', 'add all changes'},
         b = {':Gitsigns blame_line<CR>', 'blame'},
         B = {':GBrowse<CR>', 'repo in browser'},
         c = {':Git commit<CR>', 'commit'},
         d = {':Git diff<CR>', 'diff'},
         D = {':Gdiffsplit<CR>', 'diff split'},
         g = {':Neogit<CR>', 'neogit'},
+        h = {'<cmd>Gitsigns preview_hunk<CR>', 'preview hunk'},
         j = {'<cmd>Gitsigns next_hunk<CR>', 'next hunk'},
-        j = {'<cmd>Gitsigns next_hunk<CR>', 'next hunk'},
-        k = {'<cmd>Gitsigns prev_hunk<CR>', 'next hunk'},
-        L = {':FloatermNew lazygit<CR>', 'git'},
+        k = {'<cmd>Gitsigns prev_hunk<CR>', 'previous hunk'},
+        L = {':FloatermNew lazygit<CR>', 'lazygit'},
         l = {':Git log<CR>', 'log'},
         p = {':Git push<CR>', 'push'},
         P = {':Git pull<CR>', 'pull'},
         r = {':GRemove<CR>', 'remove'},
         S = {':Gstatus<CR>', 'status'},
-        s = {'<Plug>(GitGutterStageHunk)', 'stage hunk'},
-        t = {':GitGutterSignsToggle<CR>', 'toggle signs'},
-        u = {'<Plug>(GitGutterUndoHunk)', 'undo hunk'},
-        v = {':GV<CR>', 'view commits'},
-        V = {':GV!<CR>', 'view buffer commits'}
+        s = {'<cmd>Gitsigns stage_hunk<CR>', 'stage hunk'},
+        t = {'<cmd>Gitsigns toggle_signs<CR>', 'toggle signs'},
+        u = {'<cmd>Gitsigns reset_hunk<CR>', 'undo hunk'},
+        v = {':FzfLua git_commits<CR>', 'view commits'},
+        V = {':FzfLua git_bcommits<CR>', 'view buffer commits'},
+        w = {'<cmd>Gitsigns toggle_word_diff<CR>', 'toggle word diff'},
     },
 
     H = {
         name = '+help',
         G = {':help g<CR>', 'g commands'},
-        H = {':Telescope help_tags<CR>', 'Telescope helptags'},
-        K = {"<cmd>:Telescope keymaps<cr>", "Key Maps"},
+        H = {'<cmd>FzfLua help_tags<CR>', 'help tags'},
+        K = {"<cmd>FzfLua keymaps<cr>", "Key Maps"},
         -- m = {':Man<CR>', 'Man page for word'},
         M = {"<cmd>:Telescope man_pages<cr>", "Telescope Man Pages"},
         O = {"<cmd>:Telescope vim_options<cr>", "Options"},
@@ -182,16 +191,16 @@ wk.register({
     l = {
         name = '+lsp',
         [':'] = {'A;<Esc>', 'append ;'},
-        a = {'<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code action'},
-        D = {':Telescope lsp_document_diagnostics<CR>', 'Doc Diagnostics'},
-        d = {':Lspsaga show_line_diagnostics<CR>', 'Show diagnostics'},
+        a = {':lua vim.lsp.buf.code_action()<CR>', 'Code action'},
+        D = {':FzfLua lsp_workspace_diagnostics<CR>', 'workspace diagnostics'},
+        d = {':FzfLua lsp_document_diagnostics<CR>', 'doc diagnostics'},
+        i = {':LspInfo<CR>', 'Lsp info'},
         f = {':Format<CR>', 'Format'},
         h = {':SidewaysLeft<CR>', 'Move arg left'},
         l = {':SidewaysRight<CR>', 'Move arg right'},
-        r = {'<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename'},
-        s = {
-            ':Telescope lsp_dynamic_workspace_symbols<CR>', 'Telescope Symbols'
-        },
+        R = {':LspRestart<CR>', 'Restart Lsp'},
+        r = {':lua vim.lsp.buf.rename()<CR>', 'Rename'},
+        s = {':FzfLua lsp_live_workspace_symbols<CR>', 'workspace symbols' },
         T = {':LspStart<CR>', 'Start Lsp'},
         t = {':LspStop<CR>', 'Stop Lsp'}
     },
@@ -209,7 +218,7 @@ wk.register({
         i = {'zG', 'ignore for session'},
         p = {'[s', 'prev misspelled word'},
         n = {']s', 'next misspelled word'},
-        S = {':setlocal spell!<CR>', 'toggle spelling in buffer'},
+        S = {':FzfLua spell_suggest<CR>', 'fzy spell suggest'},
         T = {':setlocal spell!<CR>', 'toggle spelling in buffer'},
         W = {'zw', 'mark word as wrong'}
     },
@@ -217,27 +226,29 @@ wk.register({
     s = {
         name = '+search',
         ['%'] = { "", 'search+replace in file' },
-        ['.'] = { "", 'Search for word' },
-        ['/'] = {':History/<CR>', 'history'},
-        [':'] = {':FzfLua command_history<CR>', 'commands'},
+        ['.'] = { ":FzfLua grep_cword", 'search word' },
+        ['/'] = {':FzfLua search_history/<CR>', 'search history'},
+        [':'] = {':FzfLua command_history<CR>', 'command history'},
         [';'] = {':FzfLua commands<CR>', 'commands'},
-        b = {':BLines<CR>', 'current buffer'},
-        c = {':Commits<CR>', 'commits'},
-        C = {':BCommits<CR>', 'buffer commits'},
-        f = {':Files<CR>', 'files'},
-        g = {':GFiles<CR>', 'git files'},
-        G = {':GFiles?<CR>', 'modified git files'},
-        h = {':History<CR>', 'file history'},
-        H = {':History:<CR>', 'command history'},
-        l = {':Lines<CR>', 'lines'},
-        M = {':Marks<CR>', 'marks'},
-        m = {':Maps<CR>', 'normal maps'},
-        S = {':Colors<CR>', 'color schemes'},
-        T = {':BTags<CR>', 'buffer tags'},
-        t = {':Rg<CR>', 'text'},
-        W = {':Windows<CR>', 'search windows'},
-        y = {':Filetypes<CR>', 'file types'},
-        z = {':FZF<CR>', 'FZF'}
+        b = {':FzfLua lines<CR>', 'current buffer lines'},
+        c = {':FzfLua git_commits<CR>', 'commits'},
+        C = {':FzfLua git_bcommits<CR>', 'buffer commits'},
+        f = {':FzfLua files<CR>', 'files'},
+        g = {':FzfLua git_files<CR>', 'git files'},
+        G = {':FzfLua git_status<CR>', 'modified git files'},
+        h = {':FzfLua history<CR>', 'file history'},
+        H = {':FzfLua history:<CR>', 'command history'},
+        l = {':FzfLua lines<CR>', 'current buffer lines'},
+        M = {':FzfLua marks<CR>', 'marks'},
+        m = {':FzfLua keymaps<CR>', 'key maps'},
+        r = {':FzfLua registers<CR>', 'registers'},
+        s = {':FzfLua colorschemes<CR>', 'color schemes'},
+        T = {':FzfLua btags<CR>', 'buffer tags'},
+        t = {':FzfLua live_grep<CR>', 'text'},
+        W = {':FzfLua grep_cWORD<CR>', 'search WORD'},
+        w = {':FzfLua grep_cword<CR>', 'search word'},
+        y = {':FzfLua filetypes<CR>', 'file types'},
+        z = {':FzfLua<CR>', 'FzfLua'}
     },
 
     T = {
@@ -251,14 +262,6 @@ wk.register({
         S = {':TestSuite<CR>', 'suite'},
         T = {':FloatermToggle<CR>', 'toggle'},
         V = {':TestVisit<CR>', 'visit'}
-    },
-
-    t = {
-        name = '+telescope',
-        t = {':Telescope<CR>', 'Telescope'},
-        d = {':Telescope lsp_document_diagnostics<CR>', 'Proj Diagnostics'},
-        D = {':Telescope lsp_workspace_diagnostics<CR>', 'Proj Diagnostics'},
-        l = {':Telescope live_grep<CR>', 'live grep'}
     },
 
     u = {
@@ -410,13 +413,14 @@ vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', 
 vim.api.nvim_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
 vim.api.nvim_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
 vim.api.nvim_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
-vim.api.nvim_set_keymap('n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
-vim.api.nvim_set_keymap('n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+vim.api.nvim_set_keymap('n', '[e', '<cmd>lua vim.diagnostic.goto_prev({float={border="single"}})<CR>', opts)
+vim.api.nvim_set_keymap('n', ']e', '<cmd>lua vim.diagnostic.goto_next({float={border="single"}})<CR>', opts)
 
 -- Lua
-vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
-vim.api.nvim_set_keymap("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", opts)
-vim.api.nvim_set_keymap("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", opts)
-vim.api.nvim_set_keymap("n", "<leader>xl", "<cmd>Trouble loclist<cr>", opts)
-vim.api.nvim_set_keymap("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", opts)
-vim.api.nvim_set_keymap("n", "gR", "<cmd>Trouble lsp_references<cr>", opts)
+vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>TroubleToggle<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>xr", "<cmd>TroubleRefresh<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>xD", "<cmd>Trouble workspace_diagnostics<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>xd", "<cmd>Trouble document_diagnostics<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>xl", "<cmd>Trouble loclist<CR>", opts)
+vim.api.nvim_set_keymap("n", "<leader>xq", "<cmd>Trouble quickfix<CR>", opts)
+vim.api.nvim_set_keymap("n", "gR", "<cmd>Trouble lsp_references<CR>", opts)

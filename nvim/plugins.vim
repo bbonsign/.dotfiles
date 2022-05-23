@@ -10,16 +10,17 @@ endif
 call plug#begin()
 Plug 'junegunn/vim-plug'
 
-Plug 'guns/vim-sexp'
+Plug 'ciaranm/securemodelines'
 
+Plug 'editorconfig/editorconfig-vim'
+
+Plug 'guns/vim-sexp'
 
 Plug 'mg979/vim-visual-multi', {'branch': 'master'}
 Plug 'easymotion/vim-easymotion'
 
 " Mappings for g* and z*
 Plug 'haya14busa/vim-asterisk'
-
-" Plug 'ryanoasis/vim-devicons'
 
 Plug 'ntpeters/vim-better-whitespace'
 
@@ -30,19 +31,13 @@ Plug 'norcalli/nvim-colorizer.lua'
 
 Plug 'mbbill/undotree'
 
-" For consitent tmux/vim pane switching
-Plug 'christoomey/vim-tmux-navigator'
-
 " Markdown
 " Plug 'godlygeek/tabular'
 " Plug 'plasticboy/vim-markdown'
 " Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app & yarn install'  }
 
 " Emmet: Expand html from keywords
-Plug 'mattn/emmet-vim', {'for': ['html', 'jinja', 'jinja2', 'htmljinja', 'htmldjango', 'vue', 'jsx', 'javascriptreact' ]}
-
-" Conceal anon functions with 𝝺
-" Plug 'calebsmith/vim-lambdify'
+Plug 'mattn/emmet-vim', {'for': ['html', 'jinja', 'jinja2', 'htmljinja', 'htmldjango', 'vue', 'jsx', 'javascriptreact', 'svelte']}
 
 " Open files w/ cursor at line:column position
 Plug 'wsdjeg/vim-fetch'
@@ -52,7 +47,7 @@ Plug 'Olical/nvim-local-fennel'
 Plug 'Olical/aniseed'
 
 " Git
-Plug 'airblade/vim-gitgutter'
+" Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-vinegar'
 Plug 'tpope/vim-rhubarb'
@@ -60,55 +55,49 @@ Plug 'junegunn/gv.vim'
 Plug 'airblade/vim-rooter'
 Plug 'TimUntersberger/neogit'
 Plug 'sindrets/diffview.nvim'
+Plug 'lewis6991/gitsigns.nvim'
 
-Plug 'joom/vim-commentary'
+Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'joom/vim-commentary'
 Plug 'andymass/vim-matchup' " Not all features seem to work
 Plug 'dhruvasagar/vim-pairify'
-Plug 'tpope/vim-repeat' " Not all features seem to work
 
 Plug 'glts/vim-radical'
 
-Plug 'ciaranm/securemodelines'
-Plug 'editorconfig/editorconfig-vim'
 
 " Improved f/t (highlights etc)
 Plug 'unblevable/quick-scope'
-
 " Possibly replace quick-scope with:
 " Plug 'rhysd/clever-f.vim'
 
 Plug 'folke/which-key.nvim'
 
+" Color themes
 Plug 'joshdick/onedark.vim'
 Plug 'glepnir/zephyr-nvim'
 Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
 Plug 'projekt0n/github-nvim-theme'
 
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
-" Plug 'glepnir/galaxyline.nvim', {'branch': 'main'}
+Plug 'folke/zen-mode.nvim'
+
 Plug 'nvim-lualine/lualine.nvim'
 
 Plug 'sheerun/vim-polyglot'
 
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
+Plug 'ibhagwan/fzf-lua'
 
 " Extend " and @ to preview registers in normal mode
 Plug 'junegunn/vim-peekaboo'
-
-" For Haskell: fzf hoogle results
-" Plug 'monkoose/fzf-hoogle.vim'
 
 " Terminal - floating windows for fzf, etc.
 Plug 'voldikss/vim-floaterm'
 
 " Better buffer deletion defaults
 Plug 'ojroques/nvim-bufdel'
-
-" Start Screen
-" Plug 'mhinz/vim-startify'
 
 " Breifly higlight yanked text
 Plug 'machakann/vim-highlightedyank'
@@ -126,20 +115,16 @@ Plug 'tommcdo/vim-lion'
 Plug 'majutsushi/tagbar'
 Plug 'liuchengxu/vista.vim'
 
-" Syntax higlighting for Jinga.
-" Tries to auto detect
-Plug 'mitsuhiko/vim-jinja', {'for': ['jinja', 'jinja2', 'htmljinja', 'html']}
-
 " For tmux config files: hl, run commands w/ g!, man mage with K
 Plug 'tmux-plugins/vim-tmux'
 
 " Automatic table formating, basic spreadsheet, like in org mode
 " Plug 'dhruvasagar/vim-table-mode'
 
+Plug 'vim-test/vim-test'
+
 " Improved pair & quotes text objects + arguments and separators
 Plug 'wellle/targets.vim'
-
-Plug 'vim-test/vim-test'
 
 " More text objects
 Plug 'kana/vim-textobj-user'
@@ -153,6 +138,7 @@ Plug 'RRethy/nvim-treesitter-textsubjects' " like expand-region, but using tree-
 
 " For toggling between single and multiline forms in language specific ways
 Plug 'AndrewRadev/splitjoin.vim'
+
 Plug 'AndrewRadev/tagalong.vim'
 Plug 'AndrewRadev/sideways.vim'
 
@@ -177,16 +163,29 @@ Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
 Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/cmp-vsnip'
 Plug 'hrsh7th/vim-vsnip'
+Plug 'hrsh7th/vim-vsnip-integ'
+Plug 'rafamadriz/friendly-snippets'
+" main one
+" Plug 'ms-jpq/coq_nvim', {'branch': 'coq'}
+" " 9000+ Snippets
+" Plug 'ms-jpq/coq.artifacts', {'branch': 'artifacts'}
+" " lua & third party sources -- See https://github.com/ms-jpq/coq.thirdparty
+" " Need to **configure separately**
+" Plug 'ms-jpq/coq.thirdparty', {'branch': '3p'}
+
+
 Plug 'onsails/lspkind-nvim'
 
 Plug 'euclidianAce/BetterLua.vim'
 Plug 'neovim/nvim-lspconfig'
-Plug 'kabouzeid/nvim-lspinstall'
+Plug 'williamboman/nvim-lsp-installer'
 Plug 'glepnir/lspsaga.nvim'
 Plug 'mhartington/formatter.nvim'
 Plug 'ray-x/lsp_signature.nvim'
 Plug 'folke/lsp-colors.nvim'
+Plug 'folke/trouble.nvim'
 
 " Debugging
 " Plug 'puremourning/vimspector'

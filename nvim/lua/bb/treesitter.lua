@@ -2,7 +2,8 @@ require'nvim-treesitter.configs'.setup {
     ensure_installed = "all", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
     ignore_install = {"haskell"}, -- haskell is causing big error screen on start up b/c of :TSUpdate
     highlight = {
-        enable = true -- false will disable the whole extension
+        enable = true, -- false will disable the whole extension
+        disable = {"lua"}  -- highlighting for lua is currently broken
     },
 
     incremental_selection = {

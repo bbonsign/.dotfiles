@@ -5,7 +5,7 @@ vim.cmd([[ command! Format execute 'lua vim.lsp.buf.formatting()' ]])
 local prettierFmt = function()
     return {
         exe = "prettier",
-        args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0)},
+        args = {"--stdin-filepath", vim.api.nvim_buf_get_name(0), "--plugin-search-dir=."},
         stdin = true
     }
 end
@@ -20,6 +20,7 @@ require('formatter').setup({
         json = {prettierFmt},
         less = {prettierFmt},
         markdown = {prettierFmt},
+        svelte = {prettierFmt},
         typescript = {prettierFmt},
         typescriptreact = {prettierFmt},
         vue = {prettierFmt},
@@ -51,6 +52,3 @@ require('formatter').setup({
         }
     }
 })
-vim.api.nvim_set_keymap('n', '<leader>lf', '<cmd>Format<CR>',
-                        {noremap = true, silent = true})
-

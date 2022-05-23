@@ -26,11 +26,12 @@ source ~/.config/nvim/plug-config/visual-multi.vim
 source ~/.config/nvim/plug-config/whitespace.vim
 source ~/.config/nvim/plug-config/easymotion.vim
 source ~/.config/nvim/plug-config/sexp.vim
+source ~/.config/nvim/plug-config/surround.vim
 source ~/.config/nvim/plug-config/tagbar.vim
 source ~/.config/nvim/plug-config/maximizer.vim
 source ~/.config/nvim/plug-config/vim-asterisk.vim
 source ~/.config/nvim/plug-config/vista.vim
-" source ~/.config/nvim/plug-config/vim-markdown.vim
+source ~/.config/nvim/plug-config/vsnip.vim
 
 " General personal settings/mappings
 source ~/.config/nvim/general/settings.vim

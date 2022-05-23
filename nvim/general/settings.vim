@@ -154,10 +154,7 @@ function! Scratch()
     file scratch
 endfunction
 
-" For the jrnl command.  It opens nvim with a temp file that starts with
-" 'jrnl...'
 augroup SpellCheckGroup
-  au! BufRead,BufNewFile,BufEnter jrnl* set filetype=markdown | set spell
   au! BufRead,BufNewFile,BufEnter scrumbot set spell
 augroup END
 
@@ -197,3 +194,4 @@ let g:csv_nomap_cr = 1
 
 " Force write readonly files using sudo
 command! WS w !sudo tee %
+
