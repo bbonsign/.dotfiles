@@ -5,6 +5,7 @@
 -- require('coq')
 -- Setup nvim-cmp.
 local cmp = require('cmp')
+
 local has_words_before = function()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
     return col ~= 0 and
@@ -60,7 +61,10 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({select = true})
     },
     sources = {
-        {name = "nvim_lsp"}, {name = "vsnip"}, {name = "nvim_lua"}, {
+        {name = "nvim_lua"}, {name = "nvim_lsp"},
+        {name = "vsnip"},
+        -- {name = "vim-dadbod-completion"}, {name = "spell", keyword_length = 7},
+        {
             name = "buffer",
             options = {
                 get_bufnrs = function()
@@ -84,8 +88,9 @@ cmp.setup({
                 path = "ﱮ",
                 buffer = "﬘",
                 zsh = "",
-                vsnip = " ",
-                spell = "暈"
+                vsnip = "",
+                spell = "暈",
+                conjure = " "
             })[entry.source.name]
 
             return vim_item

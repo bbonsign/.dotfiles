@@ -30,6 +30,9 @@ require('formatter').setup({
                 return {exe = "mix", args = {"format"}, stdin = false}
             end
         },
+        fennel = {function()
+            return {exe = "fnlfmt", args = {"--fix"}, stdin = true}
+        end},
         python = {
             function()
                 return {exe = "black", args = {}, stdin = false}
@@ -52,3 +55,5 @@ require('formatter').setup({
         }
     }
 })
+vim.api.nvim_set_keymap('n', '<leader>lf', '<cmd>Format<CR>',
+                        {noremap = true, silent = true})
