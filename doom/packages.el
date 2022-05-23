@@ -57,6 +57,7 @@
 (package! tree-sitter-langs)
 
 
+
 ;; (package! xkcd)
 
-;; (package! magit-delta)
+(package! magit-delta)

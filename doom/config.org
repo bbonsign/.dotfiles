@@ -1,4 +1,26 @@
-;; [[file:config.org::*From the example doom config][From the example doom config:1]]
+:DOC-CONFIG:
+#+property: header-args:elisp :tangle (concat (file-name-sans-extension (buffer-file-name)) ".el")
+#+property: header-args :mkdirp yes :comments yes
+:END:
+
+#+title: Doom Config
+#+author: Brian Bonsignore
+#+startup: fold
+
+This is my literate configuration file for doom emacs.
+
+* References
+These are some of the best ones (several are also written in org mode). You will
+find snippets from all of these (and possibly others) throughout my config.
+
+- [[https://zzamboni.org/post/my-doom-emacs-configuration-with-commentary/][zzamboni's literare doom config]]
+- [[https://github.com/jakebox/jake-emacs/blob/main/jake-emacs/init.org][jake b's literare config]]. Vanilla emacs, but inspired by other dsitros. Lookup thesaurus config.
+- [[https://tecosaur.github.io/emacs-config/config.html][tecosaur's literate config w/ nice html export]]. Good calc mode customizations. Annotated with xkcd :smile:
+- [[https://pages.sachachua.com/.emacs.d/Sacha.html][Sacha Chua's Emacs Configuration]]
+
+
+* From the example doom config
+#+begin_src elisp
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
 ;; Place your private configuration here! Remember, you do not need to run 'doom
@@ -52,9 +74,13 @@
 ;;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
-;; From the example doom config:1 ends here
+#+end_src
 
-;; [[file:config.org::*My Customizations][My Customizations:1]]
+#+RESULTS:
+
+
+* My Customizations
+#+begin_src elisp
 (setq left-fringe-width 10
       right-fringe-width 10)
 
@@ -206,9 +232,11 @@
 ;; (map! :nom "s" #'evil-embrace-evil-surround-region)
 
 (setq consult-async-split-styles-alist '((nil :type nil) (comma :separator 44 :type separator) (semicolon :separator 59 :type separator) (perl :initial "/" :type perl)))
-;; My Customizations:1 ends here
+#+end_src
 
-;; [[file:config.org::*org mode][org mode:1]]
+
+* org mode
+#+begin_src elisp
 ;;; +org.el -*- lexical-binding: t; -*-
 
 ;; If you use `org' and don't want your org files in the default location below,
@@ -261,9 +289,13 @@
   (setq org-ellipsis " ▼")
 
   (advice-add 'org-refile :after 'org-save-all-org-buffers))
-;; org mode:1 ends here
 
-;; [[file:config.org::*Buffer Menu][Buffer Menu:1]]
+#+end_src
+
+
+* Hydras
+** Buffer Menu
+#+begin_src elisp
 (defhydra hydra-buffer-menu (:color pink
                              :hint nil)
   "
@@ -295,9 +327,10 @@ _~_: modified
   ("q" quit-window "quit" :color blue))
 
 ;; (define-key ibuffer-mode-map "." 'hydra-buffer-menu/body)
-;; Buffer Menu:1 ends here
+#+end_src
 
-;; [[file:config.org::*Multiple cursors][Multiple cursors:1]]
+** Multiple cursors
+#+begin_src elisp
 ;; mc/num-cursors is not autoloaded
 (require 'multiple-cursors)
 
@@ -326,9 +359,11 @@ _~_: modified
   ("<down-mouse-1>" ignore)
   ("<drag-mouse-1>" ignore)
   ("q" nil))
-;; Multiple cursors:1 ends here
+#+end_src
 
-;; [[file:config.org::*Theme Switcher][Theme Switcher:1]]
+** Theme Switcher
+From [[https://github.com/jakebox/jake-emacs/blob/main/jake-emacs/init.org]]
+#+BEGIN_SRC elisp
 (defun jib/load-theme (theme)
   "Enhance `load-theme' by first disabling enabled themes."
   (mapc #'disable-theme custom-enabled-themes)
@@ -369,4 +404,6 @@ _q_ quit                 ^
   ("v" (jib/load-theme 'doom-flatwhite) "flatwhite")
   ("b" (jib/load-theme 'doom-opera-light) "opera-light")
   ("q" nil))
-;; Theme Switcher:1 ends here
+#+END_SRC
+
+
