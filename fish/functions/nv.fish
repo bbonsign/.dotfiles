@@ -1,4 +1,3 @@
-# Defined via `source`
-function nv --wraps='open (exa -rs newest | head -1)' --description 'alias nv=open (exa -rs newest | head -1)'
-  open (exa -rs newest | head -1) $argv; 
+function nv --wraps='open (exa -rs newest | head -1)' --wraps=nvim --description 'alias nv nvim'
+  nvim $argv; 
 end

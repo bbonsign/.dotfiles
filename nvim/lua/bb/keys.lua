@@ -1,3 +1,5 @@
+local wk = require("which-key")
+
 -- Extract easymotion prefixes to share with e and j
 local easymotion_maps = {
     alt = {
@@ -38,8 +40,6 @@ local easymotion_maps = {
     }
 }
 
-local wk = require("which-key")
-
 -- non-prefixed leader maps
 wk.register({s = easymotion_maps.main, S = easymotion_maps.alt}, {prefix = "g"})
 
@@ -47,8 +47,9 @@ wk.register({s = easymotion_maps.main, S = easymotion_maps.alt}, {prefix = "g"})
 wk.register({
     ['!'] = {':.!fish<CR>', 'send line to fish'},
     ["`"] = {"<cmd>:e #<cr>", "Switch to Other Buffer"},
-    [':'] = {':Telescope commands<CR>', 'commands'},
-    [','] = {':Buffers<CR>', 'fzf-buffer'},
+    [':'] = {':FzfLua command_history<CR>', 'command history'},
+    [';'] = {':FzfLua commands<CR>', 'commands'},
+    [','] = {':FzfLua buffers<CR>', 'fzf-buffer'},
     -- [','] = {'<cmd>Telescope buffers<CR>', 'buffers'},
     ["/"] = {"<cmd>Telescope live_grep<cr>", "Search"},
     m = {
@@ -57,7 +58,6 @@ wk.register({
     },
     q = {':q<CR>', 'quit'},
     X = {':norm ciw <CR>', 'trim to one space between words'},
-    x = {':StripWhitespace<CR>', 'strip whitespace'}
 }, {prefix = "<leader>"})
 
 -- prefixed leader keymaps
@@ -91,7 +91,8 @@ wk.register({
         d = {"<cmd>tabclose<CR>", "Close"},
         f = {"<cmd>tabfirst<CR>", "First"},
         l = {"<cmd>tablast<CR>", "Last"},
-        n = {"<cmd>tabnew<CR>", "Next"},
+        n = {"<cmd>tabnext<CR>", "Next"},
+        p = {"<cmd>tabprevious<CR>", "Prev"},
         t = {':tab split<CR>', 'new tab w/ current buf'}
     },
 
@@ -109,12 +110,13 @@ wk.register({
         v = {':Vista!!<CR>', 'tag viewer'},
         -- v = {':TagbarToggle<CR>', 'tag viewer'},
         w = {':set wrap!<CR>', 'toggle wrap'},
-        x = {':ToggleWhitespace<CR>', 'toggle whitespace'}
+        x = {':StripWhitespace<CR>', 'strip whitespace'},
+        X = {':ToggleWhitespace<CR>', 'toggle whitespace'}
     },
 
     b = {
         name = '+buffer',
-        b = {':Buffers<CR>', 'fzf-buffer'},
+        b = {':FzfLua buffers<CR>', 'fzf-buffer'},
         D = {':BufDel!<CR>', 'delete-buffer, ignore changes'},
         d = {':BufDel<CR>', 'delete-buffer'},
         f = {':bfirst<CR>', 'first-buffer'},
@@ -132,11 +134,9 @@ wk.register({
 
     f = {
         name = "+file",
-        b = {"<cmd>Telescope file_browser<CR>", "Telescope File Browser"},
-        f = {':Files<CR>', 'files'},
-        -- f = {"<cmd>Telescope find_files<CR>", "Find File"},
+        f = {':FzfLua files<CR>', 'files'},
         R = {':earlier 1f<CR>', 'revert to last write'},
-        r = {":Telescope oldfiles<CR>", "Open Recent File"},
+        r = {":FzfLua oldfiles<CR>", "Open Recent File"},
         n = {":enew<CR>", "New File"},
         s = {":write<CR>", "Write File"},
         w = {":write<CR>", "Write File"}
@@ -146,17 +146,15 @@ wk.register({
         name = '+git',
         a = {':Git add %<CR>', 'add current'},
         A = {':Git add .<CR>', 'add all'},
-        b = {':Git blame<CR>', 'blame'},
-        B = {':GBrowse<CR>', 'browse'},
+        b = {':Gitsigns blame_line<CR>', 'blame'},
+        B = {':GBrowse<CR>', 'repo in browser'},
         c = {':Git commit<CR>', 'commit'},
         d = {':Git diff<CR>', 'diff'},
         D = {':Gdiffsplit<CR>', 'diff split'},
-        G = {':GGrep<CR>', 'git grep'},
         g = {':Neogit<CR>', 'neogit'},
-        H = {':GitGutterLineHighlightsToggle<CR>', 'highlight hunks'},
-        h = {'<Plug>(GitGutterPreviewHunk)', 'preview hunk'},
-        j = {'<Plug>(GitGutterNextHunk)', 'next hunk'},
-        k = {'<Plug>(GitGutterPrevHunk)', 'prev hunk'},
+        j = {'<cmd>Gitsigns next_hunk<CR>', 'next hunk'},
+        j = {'<cmd>Gitsigns next_hunk<CR>', 'next hunk'},
+        k = {'<cmd>Gitsigns prev_hunk<CR>', 'next hunk'},
         L = {':FloatermNew lazygit<CR>', 'git'},
         l = {':Git log<CR>', 'log'},
         p = {':Git push<CR>', 'push'},
@@ -170,25 +168,27 @@ wk.register({
         V = {':GV!<CR>', 'view buffer commits'}
     },
 
-    h = {
+    H = {
         name = '+help',
-        g = {':help g<CR>', 'g commands'},
-        h = {':Telescope help_tags<CR>', 'Telescope helptags'},
-        k = {"<cmd>:Telescope keymaps<cr>", "Key Maps"},
-        M = {':Man<CR>', 'Man page for word'},
-        m = {"<cmd>:Telescope man_pages<cr>", "Telescope Man Pages"},
-        o = {"<cmd>:Telescope vim_options<cr>", "Options"},
-        z = {':help z<CR>', 'z commands'}
+        G = {':help g<CR>', 'g commands'},
+        H = {':Telescope help_tags<CR>', 'Telescope helptags'},
+        K = {"<cmd>:Telescope keymaps<cr>", "Key Maps"},
+        -- m = {':Man<CR>', 'Man page for word'},
+        M = {"<cmd>:Telescope man_pages<cr>", "Telescope Man Pages"},
+        O = {"<cmd>:Telescope vim_options<cr>", "Options"},
+        Z = {':help z<CR>', 'z commands'}
     },
 
     l = {
         name = '+lsp',
         [':'] = {'A;<Esc>', 'append ;'},
+        a = {'<cmd>lua vim.lsp.buf.code_action()<CR>', 'Code action'},
         D = {':Telescope lsp_document_diagnostics<CR>', 'Doc Diagnostics'},
         d = {':Lspsaga show_line_diagnostics<CR>', 'Show diagnostics'},
         f = {':Format<CR>', 'Format'},
         h = {':SidewaysLeft<CR>', 'Move arg left'},
         l = {':SidewaysRight<CR>', 'Move arg right'},
+        r = {'<cmd>lua vim.lsp.buf.rename()<CR>', 'Rename'},
         s = {
             ':Telescope lsp_dynamic_workspace_symbols<CR>', 'Telescope Symbols'
         },
@@ -216,16 +216,11 @@ wk.register({
 
     s = {
         name = '+search',
-        ['%'] = {
-            ":%s/<c-r>=expand('<cword>')<cr>//g<Left><Left>",
-            'search+replace in file'
-        },
-        ['.'] = {
-            ":.s/<c-r>=expand('<cword>')<cr>//g<Left><Left>",
-            'search+replace in line'
-        },
+        ['%'] = { "", 'search+replace in file' },
+        ['.'] = { "", 'Search for word' },
         ['/'] = {':History/<CR>', 'history'},
-        [':'] = {':Commands<CR>', 'commands'},
+        [':'] = {':FzfLua command_history<CR>', 'commands'},
+        [';'] = {':FzfLua commands<CR>', 'commands'},
         b = {':BLines<CR>', 'current buffer'},
         c = {':Commits<CR>', 'commits'},
         C = {':BCommits<CR>', 'buffer commits'},
@@ -261,8 +256,9 @@ wk.register({
     t = {
         name = '+telescope',
         t = {':Telescope<CR>', 'Telescope'},
+        d = {':Telescope lsp_document_diagnostics<CR>', 'Proj Diagnostics'},
         D = {':Telescope lsp_workspace_diagnostics<CR>', 'Proj Diagnostics'},
-        d = {':Telescope lsp_document_diagnostics<CR>', 'Doc Diagnostics'}
+        l = {':Telescope live_grep<CR>', 'live grep'}
     },
 
     u = {
@@ -406,3 +402,21 @@ wk.setup {
         v = {"j", "k"}
     }
 }
+
+-------------------------------------------
+-- Non which-key registered mappings
+local opts = {noremap = true, silent = true}
+vim.api.nvim_set_keymap('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'gD', '<Cmd>lua vim.lsp.buf.declaration()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'gd', '<Cmd>lua vim.lsp.buf.definition()<CR>', opts)
+vim.api.nvim_set_keymap('n', 'K', '<Cmd>lua vim.lsp.buf.hover()<CR>', opts)
+vim.api.nvim_set_keymap('n', '[e', '<cmd>lua vim.lsp.diagnostic.goto_prev()<CR>', opts)
+vim.api.nvim_set_keymap('n', ']e', '<cmd>lua vim.lsp.diagnostic.goto_next()<CR>', opts)
+
+-- Lua
+vim.api.nvim_set_keymap("n", "<leader>xx", "<cmd>TroubleToggle<cr>", opts)
+vim.api.nvim_set_keymap("n", "<leader>xw", "<cmd>Trouble workspace_diagnostics<cr>", opts)
+vim.api.nvim_set_keymap("n", "<leader>xd", "<cmd>Trouble document_diagnostics<cr>", opts)
+vim.api.nvim_set_keymap("n", "<leader>xl", "<cmd>Trouble loclist<cr>", opts)
+vim.api.nvim_set_keymap("n", "<leader>xq", "<cmd>Trouble quickfix<cr>", opts)
+vim.api.nvim_set_keymap("n", "gR", "<cmd>Trouble lsp_references<cr>", opts)

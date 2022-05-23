@@ -62,23 +62,10 @@ if command -sq gls
 end
 
 
-# # # Set my keybindings
-# set fish_key_bindings hybrid_bindings
-# Emulates vim's cursor shape behavior
-# Set the normal and visual mode cursors to a block
-# set fish_cursor_default block
-# Set the insert mode cursor to a line
-# set fish_cursor_insert line
-# Set the replace mode cursor to an underscore
-# set fish_cursor_replace_one underscore
-
-
 # fnm - fast node manager
 # set PATH /home/bbonsign/.fnm $PATH
 # fnm env --multi | source
-# ghcup-env
 
-# pyenv init
 if command -v pyenv 1>/dev/null 2>&1
   pyenv init --path | source
 end
