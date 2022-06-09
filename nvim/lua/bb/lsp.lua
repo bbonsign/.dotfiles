@@ -61,8 +61,7 @@ cmp.setup({
         ['<CR>'] = cmp.mapping.confirm({select = true})
     },
     sources = {
-        {name = "nvim_lua"}, {name = "nvim_lsp"},
-        {name = "vsnip"},
+        {name = "nvim_lua"}, {name = "nvim_lsp"}, {name = "vsnip"},
         -- {name = "vim-dadbod-completion"}, {name = "spell", keyword_length = 7},
         {
             name = "buffer",
@@ -73,8 +72,11 @@ cmp.setup({
             }
         }, {name = "path"}, {name = "emoji"}
     },
-    documentation = {
-        border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}
+    window = {
+        documentation = {border = cmp.config.window.bordered()}
+        -- documentation = {
+        --     border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}
+        -- }
     },
     formatting = {
         format = function(entry, vim_item)
