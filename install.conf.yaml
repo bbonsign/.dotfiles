@@ -51,10 +51,16 @@
 
     ~/.config/nnn:
 
+    ~/.config/i3status:
+      if: "[ (uname) = Linux ]"
+
     ~/.config/rofi:
       if: "[ (uname) = Linux ]"
 
     ~/.config/sxhkd:
+      if: "[ (uname) = Linux ]"
+
+    ~/.config/picom.conf:
       if: "[ (uname) = Linux ]"
 
     ~/.config/kitty: kitty
