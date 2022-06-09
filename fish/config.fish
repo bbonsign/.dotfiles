@@ -1,8 +1,8 @@
 starship init fish | source
 
-bind \e\cs _add_sudo
-# option-ctrl-s
+source ~/.config/nnn/nnn_env_vars
 
+set -xg PAGER 'bat --plain'
 # set -x PATH /home/linuxbrew/.linuxbrew/bin ~/.cargo/bin $PATH
 
 # bgcolor of the current tab completion selection
@@ -29,6 +29,7 @@ set -xg FZF_ALT_C_OPTS "--preview 'tree -C {} | head -200'"
 # CTRL-x opens EDITOR for editing long commands (C-x C-x in tmux)
 # Note: Alt-e and Alt-v also open EDITOR for editing commands
 set -xg EDITOR nvim
+set -xg VISUAL nvim
 bind \cx edit_command_buffer
 
 # open man pages in neovim
