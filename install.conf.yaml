@@ -49,6 +49,8 @@
     ~/.config/i3:
       if: "[ (uname) = Linux ]"
 
+    ~/.config/nnn:
+
     ~/.config/rofi:
       if: "[ (uname) = Linux ]"
 
