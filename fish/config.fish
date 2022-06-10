@@ -1,6 +1,7 @@
 starship init fish | source
 
 source ~/.config/nnn/nnn_env_vars
+source ~/.config/fish/colors/fish_tokyonight_storm.fish
 
 set -xg PAGER 'bat --plain'
 # set -x PATH /home/linuxbrew/.linuxbrew/bin ~/.cargo/bin $PATH
@@ -82,3 +83,10 @@ else
     source /usr/local/opt/asdf/libexec/asdf.fish
 end
 
+
+# tabtab source for packages
+# uninstall by removing these lines
+[ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
+
+set -gx PNPM_HOME "/Users/bbonsign/Library/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
