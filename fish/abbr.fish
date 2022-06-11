@@ -26,7 +26,7 @@ abbr -a -U -- cleanimages 'docker rmi (docker images -q -f dangling=true)'
 abbr -a -U -- covlet 'pandoc --pdf-engine=xelatex --template=moderncv.tex source/letter.md -o output/coverletter-(git rev-parse --abbrev-ref HEAD).pdf'
 abbr -a -U -- current pwd\ \|\ awk\ -F\ \'/\'\ \ \'\{print\ \$NF\}\'
 abbr -a -U -- dj django-admin
-abbr -a -U -- e 'nvim '
+abbr -a -U -- e nvim
 abbr -a -U -- ga 'git add -A'
 abbr -a -U -- gau 'git add -u'
 abbr -a -U -- gb 'git branch'
@@ -60,6 +60,7 @@ abbr -a -U -- mang 'python manage.py'
 abbr -a -U -- moon 'curl wttr.in/moon'
 abbr -a -U -- mux tmuxinator
 abbr -a -U -- myip 'curl ifconfig.co'
+abbr -a -U -- n nnn
 abbr -a -U -- pip 'python -m pip'
 abbr -a -U -- pipi 'python -m pip install'
 abbr -a -U -- psh 'pipenv shell'
