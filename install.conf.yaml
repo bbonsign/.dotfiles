@@ -46,6 +46,9 @@
     ~/.config/dunst:
       if: "[ (uname) = Linux ]"
 
+    ~/.config/awesome:
+      if: "[ (uname) = Linux ]"
+
     ~/.config/i3:
       if: "[ (uname) = Linux ]"
 
