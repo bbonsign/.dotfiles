@@ -1,148 +1,150 @@
--- Complettion
--- Set completeopt to have a better completion experience
--- vim.o.completeopt="menuone,noinsert"
--- vim.g.coq_settings = { auto_start = 'shut-up' }
--- require('coq')
--- Setup nvim-cmp.
-local cmp = require('cmp')
+  local cmp = require'cmp'
+  local lspkind = require('lspkind')
 
-local has_words_before = function()
-    local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-    return col ~= 0 and
-               vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col,
-                                                                          col)
-                   :match("%s") == nil
-end
+  local has_words_before = function()
+      local line, col = unpack(vim.api.nvim_win_get_cursor(0))
+      return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  end
 
-local feedkey = function(key, mode)
-    vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true),
-                          mode, true)
-end
+  local feedkey = function(key, mode)
+      vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes(key, true, true, true), mode, true)
+  end
 
-local tab_handler = function(fallback)
-    if cmp.visible() then
-        cmp.select_next_item()
-    elseif vim.fn["vsnip#available"](1) == 1 then
-        feedkey("<Plug>(vsnip-expand-or-jump)", "")
-    elseif has_words_before() then
-        cmp.complete()
-    else
-        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
-    end
-end
-local shift_tab_handler = function()
-    if cmp.visible() then
-        cmp.select_prev_item()
-    elseif vim.fn["vsnip#jumpable"](-1) == 1 then
-        feedkey("<Plug>(vsnip-jump-prev)", "")
-    end
-end
+  cmp.setup({
+          snippet = {
+              -- REQUIRED - you must specify a snippet engine
+              expand = function(args)
+                  vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+                  -- require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+                  -- require('snippy').expand_snippet(args.body) -- For `snippy` users.
+                  -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+              end,
+          },
+          window = {
+              -- completion = cmp.config.window.bordered(),
+              -- documentation = cmp.config.window.bordered(),
+          },
+          mapping = cmp.mapping.preset.insert({
+                  ['<C-b>'] = cmp.mapping.scroll_docs(-4),
+                  ['<C-f>'] = cmp.mapping.scroll_docs(4),
+                  ['<C-Space>'] = cmp.mapping.complete(),
+                  ['<C-e>'] = cmp.mapping.abort(),
+                  ['<CR>'] = cmp.mapping.confirm({ select = true }), -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
+                  ['<Tab>'] = cmp.mapping(function(fallback)
+                          if cmp.visible() then
+                              cmp.select_next_item()
+                          elseif vim.fn["vsnip#available"](1) == 1 then
+                              feedkey("<Plug>(vsnip-expand-or-jump)", "")
+                          elseif has_words_before() then
+                              cmp.complete()
+                          else
+                              fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+                          end
+                  end, { "i", "s" }),
 
-local lspkind = require("lspkind")
-cmp.setup({
-    preselect = cmp.PreselectMode.None,
-    snippet = {
-        -- REQUIRED - you must specify a snippet engine
-        expand = function(args)
-            vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
-        end
-    },
-    mapping = {
-        ['<C-u>'] = cmp.mapping(cmp.mapping.scroll_docs(-4), {'i', 'c'}),
-        ['<C-d>'] = cmp.mapping(cmp.mapping.scroll_docs(4), {'i', 'c'}),
-        ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), {'i', 'c'}),
-        ['<C-y>'] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
-        ['<C-e>'] = cmp.mapping({
-            i = cmp.mapping.abort(),
-            c = cmp.mapping.close()
-        }),
-        ['<Tab>'] = cmp.mapping(tab_handler),
-        ['<S-Tab>'] = cmp.mapping(shift_tab_handler),
-        ['<CR>'] = cmp.mapping.confirm({select = true})
-    },
-    sources = {
-        {name = "nvim_lua"}, {name = "nvim_lsp"}, {name = "vsnip"},
-        -- {name = "vim-dadbod-completion"}, {name = "spell", keyword_length = 7},
-        {
-            name = "buffer",
-            options = {
-                get_bufnrs = function()
-                    return vim.api.nvim_list_bufs()
-                end
-            }
-        }, {name = "path"}, {name = "emoji"}
-    },
-    window = {
-        documentation = {border = cmp.config.window.bordered()}
-        -- documentation = {
-        --     border = {"╭", "─", "╮", "│", "╯", "─", "╰", "│"}
-        -- }
-    },
-    formatting = {
-        format = function(entry, vim_item)
-            vim_item.kind = string.format("%s %s",
-                                          lspkind.presets.default[vim_item.kind],
-                                          vim_item.kind)
-            vim_item.menu = ({
-                nvim_lsp = " ",
-                nvim_lua = "",
-                treesitter = "",
-                path = "ﱮ",
-                buffer = "﬘",
-                zsh = "",
-                vsnip = "",
-                spell = "暈",
-                conjure = " "
-            })[entry.source.name]
+                  ["<S-Tab>"] = cmp.mapping(function()
+                          if cmp.visible() then
+                              cmp.select_prev_item()
+                          elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+                              feedkey("<Plug>(vsnip-jump-prev)", "")
+                          end
+                  end, { "i", "s" }),
 
-            return vim_item
-        end
-    }
-})
+          }),
+          sources = cmp.config.sources({
+                  { name = 'nvim_lsp' },
+                  { name = 'vsnip' }, -- For vsnip users.
+                  -- { name = 'luasnip' }, -- For luasnip users.
+                  -- { name = 'ultisnips' }, -- For ultisnips users.
+                  -- { name = 'snippy' }, -- For snippy users.
+                                       }, {
+                  { name = 'buffer' },
+          }),
+          formatting = {
+              format = function(entry, vim_item)
+                  vim_item.kind = string.format("%s %s",
+                                                lspkind.presets.default[vim_item.kind],
+                                                vim_item.kind)
+                  vim_item.menu = ({
+                          nvim_lsp = " ",
+                          nvim_lua = "",
+                          treesitter = "",
+                          path = "ﱮ",
+                          buffer = "﬘",
+                          zsh = "",
+                          vsnip = "",
+                          spell = "暈",
+                          conjure = " "
+                  })[entry.source.name]
 
--- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline('/', {sources = {{name = 'buffer'}}})
+                  return vim_item
+              end
+          }
+  })
 
--- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-cmp.setup.cmdline(':', {
-    sources = cmp.config.sources({{name = 'path'}}, {{name = 'cmdline'}})
-})
+  -- Set configuration for specific filetype.
+  cmp.setup.filetype('gitcommit', {
+                         sources = cmp.config.sources({
+                                 { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
+                                                      }, {
+                                 { name = 'buffer' },
+                         })
+  })
 
--- Setup lspconfig.
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+  -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline('/', {
+                        mapping = cmp.mapping.preset.cmdline(),
+                        sources = {
+                            { name = 'buffer' }
+                        }
+  })
 
--- Set up for williamboman/nvim-lsp-installer
-local on_attach = function(client, bufnr)
-    -- require("lsp_signature").on_attach() -- Note: add in lsp client on-attach
-    vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+  cmp.setup.cmdline(':', {
+                        mapping = cmp.mapping.preset.cmdline(),
+                        sources = cmp.config.sources({
+                                { name = 'path' }
+                                                     }, {
+                                { name = 'cmdline' }
+                        })
+  })
 
-    -- Turn off virtual text for diagnostics; use ]e/[e instead
-    vim.lsp.handlers['textDocument/publishDiagnostics'] =
-        vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-            virtual_text = false,
-            signs = true,
-            underline = true,
-            update_in_insert = false
-        })
-end
+  -- Setup lspconfig.
+  local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-local lsp_installer = require("nvim-lsp-installer")
--- Register a handler that will be called for all installed servers.
--- Alternatively, you may also register handlers on specific server instances instead (see example below).
-lsp_installer.on_server_ready(function(server)
-    local opts = {on_attach = on_attach, update_capabilities = capabilities}
 
-    -- (optional) Customize the options passed to the server
-    -- if server.name == "tailwindcss" then
-    --     local _on_attach = opts.on_attach
-    --     opts.on_attach = function(client, bufnr)
-    --         _on_attach(client, bufnr)
-    --         require'.tailwindcss_colorizer'.on_attach(bufnr)
-    --     end
-    -- end
 
-    -- This setup() function is exactly the same as lspconfig's setup function.
-    -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
-    server:setup(opts)
-end)
+  -- Set up for williamboman/nvim-lsp-installer
+  local on_attach = function(client, bufnr)
+      -- require("lsp_signature").on_attach() -- Note: add in lsp client on-attach
+      vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+
+      -- Turn off virtual text for diagnostics; use ]e/[e instead
+      vim.lsp.handlers['textDocument/publishDiagnostics'] =
+          vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+                           virtual_text = false,
+                           signs = true,
+                           underline = true,
+                           update_in_insert = false
+          })
+  end
+
+  local lsp_installer = require("nvim-lsp-installer")
+  -- Register a handler that will be called for all installed servers.
+  -- Alternatively, you may also register handlers on specific server instances instead (see example below).
+  lsp_installer.on_server_ready(function(server)
+          local opts = {on_attach = on_attach, update_capabilities = capabilities}
+
+          -- (optional) Customize the options passed to the server
+          -- if server.name == "tailwindcss" then
+          --     local _on_attach = opts.on_attach
+          --     opts.on_attach = function(client, bufnr)
+          --         _on_attach(client, bufnr)
+          --         require'.tailwindcss_colorizer'.on_attach(bufnr)
+          --     end
+          -- end
+
+          -- This setup() function is exactly the same as lspconfig's setup function.
+          -- Refer to https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
+          server:setup(opts)
+  end)
