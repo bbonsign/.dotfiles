@@ -1,10 +1,15 @@
 starship init fish | source
 
+if command -v fzf_configure_bindings 1>/dev/null 2>&1
+    fzf_configure_bindings --variables=
+    fzf_configure_bindings --variables=\e\cv
+    fzf_configure_bindings --variables=\e\cv
+end
+
 source ~/.config/nnn/nnn_env_vars
 source ~/.config/fish/colors/fish_tokyonight_storm.fish
 
 set -xg PAGER 'bat --plain'
-# set -x PATH /home/linuxbrew/.linuxbrew/bin ~/.cargo/bin $PATH
 
 # bgcolor of the current tab completion selection
 set fish_color_search_match --background=4b719c
@@ -17,6 +22,7 @@ set -xg FZF_DEFAULT_OPTS '--ansi --inline-info --height=100% --pointer="⦿" --p
 set -xg FZF_CTRL_R_OPTS "--preview 'echo {}' --preview-window up:10:hidden:wrap --bind '?:toggle-preview'"
 # Shows tree of the directory in the preview window
 set -xg FZF_ALT_C_OPTS "--preview 'tree -C {} | head -200'"
+bind \e\cc $FZF_ALT_C_COMMAND
 
 
 # See https://github.com/jethrokuan/fzf for variables to set
@@ -69,15 +75,16 @@ end
 # fnm env --multi | source
 
 if command -v pyenv 1>/dev/null 2>&1
-  pyenv init --path | source
+    pyenv init - | source
 end
 
 # Created by `userpath` on 2021-02-23 17:48:18
-set PATH $PATH /Users/bbonsign/.local/bin
+# set PATH $PATH /Users/bbonsign/.local/bin
 
 set os (uname)
 if test "$os" = "Linux"
-    source ~/.asdf/asdf.fish
+    # source ~/.asdf/asdf.fish
+    source /opt/asdf-vm/asdf.fish
 else
     # Mac/homebrew
     source /usr/local/opt/asdf/libexec/asdf.fish
