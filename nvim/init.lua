@@ -1,7 +1,6 @@
 vim.cmd('source ~/.config/nvim/old_init.vim')
 
 require('bb')
-require('settings')
 -- require('debug')
 
 -- Colorscheme
