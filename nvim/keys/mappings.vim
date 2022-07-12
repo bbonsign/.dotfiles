@@ -198,6 +198,12 @@ omap a. <Plug>(textobj-line-a)
 xmap i. <Plug>(textobj-line-i)
 xmap a. <Plug>(textobj-line-a)
 
+let g:textobj_line_no_default_key_mappings = 1
+omap ig <Plug>(textobj-entire-i)
+omap ag <Plug>(textobj-entire-a)
+xmap ig <Plug>(textobj-entire-i)
+xmap ag <Plug>(textobj-entire-a)
+
 " Completion related mappings
 " Use tab for trigger completion with characters ahead and navigate.
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
