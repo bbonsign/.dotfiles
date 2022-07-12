@@ -2,3 +2,7 @@
 
 nvim/sessions/default.vim
 nvim/plugged
+lvim/plugin/*
+lvim/plugin
+
+nnn/.selection

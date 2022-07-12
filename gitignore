@@ -60,3 +60,6 @@ Session.vim
 _build
 deps
 
+/luarocks
+/lua_modules
+/.luarocks

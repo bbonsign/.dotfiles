@@ -75,6 +75,8 @@
     ~/.tmux.conf:
 
     ~/.config/nvim:
+      
+    ~/.config/lvim:
 
     "~/.ipython/profile_default/ipython_config.py":
       path: ipython/ipython_config.py
