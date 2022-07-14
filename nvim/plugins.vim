@@ -62,9 +62,9 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'joom/vim-commentary'
 Plug 'andymass/vim-matchup' " Not all features seem to work
-Plug 'dhruvasagar/vim-pairify'
+" Plug 'dhruvasagar/vim-pairify'
 
-Plug 'glts/vim-radical'
+" Plug 'glts/vim-radical'
 
 
 " Improved f/t (highlights etc)
@@ -116,7 +116,7 @@ Plug 'majutsushi/tagbar'
 Plug 'liuchengxu/vista.vim'
 
 " For tmux config files: hl, run commands w/ g!, man mage with K
-Plug 'tmux-plugins/vim-tmux'
+" Plug 'tmux-plugins/vim-tmux'
 
 " Automatic table formating, basic spreadsheet, like in org mode
 " Plug 'dhruvasagar/vim-table-mode'
