@@ -9,6 +9,9 @@ M.setup = function()
     return vim.api.nvim_set_keymap(mode, keys, command, { noremap = true, silent = true })
   end
 
+  map("n", "gf", "<cmd>HopPattern<CR>")
+  map("n", "F", "<cmd>HopPattern<CR>")
+
   map("n", "<CR>", ";")
   map("n", "<BS>", ",")
 

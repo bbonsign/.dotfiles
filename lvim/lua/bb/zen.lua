@@ -19,6 +19,7 @@ M.config = function()
 
     plugins = {
       gitsigns = { enabled = false }, -- disables git signs
+      twilight = { enabled = false }, -- enable to start Twilight when zen mode opens
       -- kitty = {
       --   enabled = true,
       -- font = "+5", -- font size increment
