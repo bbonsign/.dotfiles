@@ -56,6 +56,8 @@
 (package! tree-sitter)
 (package! tree-sitter-langs)
 
+(package! evil-matchit)
+(package! lsp-tailwindcss :recipe (:host github :repo "merrickluo/lsp-tailwindcss"))
 
 
 ;; (package! xkcd)

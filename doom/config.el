@@ -20,8 +20,8 @@
 ;;
 ;; They all accept either a font-spec, font string ("Input Mono-12"), or xlfd
 ;; font string. You generally only need these two:
-(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 14 :weight 'medium)
-      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 14 :weight 'medium))
+(setq doom-font (font-spec :family "FiraCode Nerd Font" :size 16 :weight 'medium)
+      doom-variable-pitch-font (font-spec :family "FiraCode Nerd Font" :size 16 :weight 'medium))
 
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
@@ -66,12 +66,13 @@
 (advice-add 'which-key--show-popup :around #'add-which-key-line)
 
 (after! evil-goggles
-(setq evil-goggles-duration 0.5)
-(setq evil-goggles-pulse t))
+  (setq evil-goggles-duration 0.5)
+  (setq evil-goggles-pulse t))
 
-; (setq +lua-lsp-dir "~/.lua-language-server")
+                                        ; (setq +lua-lsp-dir "~/.lua-language-server")
 
 (dimmer-configure-which-key)
+(setq dimmer-fraction 0.4)
 (dimmer-mode t)
 
 ;; Shows buffers when using Spc-, for example
@@ -119,11 +120,13 @@
 (setq avy-style 'at-full)
 (setq avy-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l ?: ?w ?e ?r ?t ?y ?u ?i ?o ?x ?c ?v ?b ?n ?m ?q ?p ?z ?m))
 
+(map! :nv "-" #'dired-jump)
 (map! :leader
       :desc "Eval form" :nv "x" #'eros-eval-last-sexp
       :desc "Dired" :nv "od" #'dired-jump
       :desc "Dired" :nv "oo" #'dired-jump
-     ;; :desc "Resume last search" "hh" #'ivy-resume
+      ;; :desc "Resume last search" "hh" #'ivy-resume
+      :desc "Toggle prettify" :nv "tP" #'prettify-symbols-mode
       )
 
 ;; Increases left-fringe-width for magit overview. It wasn't shoing the collapse
@@ -148,6 +151,9 @@
   (dired-hide-dotfiles-mode))
 
 (add-hook 'dired-mode-hook #'my-dired-mode-hook)
+
+(map! :gnv "M-k" #'move-line-up
+      :gnv "M-j" #'move-line-down)
 
 (map! :map dired-mode-map
       :n "." #'dired-hide-dotfiles-mode)
@@ -187,8 +193,8 @@
        (unless (string-match-p (concat "^Cannot find shared library\\|"
                                        "^No language registered\\|"
                                        "cannot open shared object file")
-                            (error-message-string e))
-            (signal (car e) (cadr e)))))))
+                               (error-message-string e))
+         (signal (car e) (cadr e)))))))
 
 
 ;; (add-hook 'evil-jumps-post-jump-hook #'evil-scroll-line-to-center)
@@ -206,6 +212,16 @@
 ;; (map! :nom "s" #'evil-embrace-evil-surround-region)
 
 (setq consult-async-split-styles-alist '((nil :type nil) (comma :separator 44 :type separator) (semicolon :separator 59 :type separator) (perl :initial "/" :type perl)))
+
+(after! vertico
+  (vertico-mouse-mode)
+  )
+
+(global-evil-matchit-mode 1)
+
+(use-package! lsp-tailwindcss
+  :init
+  (setq lsp-tailwindcss-add-on-mode t))
 ;; My Customizations:1 ends here
 
 ;; [[file:config.org::*org mode][org mode:1]]
