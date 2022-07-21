@@ -35,12 +35,12 @@ bind \e\cc $FZF_ALT_C_COMMAND
 # Set nvim to default editor
 # CTRL-x opens EDITOR for editing long commands (C-x C-x in tmux)
 # Note: Alt-e and Alt-v also open EDITOR for editing commands
-set -xg EDITOR nvim
-set -xg VISUAL nvim
+set -xg EDITOR lvim
+set -xg VISUAL lvim
 bind \cx edit_command_buffer
 
 # open man pages in neovim
-set -xg MANPAGER 'nvim +Man!'
+# set -xg MANPAGER 'nvim +Man!'
 
 set fish_cursor_visual block
 if command -sq gls
