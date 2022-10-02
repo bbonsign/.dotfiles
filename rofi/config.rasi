@@ -15,7 +15,7 @@ configuration{
   kb-clear-line: "";
   kb-remove-word-back: "Control+w,Control+Alt+h,Control+BackSpace";
   kb-accept-entry: "Control+m,Return,KP_Enter";
-  kb-row-up: "Up,Control+p,Control+k,ISO_Left_Tab";
+  kb-row-up: "Up,Control+p,Control+k";
   kb-row-down: "Down,Control+n,Control+j";
   sidebar-mode: true;
   case-sensitive: false;
