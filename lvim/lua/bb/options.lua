@@ -2,6 +2,8 @@ local M = {}
 
 M.setup = function()
   vim.opt.showtabline = 0
+  vim.o.ttimeoutlen = 0
+  vim.o.timeoutlen = 300
 
   -- Enable searching as you type, rather than waiting till you press enter.
   -- set incsearch
