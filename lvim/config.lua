@@ -25,16 +25,16 @@ lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 -- Adds s/tab keybinds for cmp-cmdline, : and /
-lvim.builtin.cmp.mapping["<Tab>"]["c"] = lvim.builtin.cmp.mapping["<Tab>"]["i"]
-lvim.builtin.cmp.mapping["<S-Tab>"]["c"] = lvim.builtin.cmp.mapping["<S-Tab>"]["i"]
-lvim.builtin.cmp.mapping["<Down>"]["c"] = lvim.builtin.cmp.mapping["<Tab>"]["i"]
-lvim.builtin.cmp.mapping["<Up>"]["c"] = lvim.builtin.cmp.mapping["<S-Tab>"]["i"]
-lvim.builtin.cmp.mapping["<C-y>"]["c"] = lvim.builtin.cmp.mapping["<C-y>"]["i"]
-lvim.keys.command_mode["<C-Space>"] = lvim.builtin.cmp.mapping["<C-Space>"]
-lvim.keys.command_mode["<C-Space>"] = lvim.builtin.cmp.mapping["<C-Space>"]
-lvim.keys.command_mode["<C-j>"] = lvim.builtin.cmp.mapping["<C-j>"]
-lvim.keys.command_mode["<C-k>"] = lvim.builtin.cmp.mapping["<C-k>"]
-lvim.keys.insert_mode["<A-s>"] = lvim.builtin.cmp.mapping["<C-k>"]
+-- lvim.builtin.cmp.mapping["<Tab>"]["c"] = lvim.builtin.cmp.mapping["<Tab>"]["i"]
+-- lvim.builtin.cmp.mapping["<S-Tab>"]["c"] = lvim.builtin.cmp.mapping["<S-Tab>"]["i"]
+-- lvim.builtin.cmp.mapping["<Down>"]["c"] = lvim.builtin.cmp.mapping["<Tab>"]["i"]
+-- lvim.builtin.cmp.mapping["<Up>"]["c"] = lvim.builtin.cmp.mapping["<S-Tab>"]["i"]
+-- lvim.builtin.cmp.mapping["<C-y>"]["c"] = lvim.builtin.cmp.mapping["<C-y>"]["i"]
+-- lvim.keys.command_mode["<C-Space>"] = lvim.builtin.cmp.mapping["<C-Space>"]
+-- lvim.keys.command_mode["<C-Space>"] = lvim.builtin.cmp.mapping["<C-Space>"]
+-- lvim.keys.command_mode["<C-j>"] = lvim.builtin.cmp.mapping["<C-j>"]
+-- lvim.keys.command_mode["<C-k>"] = lvim.builtin.cmp.mapping["<C-k>"]
+-- lvim.keys.insert_mode["<A-s>"] = lvim.builtin.cmp.mapping["<C-k>"]
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -464,22 +464,22 @@ lvim.plugins = {
     end,
   },
 
-  {
-    "hrsh7th/cmp-cmdline",
-    event = "BufRead",
-    config = function()
-      require 'cmp'.setup.cmdline(':', {
-        sources = {
-          { name = 'cmdline' }
-        }
-      })
-      require 'cmp'.setup.cmdline('/', {
-        sources = {
-          { name = 'buffer' }
-        }
-      })
-    end
-  },
+  -- {
+  --   "hrsh7th/cmp-cmdline",
+  --   event = "BufRead",
+  --   config = function()
+  --     require 'cmp'.setup.cmdline(':', {
+  --       sources = {
+  --         { name = 'cmdline' }
+  --       }
+  --     })
+  --     require 'cmp'.setup.cmdline('/', {
+  --       sources = {
+  --         { name = 'buffer' }
+  --       }
+  --     })
+  --   end
+  -- },
   {
     "simrat39/symbols-outline.nvim",
     cmd = "SymbolsOutline",
