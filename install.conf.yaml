@@ -74,7 +74,7 @@
 
     ~/.tmux.conf:
 
-    ~/.config/nvim:
+    # ~/.config/nvim:
       
     ~/.config/lvim:
 
@@ -102,9 +102,12 @@
     #   path: moc/*
 
 - create:
-    - ~/projects
+    - ~/dev
     - ~/.vim/undo
 
 - shell:
     - command: fish ./fish/abbr.fish
       description: Read fish abbrs from fish/abbr.fish
+    - command: sudo cp keyd/default.conf /etc/keyd/default.conf
+      description: key maps config for keyd
+      if: "[ (uname) = Darwin ]"

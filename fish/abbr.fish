@@ -2,15 +2,16 @@ abbr -a -U -- :ammend 'git commit --amend'
 abbr -a -U -- :b 'cd -'
 abbr -a -U -- :bm 'cd (cat  ~/.bookmarks | fzf )'
 abbr -a -U -- :bma 'pwd >> ~/.bookmarks'
-abbr -a -U -- :cids 'bat ~/qlair/qlair-reporting/.misc/customer_ids.txt | fzf'
 abbr -a -U -- :cwd 'pwd | pbcopy'
 abbr -a -U -- :dev 'export AWS_PROFILE=dev_qlair'
+abbr -a -U -- :euprod 'export AWS_PROFILE=prod_qlair_eu'
 abbr -a -U -- :g lazygit
-abbr -a -U -- :ids 'bat ~/qlair/qlair-reporting/.misc/facility_ids.txt | fzf'
 abbr -a -U -- :k kitty
 abbr -a -U -- :ke 'kitty +edit-config'
 abbr -a -U -- :ld 'l --only-dirs'
 abbr -a -U -- :ln 'l -s newest'
+abbr -a -U -- :loc 'export AWS_PROFILE=local'
+abbr -a -U -- :path 'export PYTHONPATH=/home/bbonsign/qlair/infra.git/develop/Lambda/DatabaseLayers/python/lib/python3.8/site-packages'
 abbr -a -U -- :po poetry
 abbr -a -U -- :prod 'export AWS_PROFILE=prod_qlair'
 abbr -a -U -- :pwd 'pwd | pb'
@@ -18,19 +19,29 @@ abbr -a -U -- :py python
 abbr -a -U -- :q clear
 abbr -a -U -- :ql 'cd ~/qlair'
 abbr -a -U -- :rf 'pnpm run format'
-abbr -a -U -- :sb 'nvim ~/Dropbox/qlair/scrumbot'
+abbr -a -U -- :sand 'export AWS_PROFILE=sandbox'
+abbr -a -U -- :sb 'lvim ~/.scrumnote'
+abbr -a -U -- :si 'pacman -Si'
 abbr -a -U -- :t 'tmux attach -t'
+abbr -a -U -- :vrf 'pipenv run format'
+abbr -a -U -- :vrl 'pipenv run local'
+abbr -a -U -- :vrt 'pipenv run tests'
+abbr -a -U -- :vs 'pipenv shell'
 abbr -a -U -- :xt emacsclient\ -t\ -a\ \'\'\ --
+abbr -a -U -- b bat
 abbr -a -U -- cleancontainers 'docker rm -v (docker ps -a -q -f status=exited)'
 abbr -a -U -- cleanimages 'docker rmi (docker images -q -f dangling=true)'
 abbr -a -U -- covlet 'pandoc --pdf-engine=xelatex --template=moderncv.tex source/letter.md -o output/coverletter-(git rev-parse --abbrev-ref HEAD).pdf'
 abbr -a -U -- current pwd\ \|\ awk\ -F\ \'/\'\ \ \'\{print\ \$NF\}\'
+abbr -a -U -- d 'python dev.py'
 abbr -a -U -- dj django-admin
-abbr -a -U -- e nvim
+abbr -a -U -- e lvim
+abbr -a -U -- g git
 abbr -a -U -- ga 'git add -A'
 abbr -a -U -- gau 'git add -u'
 abbr -a -U -- gb 'git branch'
 abbr -a -U -- gba 'git branch -a'
+abbr -a -U -- gbm 'git branch --merged'
 abbr -a -U -- gbsu 'git branch --set-upstream-to origin/(git rev-parse --abbrev-ref HEAD)'
 abbr -a -U -- gc 'git commit'
 abbr -a -U -- gcb 'git clone-bare'
@@ -43,6 +54,9 @@ abbr -a -U -- gl 'git log --oneline -n 40'
 abbr -a -U -- gll 'git log --graph --oneline --abbrev-commit --decorate --all'
 abbr -a -U -- glog 'git log --oneline'
 abbr -a -U -- gnew 'git checkout -b'
+abbr -a -U -- gpr 'git pull --rebase'
+abbr -a -U -- gpsu 'git push --set-upstream origin'
+abbr -a -U -- grpo 'git remote prune origin'
 abbr -a -U -- gsh 'git stash'
 abbr -a -U -- gsl 'git stash list'
 abbr -a -U -- gst 'git status'
@@ -61,12 +75,12 @@ abbr -a -U -- moon 'curl wttr.in/moon'
 abbr -a -U -- mux tmuxinator
 abbr -a -U -- myip 'curl ifconfig.co'
 abbr -a -U -- n nnn
+abbr -a -U -- nd nextd
+abbr -a -U -- pd prevd
 abbr -a -U -- pip 'python -m pip'
 abbr -a -U -- pipi 'python -m pip install'
-abbr -a -U -- psh 'pipenv shell'
 abbr -a -U -- pyhton python
 abbr -a -U -- pyhttp 'python -m http.server'
-abbr -a -U -- r 'weather curl wttr.in'
 abbr -a -U -- rbmaster 'git rebase master'
 abbr -a -U -- ripy ipython\ --ipython-dir\ .ipython/\ --profile=\(pwd\ \|\ awk\ -F\ \"/\"\ \'\{print\ \$NF\}\'\)
 abbr -a -U -- rmimages 'docker rmi (docker images -q -f dangling=true)'

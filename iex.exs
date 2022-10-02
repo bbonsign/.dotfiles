@@ -1,6 +1,8 @@
 alias IO.ANSI
 
-IO.puts "#{ANSI.blue}  #{ANSI.magenta}   Welcome to Elixir   #{ANSI.blue}  #{ANSI.reset}\n"
+IO.puts(
+  "#{ANSI.blue()}  #{ANSI.magenta()}   Welcome to Elixir   #{ANSI.blue()}  #{ANSI.reset()}\n"
+)
 
 # Editor to open code in using `open` function
 System.put_env("ELIXIR_EDITOR", "kitty --execute nvim __FILE__:__LINE__ &")
@@ -12,26 +14,27 @@ IEx.configure(
       atom: :light_cyan,
       string: :white,
       boolean: :red,
-      nil: [:magenta, :bright],
+      nil: [:magenta, :bright]
     ],
     ls_directory: :cyan,
     ls_device: :yellow,
     doc_code: :green,
     doc_inline_code: :magenta,
     doc_headings: [:cyan, :underline],
-    doc_title: [:yellow, :bright, :underline],
+    doc_title: [:yellow, :bright, :underline]
   ],
   default_prompt:
-    "#{ANSI.green}%prefix#{ANSI.reset}" <>
-    "[#{ANSI.magenta}#{ANSI.reset}" <>
-    "#{ANSI.cyan}%counter#{ANSI.reset}]",
+    "#{ANSI.green()}%prefix#{ANSI.reset()}" <>
+      "[#{ANSI.magenta()}#{ANSI.reset()}" <>
+      "#{ANSI.cyan()}%counter#{ANSI.reset()}]",
   alive_prompt:
-    "#{ANSI.green}%prefix#{ANSI.reset}" <>
-    "(#{ANSI.yellow}%node#{ANSI.reset}) " <>
-    "[#{ANSI.magenta}#{ANSI.reset}" <>
-    "#{ANSI.cyan}%counter#{ANSI.reset}]",
-  history_size: 50,
+    "#{ANSI.green()}%prefix#{ANSI.reset()}" <>
+      "(#{ANSI.yellow()}%node#{ANSI.reset()}) " <>
+      "[#{ANSI.magenta()}#{ANSI.reset()}" <>
+      "#{ANSI.cyan()}%counter#{ANSI.reset()}]",
+  history_size: 80,
   inspect: [
+    charlists: :as_lists,
     pretty: true,
     limit: 30,
     width: 80
@@ -39,8 +42,22 @@ IEx.configure(
   width: 80
 )
 
-dwarves = ["Fili","Kili", "Oin", "Gloin", "Thorin", "Dwalin", "Balin", "Bifur",
-           "Bofur", "Bombur", "Dori", "Nori", "Ori"]
+dwarves = [
+  "Fili",
+  "Kili",
+  "Oin",
+  "Gloin",
+  "Thorin",
+  "Dwalin",
+  "Balin",
+  "Bifur",
+  "Bofur",
+  "Bombur",
+  "Dori",
+  "Nori",
+  "Ori"
+]
+
 fellowship = %{
   hobbits: ["Frodo", "Samwise", "Merry", "Pippin"],
   humans: ["Aragorn", "Boromir"],
@@ -48,3 +65,4 @@ fellowship = %{
   elves: ["Legolas"],
   wizards: ["Gandolf"]
 }
+
