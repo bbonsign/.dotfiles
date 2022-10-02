@@ -456,13 +456,13 @@ lvim.plugins = {
     end,
   },
 
-  {
-    "monaqa/dial.nvim",
-    event = "BufRead",
-    config = function()
-      require("bb.dial").config()
-    end,
-  },
+  -- {
+  --   "monaqa/dial.nvim",
+  --   event = "BufRead",
+  --   config = function()
+  --     require("bb.dial").config()
+  --   end,
+  -- },
 
   -- {
   --   "hrsh7th/cmp-cmdline",
