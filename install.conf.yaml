@@ -24,6 +24,10 @@
       if: "[ (uname) = Linux ]"
       path: bin
 
+    ~/.local/bin/git-clone-bare:
+      if: "[ (uname) = Linux ]"
+      path: bin/git-clone-bare
+
     ~/.iex.exs:
 
     ~/.config/starship.toml: starship.toml
