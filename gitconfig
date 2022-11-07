@@ -14,6 +14,7 @@
 [alias]
 	last = log -1 HEAD
 	st = status
+	ca = commit --amend
 	unstage = reset HEAD --
 	clone-bare = "git-clone-bare"
 
