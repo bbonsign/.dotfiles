@@ -1,10 +1,10 @@
 #!/bin/bash
-ACTION=$( echo "lock
+ACTION=$(echo "lock
 shutdown
 reboot
 logout
 suspend
-hibernate" | wofi -dmenu -p "Select desired action:")
+hibernate" | wofi --show dmenu -p "Select desired action:")
 
 case "$ACTION" in
     lock)
