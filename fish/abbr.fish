@@ -2,6 +2,7 @@ abbr -a -U -- :ammend 'git commit --amend'
 abbr -a -U -- :b 'cd -'
 abbr -a -U -- :bm 'cd (cat  ~/.bookmarks | fzf )'
 abbr -a -U -- :bma 'pwd >> ~/.bookmarks'
+abbr -a -U -- :cm 'cmatrix -absCcyan'
 abbr -a -U -- :cwd 'pwd | pbcopy'
 abbr -a -U -- :dev 'export AWS_PROFILE=dev_qlair'
 abbr -a -U -- :euprod 'export AWS_PROFILE=prod_qlair_eu'
@@ -25,6 +26,8 @@ abbr -a -U -- :rf 'pnpm run format'
 abbr -a -U -- :sand 'export AWS_PROFILE=sandbox'
 abbr -a -U -- :sb 'lvim ~/.scrumnote'
 abbr -a -U -- :si 'pacman -Si'
+abbr -a -U -- :sw swaymsg
+abbr -a -U -- :syu 'sudo pacman -Syu'
 abbr -a -U -- :t 'tmux attach -t'
 abbr -a -U -- :v pipenv
 abbr -a -U -- :vr 'pipenv run'
@@ -91,6 +94,7 @@ abbr -a -U -- mux tmuxinator
 abbr -a -U -- myip 'curl ifconfig.co'
 abbr -a -U -- n nnn
 abbr -a -U -- nd nextd
+abbr -a -U -- nf neofetch
 abbr -a -U -- pc pre-commit
 abbr -a -U -- pca 'pre-commit run --all-files'
 abbr -a -U -- pd prevd

@@ -1,6 +1,6 @@
 starship init fish | source
 
-set fish_greeting (set_color blue) "🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟" 
+# set fish_greeting (set_color blue) "🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟" 
 # set fish_greeting
 
 if command -v fzf_configure_bindings 1>/dev/null 2>&1
@@ -43,7 +43,7 @@ set -xg VISUAL lvim
 bind \cx edit_command_buffer
 
 # open man pages in neovim
-set -xg MANPAGER 'nvim +Man!'
+set -xg MANPAGER 'lvim +Man!'
 
 set fish_cursor_visual block
 if command -sq gls
