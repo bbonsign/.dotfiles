@@ -56,6 +56,18 @@
     ~/.config/i3:
       if: "[ (uname) = Linux ]"
 
+    ~/.config/sway:
+      if: "[ (uname) = Linux ]"
+
+    ~/.config/swaylock:
+      if: "[ (uname) = Linux ]"
+
+    ~/.config/hypr:
+      if: "[ (uname) = Linux ]"
+
+    ~/.config/waybar:
+      if: "[ (uname) = Linux ]"
+
     ~/.config/nnn:
 
     ~/.config/i3status:

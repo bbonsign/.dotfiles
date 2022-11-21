@@ -1,0 +1,11 @@
+image=~/Pictures/Wallpapers/Austria_by_Rutger_Heijmerikx.jpg
+show-failed-attempts
+indicator-radius=80
+indicator-thickness=5
+ring-color=285577
+key-hl-color=2cb0b9
+text-color=455a64
+inside-ver-color=024f04
+line-color=00000000
+inside-color=00000060
+separator-color=00000000

@@ -1,0 +1,49 @@
+set $exec_swaymsg          exec echo "" | wofi --hide-scroll --height 1 --dmenu -p "swaymsg:" | xargs -r swaymsg 
+set $exec_rename_workspace exec echo "" | wofi --hide-scroll --height 1 --dmenu -p "New name for this workspace" | xargs -r swaymsg rename workspace to
+set $exec_mark_window      exec echo "" | wofi --hide-scroll --height 1 --dmenu -p "Mark window" | xargs -r swaymsg mark 
+set $exec_goto_mark        exec echo "" | wofi --hide-scroll --height 1 --dmenu -p "Goto mark" | xargs -Imrk -r swaymsg [con_mark=mrk] focus
+
+bindsym $mod+colon       $exec_swaymsg
+bindsym $mod+n           $exec_rename_workspace
+bindsym $mod+m           $exec_mark_window
+bindsym $mod+apostrophe  $exec_goto_mark
+
+set $mode_switch  "(0)system | (.)reload | (g)aps | (l)ayout | (n)otifications | (r)esize | (s)cratchpads | (t)oggle"
+mode $mode_switch {
+    bindsym space        exec $menu; mode $mode_default
+    bindsym Ctrl+Return  split toggle, exec kitty, mode $mode_default
+    bindsym $mod+Return  split toggle, exec kitty
+    bindsym bracketright workspace next
+    bindsym bracketleft  workspace prev
+    bindsym 1 workspace 1, mode $mode_default
+    bindsym 2 workspace 2, mode $mode_default
+    bindsym 3 workspace 3, mode $mode_default
+    bindsym 4 workspace 4, mode $mode_default
+    bindsym 5 workspace 5, mode $mode_default
+    bindsym 6 workspace 6, mode $mode_default
+    bindsym 7 workspace 7, mode $mode_default
+    bindsym 8 workspace 8, mode $mode_default
+    bindsym 9 workspace 9, mode $mode_default
+
+    bindsym period     reload
+    bindsym Shift+r    reload
+    bindsym colon      $exec_swaymsg
+    bindsym apostrophe $exec_goto_mark
+    bindsym 0          mode $mode_system
+    bindsym f          floating toggle, mode $mode_default
+    bindsym g          mode $mode_gaps
+    bindsym l          mode $mode_layout
+    bindsym m          mode $exec_mark_window
+    # bindsym n          mode "$notifications"
+    bindsym r          mode $mode_resize
+    # bindsym s          mode "$scratchpads"
+    bindsym t          mode $mode_toggle
+
+    bindsym Escape mode $mode_default
+    bindsym Return mode $mode_default
+}
+
+bindsym $mod+space mode $mode_switch
+
+
+# vi: ft=config

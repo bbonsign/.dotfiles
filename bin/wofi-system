@@ -4,26 +4,26 @@ shutdown
 reboot
 logout
 suspend
-hibernate" | rofi -dmenu -p "Select desired action:")
+hibernate" | wofi -dmenu -p "Select desired action:")
 
 case "$ACTION" in
     lock)
-        i3exit lock
+        swaylock
         ;;
     logout)
-        i3-msg exit
+        swaymsg exit
         ;;
     suspend)
-        i3exit suspend
+        systemctl suspend
         ;;
     hibernate)
-        i3lock hibernate
+        systemctl hibernate
         ;;
     reboot)
-        i3exit reboot
+        systemctl reboot
         ;;
     shutdown)
-        i3exit shutdown
+        systemctl poweroff
         ;;
     *)
 esac
