@@ -126,4 +126,3 @@
       description: Read fish abbrs from fish/abbr.fish
     - command: sudo cp keyd/default.conf /etc/keyd/default.conf
       description: key maps config for keyd
-      if: "[ (uname) = Darwin ]"

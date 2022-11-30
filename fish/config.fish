@@ -1,21 +1,26 @@
 starship init fish | source
-
-# set fish_greeting (set_color blue) "🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟🐟" 
-# set fish_greeting
-
-if command -v fzf_configure_bindings 1>/dev/null 2>&1
-    fzf_configure_bindings --variables=
-    fzf_configure_bindings --variables=\e\cv
-    fzf_configure_bindings --variables=\e\cv
-end
-
 source ~/.config/nnn/nnn_env_vars
 source ~/.config/fish/colors/fish_tokyonight_storm.fish
 
-set -xg PAGER 'bat --plain'
+
+fzf_configure_bindings --variables=\e\cv --git_log=\e\cg &>/dev/null
+
+set fish_cursor_visual block
 
 # bgcolor of the current tab completion selection
 set fish_color_search_match --background=4b719c
+
+
+set -xg PAGER 'bat --plain'
+set -xg EDITOR lvim
+set -xg VISUAL lvim
+# CTRL-x opens EDITOR for editing long commands (C-x C-x in tmux)
+# Note: Alt-e and Alt-v also open EDITOR for editing commands
+bind \cx edit_command_buffer
+
+# open man pages in neovim
+set -xg MANPAGER 'lvim +Man!'
+
 
 set -xg FZF_DEFAULT_COMMAND "fd --color always --no-ignore --follow --ignore-file '$HOME/.config/fd/ignore'"
 set -xg FZF_CTRL_T_COMMAND "$FZF_DEFAULT_COMMAND"
@@ -35,54 +40,11 @@ bind \e\cc $FZF_ALT_C_COMMAND
 # set -xg FZF_PREVIEW_DIR_CMD "tree -C"
 # set -xg FZF_ENABLE_OPEN_PREVIEW 1
 
-# Set nvim to default editor
-# CTRL-x opens EDITOR for editing long commands (C-x C-x in tmux)
-# Note: Alt-e and Alt-v also open EDITOR for editing commands
-set -xg EDITOR lvim
-set -xg VISUAL lvim
-bind \cx edit_command_buffer
 
-# open man pages in neovim
-set -xg MANPAGER 'lvim +Man!'
-
-set fish_cursor_visual block
-if command -sq gls
-    function ls --description "ls command of GNU coreutils"
-        set -l param --color=auto
-        if isatty 1
-            set param $param --indicator-style=classify --group-directories-first
-        end
-        command gls -h $param $argv
-    end
-
-    if not set -q LS_COLORS
-        if command -sq gdircolors
-            set -l colorfile
-            for file in ~/.dir_colors ~/.dircolors
-                if test -f $file
-                    set colorfile $file
-                    break
-                end
-            end
-            set -gx LS_COLORS (gdircolors -c $colorfile | string split ' ')[3]
-            if string match -qr '^([\'"]).*\1$' -- $LS_COLORS
-                set LS_COLORS (string match -r '^.(.*).$' $LS_COLORS)[2]
-            end
-        end
-    end
-end
-
-
-# fnm - fast node manager
-# set PATH /home/bbonsign/.fnm $PATH
-# fnm env --multi | source
 
 if command -v pyenv 1>/dev/null 2>&1
     pyenv init - | source
 end
-
-# Created by `userpath` on 2021-02-23 17:48:18
-# set PATH $PATH /Users/bbonsign/.local/bin
 
 set os (uname)
 if test "$os" = "Linux"
@@ -102,3 +64,37 @@ eval (env _PIPENV_COMPLETE=fish_source pipenv)
 
 set -gx PNPM_HOME "/Users/bbonsign/Library/pnpm"
 set -gx PATH "$PNPM_HOME" $PATH
+
+
+
+ set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
+ # if status --is-interactive
+ #     keychain --eval --quiet --quick qlair_bitbucket | source
+ # end
+
+
+# if command -sq gls
+#     function ls --description "ls command of GNU coreutils"
+#         set -l param --color=auto
+#         if isatty 1
+#             set param $param --indicator-style=classify --group-directories-first
+#         end
+#         command gls -h $param $argv
+#     end
+
+#     if not set -q LS_COLORS
+#         if command -sq gdircolors
+#             set -l colorfile
+#             for file in ~/.dir_colors ~/.dircolors
+#                 if test -f $file
+#                     set colorfile $file
+#                     break
+#                 end
+#             end
+#             set -gx LS_COLORS (gdircolors -c $colorfile | string split ' ')[3]
+#             if string match -qr '^([\'"]).*\1$' -- $LS_COLORS
+#                 set LS_COLORS (string match -r '^.(.*).$' $LS_COLORS)[2]
+#             end
+#         end
+#     end
+# end
