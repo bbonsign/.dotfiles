@@ -5,7 +5,7 @@ IO.puts(
 )
 
 # Editor to open code in using `open` function
-System.put_env("ELIXIR_EDITOR", "kitty --execute nvim __FILE__:__LINE__ &")
+System.put_env("ELIXIR_EDITOR", "kitty --execute #{System.fetch_env!("EDITOR")} __FILE__ &")
 
 IEx.configure(
   colors: [
