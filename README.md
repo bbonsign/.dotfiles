@@ -80,3 +80,10 @@ uses to print markdown in the terminal nicely
 - for pacman color output, uncomment `Color` in `/etc/pacman.conf`
 - pulseaudio got bluetooth headphones working
 - Make a list of programs to install
+
+### Libinput
+
+To get libinput working after startup, run
+```sh
+libinput-gestures-setup stop desktop autostart start
+```

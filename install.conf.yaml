@@ -22,11 +22,11 @@
 
     ~/.local/bin:
       if: "[ (uname) = Linux ]"
-      path: bin
+      path: bin/*
 
-    ~/.local/bin/git-clone-bare:
-      if: "[ (uname) = Linux ]"
-      path: bin/git-clone-bare
+    # ~/.local/bin/git-clone-bare:
+    #   if: "[ (uname) = Linux ]"
+    #   path: bin/git-clone-bare
 
     ~/.iex.exs:
 

@@ -1,4 +1,4 @@
-#!/usr/bin/env sh
+#!/usr/bin/env bash
 
 # progress-notify - Send audio and brightness notifications for dunst
 
@@ -15,56 +15,53 @@
 ### Brightness notifications ###
 #   xbacklight -inc 5  && xbacklight -get | notify brightness
 #   xbacklight -dec 5  && xbacklight -get | notify brightness
-
+export DBUS_SESSION_BUS_ADDRESS="unix:path=/run/user/1000/bus"
+export DISPLAY=:0
 notifyMuted() {
         volume="$1"
-        dunstify -h string:x-canonical-private-synchronous:audio "Muted" -h int:value:"$volume" -t 1500 --icon audio-volume-muted
+        dunstify -h string:x-canonical-private-synchronous:audio "Muted:  " -h int:value:"$volume" -t 1500 --icon audio-volume-muted
 }
 
 notifyAudio() {
-        volume="$1"
-        ponymix is-muted && notifyMuted "$volume" && return
+        volume=$(get_vol)
+        # volume="$1"
+        is_muted && notifyMuted "$volume" && return
 
-        if [ $volume -eq 0 ]; then
+        if [ "$volume" -eq 0 ]; then
                 notifyMuted "$volume"
-        elif [ $volume -le 30 ]; then
-                dunstify -h string:x-canonical-private-synchronous:audio "Volume: " -h int:value:"$volume" -t 1500 --icon audio-volume-low
-        elif [ $volume -le 70 ]; then
-                dunstify -h string:x-canonical-private-synchronous:audio "Volume: " -h int:value:"$volume" -t 1500 --icon audio-volume-medium
+        elif [ "$volume" -le 30 ]; then
+                dunstify -h string:x-canonical-private-synchronous:audio "Volume:  $volume" -h int:value:"$volume" -t 1500 --icon audio-volume-low
+        elif [ "$volume" -le 70 ]; then
+                dunstify -h string:x-canonical-private-synchronous:audio "Volume:  $volume" -h int:value:"$volume" -t 1500 --icon audio-volume-medium
         else
-                dunstify -h string:x-canonical-private-synchronous:audio "Volume: " -h int:value:"$volume" -t 1500 --icon audio-volume-high
+                dunstify -h string:x-canonical-private-synchronous:audio "Volume:  $volume" -h int:value:"$volume" -t 1500 --icon audio-volume-high
         fi
 }
 
 notifyBrightness() {
         brightness="$1"
-        if [ $brightness -eq 0 ]; then
+        if [ "$brightness" -eq 0 ]; then
                 dunstify -h string:x-canonical-private-synchronous:brightness "  Brightness: " -h int:value:"$brightness" -t 1500
-       elif [ $brightness -le 30 ]; then
+        elif [ "$brightness" -le 30 ]; then
                 dunstify -h string:x-canonical-private-synchronous:brightness "  Brightness: " -h int:value:"$brightness" -t 1500
-        elif [ $brightness -le 70 ]; then
+        elif [ "$brightness" -le 70 ]; then
                 dunstify -h string:x-canonical-private-synchronous:brightness "  Brightness: " -h int:value:"$brightness" -t 1500
         else
                 dunstify -h string:x-canonical-private-synchronous:brightness "  Brightness: " -h int:value:"$brightness" -t 1500
         fi
 }
 
-input=`cat /dev/stdin`
+# input=$(cat /dev/stdin)
 
 case "$1" in
-        muted)
-                volume=`ponymix get-volume`
-                if [ "$input" -eq 0 ]
-                then
-                        notifyAudio "$volume"
-                else
-                        notifyMuted "$volume"
-                fi
-                ;;
+        # muted)
+        #         notifyAudio "$volume"
+        #         ;;
         audio)
-                notifyAudio "$input"
+                notifyAudio
                 ;;
         brightness)
+                input="$2"
                 notifyBrightness "$input"
                 ;;
 

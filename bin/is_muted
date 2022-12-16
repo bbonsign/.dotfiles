@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+YES_OR_NO=$(pacmd list-sinks | grep -A 15 '* index' | awk '/muted:/{ print $2 }')
+
+test "$YES_OR_NO" = yes

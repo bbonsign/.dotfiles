@@ -9,9 +9,9 @@ set ACTION (dunstify --action="time,time" --action="date,date" --action="datetim
 
 switch $ACTION
   case "time"
-    echo $TIME | xclip -sel clip
+    echo -n $TIME | wl-copy
   case "date"
-    echo $DATE | xclip -sel clip
+    echo -n $DATE | wl-copy
   case "datetime"
-    echo (date +'%A %d, %B, %l:%M %p  %Z') | xclip -sel clip
+    echo -n (date +'%A %d, %B, %l:%M %p  %Z') | wl-copy
 end

@@ -3,7 +3,6 @@ source ~/.config/nnn/nnn_env_vars
 source ~/.config/fish/colors/fish_tokyonight_storm.fish
 
 
-fzf_configure_bindings --variables=\e\cv --git_log=\e\cg &>/dev/null
 function fish_user_key_bindings
     # Execute this once per mode that emacs bindings should be used in
     fish_default_key_bindings -M insert
@@ -13,7 +12,10 @@ function fish_user_key_bindings
     # resetting all bindings.
     # The argument specifies the initial mode (insert, "default" or visual).
     fish_vi_key_bindings --no-erase insert
+    fzf_key_bindings --variables=\e\cv --git_log=\e\cg &>/dev/null
+    fzf_configure_bindings --variables=\e\cv --git_log=\e\cg &>/dev/null
 end
+
 # Emulates vim's cursor shape behavior
 # Set the normal and visual mode cursors to a block
 set fish_cursor_default block
