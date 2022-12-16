@@ -66,3 +66,12 @@ fellowship = %{
   wizards: ["Gandolf"]
 }
 
+defmodule MyHelpers do
+  def cl do
+    IEx.Helpers.clear()
+  end
+end
+
+
+import MyHelpers
+require Integer
