@@ -70,6 +70,9 @@ defmodule MyHelpers do
   def cl do
     IEx.Helpers.clear()
   end
+  def rc do
+    IEx.Helpers.recompile()
+  end
 end
 
 
