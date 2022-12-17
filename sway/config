@@ -144,6 +144,8 @@ include {
 }
 ### Programs to execute
 exec_always dunst
+# Notifies on volume changes
+exec vol_subscribe
 exec gammastep
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"

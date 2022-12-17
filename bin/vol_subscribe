@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+OLD_VOL=0
+OLD_MUTE_STATUS=$(pacmd list-sinks | grep -A 15 '* index' | awk '/muted:/{ print $2 }')
+pactl subscribe | grep --line-buffered "sink" |
+while read -r; do
+	VOL=$(get_vol)
+  MUTE_STATUS=$(pacmd list-sinks | grep -A 15 '* index' | awk '/muted:/{ print $2 }')
+	if [[ $VOL != "$OLD_VOL" ]] || [[ $MUTE_STATUS != "$OLD_MUTE_STATUS"  ]]; then
+		notify audio
+		OLD_VOL=$VOL
+		OLD_MUTE_STATUS=$MUTE_STATUS
+	fi
+done
