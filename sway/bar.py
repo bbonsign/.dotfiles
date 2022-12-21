@@ -33,7 +33,7 @@ def refresh():
         else " "
     )
     battery_status = " " if sensors_battery().power_plugged else "↯"
-    date = datetime.now().strftime("%h %d %A %H:%M")
+    date = datetime.now().strftime("%h %d %A %I:%M")
     utc_date = str(datetime.utcnow())[:16]
     write(
         f"🖴 {disk} ‖ {battery_status}{battery} {battery_percent}% ‖ 🌍 {utc_date} ‖  {date}  "

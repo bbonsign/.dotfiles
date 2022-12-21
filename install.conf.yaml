@@ -94,6 +94,12 @@
       
     ~/.config/lvim:
 
+    "~/.config/pgcli/config":
+      path: pgcli/config
+
+    "~/.config/litecli/config":
+      path: litecli/config
+
     "~/.ipython/profile_default/ipython_config.py":
       path: ipython/ipython_config.py
 
