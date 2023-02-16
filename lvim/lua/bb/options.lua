@@ -1,14 +1,17 @@
 local M = {}
 
 M.setup = function()
+  vim.wo.number = false
   vim.opt.showtabline = 0
   vim.o.ttimeoutlen = 0
   vim.o.timeoutlen = 300
+  -- Disable cursor movement wrapping overline
+  vim.o.whichwrap = "b,s"
 
   -- Enable searching as you type, rather than waiting till you press enter.
   -- set incsearch
   -- Alternative found here <https://github.com/romainl/vim-cool/issues/9>
-  -- which turns of serach highlight after non-search keys (i.e. not *,n,N,/,?)
+  -- which turns of search highlight after non-search keys (i.e. not *,n,N,/,?)
 
   vim.cmd [[
     noremap <expr> <Plug>(StopHL) execute('nohlsearch')[-1]

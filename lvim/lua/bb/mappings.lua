@@ -9,8 +9,10 @@ M.setup = function()
     return vim.api.nvim_set_keymap(mode, keys, command, { noremap = true, silent = true })
   end
 
-  map("n", "gf", "<cmd>HopPattern<CR>")
+  map("n", "-", "<cmd>edit .<CR>")
+
   map("n", "F", "<cmd>HopPattern<CR>")
+  map("n", "S", "<cmd>HopWordCurrentLineAC<CR>")
 
   map("n", "<CR>", ";")
   map("n", "<BS>", ",")
@@ -25,6 +27,9 @@ M.setup = function()
   map("v", "g:", "q:")
   map("n", "q:", "<nop>")
   map("v", "q:", "<nop>")
+
+  -- avoid accidental number increment
+  map("n", "<C-x>", "<nop>")
 
   -- Mostly to avoid annoying message about how to exit
   map("n", "<C-c>", "<nop>")
@@ -42,7 +47,7 @@ M.setup = function()
   -- vnoremap < <gv
 
   -- Use Ctrl-s to increment number at cursor since we remap C-a below
-  map("n", "<C-s>", "<C-a>")
+  -- map("n", "<C-s>", "<C-a>")
 
   -- Let's write some λ's!!!
   map("i", [[<C-\>]], "λ")
@@ -54,7 +59,7 @@ M.setup = function()
   map("i", "<C-e>", "<Esc>A")
   map("i", "<C-a>", "<Esc>I")
   map("n", "<C-e>", "$")
-  map("n", "<C-a>", "^")
+      map("n", "<C-a>", "^")
   map("v", "<C-e>", "g_")
   map("v", "<C-a>", "^")
   map("c", "<C-e>", "<End>")
@@ -120,8 +125,8 @@ M.setup = function()
   -- vnoremap <silent> <C-_> :Commentary<CR>
 
   -- Use the blackhole register "_ by deiault for x
-  -- nnoremap x "_x
-  -- vnoremap x "_x
+  map("n", "x", '"_x')
+  map("v", "x", '"_x')
   -- nnoremap d "_d
   -- vnoremap d --_d
   -- nnoremap D "_D
