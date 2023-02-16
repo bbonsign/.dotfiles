@@ -23,6 +23,47 @@ gaps {
   outer 2
 }
 
+workspace_auto_back_and_forth yes
+
+### Variables
+set {
+  # Logo key. Use Mod1 for Alt.
+  $mod Mod4
+
+  $left  h
+  $down  j
+  $up    k
+  $right l
+
+  # preferred terminal emulator
+  $term kitty
+  # $term ./AppImages/WezTerm-20221119-145034-49b9839f-Ubuntu18.04_cb8a2b46035e354a4da4f63918f03d19.AppImage
+
+  # Application launcher
+  # Note: pass the final command to swaymsg so that the resulting window can be opened
+  # on the original workspace that the command was run on.
+  $run_menu rofi -show drun --sorting-method fzf | xargs swaymsg exec --
+  $window_chooser rofi -show window --sorting-method fzf
+
+
+  $ws_browser "1: "
+  $ws_term    "2: "
+  $ws_work    "3: "
+
+  # For mofal keybinds
+  $mode_default "default"
+
+  # Output names
+  $laptop_output    eDP-1
+  $secondary_output DP-1
+  $home_monitor "Dell Inc. DELL P2419H BTZ7Q33"
+  $work_monitor "Unknown HP E243 CNK8491GW1" 
+
+  $glacier_wallpaper   $HOME/.dotfiles/wallpapers/samuel-ferrara-uOi3lg8fGl4-unsplash.jpg
+  $lightning_wallpaper $HOME/Pictures/Wallpapers/Sunset-Of-The-Gods_by_Isaac-Sloan.jpg
+}
+
+
 ### Colors:
 # class                 border  backgr. text    indicator child_border
 client.focused          #2ac3de #285577 #ffffff #2e9ef4   #2ac3de 
@@ -33,36 +74,42 @@ client.placeholder      #000000 #0c0c0c #dddddd #000000   #0c0c0c
 client.background       #dddddd
 
 
-### Variables
-# Logo key. Use Mod1 for Alt.
-set {
-  $mod Mod4
-
-  $left  h
-  $down  j
-  $up    k
-  $right l
-}
-
-# preferred terminal emulator
-set $term kitty
-
-# Application launcher
-# Note: pass the final command to swaymsg so that the resulting window can be opened
-# on the original workspace that the command was run on.
-set $run_menu rofi -show drun --sorting-method fzf | xargs swaymsg exec --
-
+seat seat0 xcursor_theme breeze_cursors 24
 
 ### Output configuration
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 # Example configuration:
 #  output HDMI-A-1 resolution 1920x1080 position 1920,0
-output * bg $HOME/Pictures/Wallpapers/Sunset-Of-The-Gods_by_Isaac-Sloan.jpg fill
-# output DP-1 bg $HOME/Pictures/Wallpapers/mountain-unsplash-6-small.jpg fill
-output "Unknown HP E243 CNK8491GW1" {
-  pos 0 0 
-  bg $HOME/Pictures/Wallpapers/mountain-unsplash-6-small.jpg fill
+
+output {
+  * bg $glacier_wallpaper fill
+
+  $laptop_output {
+    pos 0 0 
+  }
+
+  $home_monitor {
+    pos 1920 0 
+  }
+
+  $work_monitor {
+    pos -1920 0
+  }
 }
+# output * bg $lightning_wallpaper fill
+# output * bg $glacier_wallpaper fill
+
+# output $laptop_output {
+#   pos 0 0 
+# }
+
+# output $home_monitor {
+#   pos 1920 0 
+# }
+
+# output $work_monitor {
+#   pos -1920 0
+# }
 
 ### Idle configuration
 # Example configuration:
@@ -91,6 +138,7 @@ exec_always swaymsg input type:touchpad {
 exec_always swaymsg input type:keyboard {
   repeat_delay 225
   repeat_rate  60
+  xkb_options ctrl:nocaps
 }
 
 
@@ -108,31 +156,25 @@ bar {
   status_command while $HOME/.config/sway/bar.py; do sleep 10; done
   colors {
     # format: element <border> <background> <text>
-    statusline #ffffff
+    statusline #dcedec
     background #32323255
-    inactive_workspace #32323200 #32323200 #5c5c5c
+    inactive_workspace #32323200 #32323200 #acacac
     binding_mode #32323200 #32323200 #dcedec
   }
 }
 
-set {
-  $ws_browser "1: "
-  $ws_term    "2: "
-  $ws_work    "3: "
-}
 
-workspace $ws_browser output eDP-1
-workspace $ws_term    output DP-1
-workspace $ws_work    output eDP-1
-workspace 5           output DP-1
-workspace 6           output DP-1
-workspace 7           output DP-1
-workspace 8           output DP-1
-workspace 9           output DP-1
-workspace 10          output DP-1
+workspace $ws_browser output $laptop_output
+workspace $ws_term    output $secondary_output
+workspace $ws_work    output $laptop_output
+workspace 5           output $secondary_output
+workspace 6           output $secondary_output
+workspace 7           output $secondary_output
+workspace 8           output $secondary_output
+workspace 9           output $secondary_output
+workspace 10          output $secondary_output
 
 ### Inlcude other files with config
-set $mode_default "default"
 
 include { 
   ./binds.config
@@ -145,7 +187,7 @@ include {
 ### Programs to execute
 exec_always dunst
 # Notifies on volume changes
-exec vol_subscribe
+exec_always $HOME/.local/bin/vol_subscribed
 exec gammastep
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 exec "systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP"
