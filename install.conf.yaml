@@ -94,6 +94,8 @@
       
     ~/.config/lvim:
 
+    ~/.config/wezterm:
+
     "~/.config/pgcli/config":
       path: pgcli/config
 
