@@ -87,3 +87,11 @@ To get libinput working after startup, run
 ```sh
 libinput-gestures-setup stop desktop autostart start
 ```
+
+### Cursor theme in wayland and flatpak
+[command below](https://github.com/flatpak/flatpak/issues/709#issuecomment-741883444)
+```bash
+flatpak --user override --filesystem=/home/$USER/.icons/:ro
+```
+
+[General cursor stuff in arch wiki](https://wiki.archlinux.org/title/Cursor_themes)
