@@ -7,6 +7,9 @@ IO.puts(
 # Editor to open code in using `open` function
 System.put_env("ELIXIR_EDITOR", "kitty --execute #{System.fetch_env!("EDITOR")} __FILE__ &")
 
+# Prevent dbg() from adding a breakpoint and dropping into pry
+Application.put_env(:elixir, :dbg_callback, {Macro, :dbg, []})
+
 IEx.configure(
   colors: [
     syntax_colors: [
@@ -32,49 +35,33 @@ IEx.configure(
       "(#{ANSI.yellow()}%node#{ANSI.reset()}) " <>
       "[#{ANSI.magenta()}#{ANSI.reset()}" <>
       "#{ANSI.cyan()}%counter#{ANSI.reset()}]",
-  history_size: 80,
+  history_size: 200,
   inspect: [
     charlists: :as_lists,
     pretty: true,
-    limit: 30,
+    limit: 50,
     width: 80
   ],
   width: 80
 )
 
-dwarves = [
-  "Fili",
-  "Kili",
-  "Oin",
-  "Gloin",
-  "Thorin",
-  "Dwalin",
-  "Balin",
-  "Bifur",
-  "Bofur",
-  "Bombur",
-  "Dori",
-  "Nori",
-  "Ori"
-]
-
-fellowship = %{
-  hobbits: ["Frodo", "Samwise", "Merry", "Pippin"],
-  humans: ["Aragorn", "Boromir"],
-  dwarves: ["Gimli"],
-  elves: ["Legolas"],
-  wizards: ["Gandolf"]
-}
-
 defmodule MyHelpers do
   def cl do
     IEx.Helpers.clear()
   end
+
+  def ll do
+    IEx.Helpers.clear()
+  end
+
+  @doc """
+  Shortcut for:
+    `IEx.Helpers.recompile()`
+  """
   def rc do
     IEx.Helpers.recompile()
   end
 end
-
 
 import MyHelpers
 require Integer
