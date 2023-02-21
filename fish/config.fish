@@ -2,6 +2,7 @@ starship init fish | source
 source ~/.config/nnn/nnn_env_vars
 source ~/.config/fish/colors/fish_tokyonight_storm.fish
 
+source ~/.config/fish/abbr.fish
 
 function fish_user_key_bindings
     # Execute this once per mode that emacs bindings should be used in
