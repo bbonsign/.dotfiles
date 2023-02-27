@@ -94,7 +94,7 @@ abbr -a -- gpr 'git pull --rebase'
 abbr -a -- nv nvim
 abbr -a -- gch 'git checkout'
 abbr -a -- lb libinput-gestures
-abbr -a -- nf neofetch
+abbr -a -- :nf neofetch
 abbr -a -- dce 'docker compose exec'
 abbr -a -- gcm 'git commit -m'
 abbr -a -- :pwd 'pwd | pb'
