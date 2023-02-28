@@ -52,6 +52,7 @@ lvim.keys.normal_mode["zf"] = "z="
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
 local _, actions = pcall(require, "telescope.actions")
+lvim.builtin.treesitter.playground.enable = true
 lvim.builtin.telescope.defaults.mappings = {
 	-- for input mode
 	i = {

@@ -126,4 +126,5 @@ abbr -a -- pmr 'pnpm run'
 abbr -a -- :ld 'l --only-dirs'
 abbr -a -- pmrd 'pnpm run dev'
 abbr -a -- pyhton python
+abbr -a -- ids 'cat seeds.txt | fzf | awk \'{print $2}\' | wl-copy'
 abbr -a -- ripy ipython\ --ipython-dir\ .ipython/\ --profile=\(pwd\ \|\ awk\ -F\ \"/\"\ \'\{print\ \$NF\}\'\)

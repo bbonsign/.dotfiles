@@ -46,13 +46,18 @@ set -xg MANPAGER 'lvim +Man!'
 
 set -xg FZF_DEFAULT_COMMAND "fd --color always --no-ignore --follow --ignore-file '$HOME/.config/fd/ignore'"
 set -xg FZF_DEFAULT_OPTS "--ansi
+                          --cycle
                           --layout=reverse
                           --height=70%
                           --pointer='⦿'
                           --prompt=' '
-                          --color='pointer:#599fd8'
                           --preview-window=right:65%
-                          --bind=ctrl-u:preview-up,ctrl-d:preview-down,ctrl-space:toggle-preview"
+                          --bind=ctrl-u:preview-up,ctrl-d:preview-down,ctrl-space:toggle-preview
+                          --color=fg:#c0caf5,bg:#1a1b26,hl:#bb9af7
+                          --color=fg+:#c0caf5,bg+:#1a1b26,hl+:#7dcfff
+                          --color=info:#7aa2f7,prompt:#7dcfff,pointer:#7dcfff
+                          --color=marker:#9ece6a,spinner:#9ece6a,header:#9ece6a
+                          "
 set -xg FZF_CTRL_R_OPTS "--preview 'echo {}' --preview-window up:10:hidden:wrap"
 set -xg FZF_ALT_C_COMMAND "$FZF_DEFAULT_COMMAND --type d"
 set fzf_preview_dir_cmd 'exa --all --color=always --tree --level 2'
