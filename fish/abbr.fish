@@ -48,6 +48,7 @@ abbr -a -- ga 'git add -A'
 abbr -a -- :bma 'pwd >> ~/.bookmarks'
 abbr -a -- :po poetry
 abbr -a -- pmrf 'pnpm run format'
+abbr -a -- pmrg 'pnpm run generate-client'
 abbr -a -- :dev 'export AWS_PROFILE=dev_qlair'
 abbr -a -- :sand 'export AWS_PROFILE=sandbox'
 abbr -a -- gp 'git pull'
