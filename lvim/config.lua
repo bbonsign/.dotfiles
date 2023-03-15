@@ -46,6 +46,7 @@ lvim.keys.normal_mode["[e"] = ":lua vim.diagnostic.goto_prev()<cr>"
 lvim.keys.normal_mode["]g"] = ":Gitsigns next_hunk<cr>"
 lvim.keys.normal_mode["[g"] = ":Gitsigns prev_hunk<cr>"
 lvim.keys.normal_mode["zf"] = "z="
+lvim.keys.normal_mode["<space>lR"] = ":LspRestart<cr>"
 -- override a default keymapping
 -- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
 
@@ -167,9 +168,8 @@ lvim.builtin.cmp.formatting = {
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
-	{ command = "black", filetypes = { "elixir", "heex" } },
+	-- { command = "black", filetypes = { "elixir", "heex" } },
 	{ command = "black", filetypes = { "python" } },
-	{ command = "isort", filetypes = { "python" } },
 	{ command = "isort", args = { "--profile", "black" }, filetypes = { "python" } },
 	{
 		--     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
