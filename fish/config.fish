@@ -1,4 +1,3 @@
-starship init fish | source
 source ~/.config/nnn/nnn_env_vars
 source ~/.config/fish/abbr.fish
 
@@ -6,21 +5,21 @@ source ~/.config/fish/colors/fish_tokyonight_night.fish
 # bgcolor of the current tab completion selection
 set fish_color_search_match --background=4b719c
 
+# starship init fish | source
+# set -g async_prompt_functions _pure_prompt_git
 
 function fish_user_key_bindings
     # Execute this once per mode that emacs bindings should be used in
-    fish_default_key_bindings -M insert
+    # fish_default_key_bindings -M insert
 
     # Then execute the vi-bindings so they take precedence when there's a conflict.
     # Without --no-erase fish_vi_key_bindings will default to
     # resetting all bindings.
     # The argument specifies the initial mode (insert, "default" or visual).
-    fish_vi_key_bindings --no-erase insert
+    # fish_vi_key_bindings --no-erase insert
 
     fzf_key_bindings &>/dev/null
-    fzf_configure_bindings --variables=\e\cv &>/dev/null
-    fzf_configure_bindings --git_log=\e\cg &>/dev/null
-    fzf_configure_bindings --directory=\ct &>/dev/null
+    fzf_configure_bindings --variables=\e\cv --git_log=\e\cg --directory=\ct &>/dev/null
 end
 
 # Emulates vim's cursor shape behavior
@@ -38,7 +37,7 @@ set -xg EDITOR lvim
 set -xg VISUAL lvim
 # CTRL-x opens EDITOR for editing long commands (C-x C-x in tmux)
 # Note: Alt-e and Alt-v also open EDITOR for editing commands
-bind \cx edit_command_buffer
+# bind \cx edit_command_buffer
 
 # open man pages in neovim
 set -xg MANPAGER 'lvim +Man!'
@@ -77,7 +76,7 @@ else
 end
 
 # pipenv completions: https://pipenv.pypa.io/en/latest/advanced/#shell-completion
-eval (env _PIPENV_COMPLETE=fish_source pipenv)
+# eval (env _PIPENV_COMPLETE=fish_source pipenv)
 
 # tabtab source for packages
 # uninstall by removing these lines
@@ -85,3 +84,8 @@ eval (env _PIPENV_COMPLETE=fish_source pipenv)
 
 
 set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"
+
+# pnpm
+set -gx PNPM_HOME "/home/bbonsign/.local/share/pnpm"
+set -gx PATH "$PNPM_HOME" $PATH
+# pnpm end
