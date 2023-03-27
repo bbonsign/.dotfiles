@@ -6,7 +6,6 @@ filled in as strings with either
 a global executable or a path to
 an executable
 ]]
-
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save = false
@@ -55,18 +54,18 @@ lvim.keys.normal_mode["<space>lR"] = ":LspRestart<cr>"
 local _, actions = pcall(require, "telescope.actions")
 lvim.builtin.treesitter.playground.enable = true
 lvim.builtin.telescope.defaults.mappings = {
-	-- for input mode
-	i = {
-		["<C-j>"] = actions.move_selection_next,
-		["<C-k>"] = actions.move_selection_previous,
-		["<C-n>"] = actions.cycle_history_next,
-		["<C-p>"] = actions.cycle_history_prev,
-	},
-	-- for normal mode
-	n = {
-		["<C-j>"] = actions.move_selection_next,
-		["<C-k>"] = actions.move_selection_previous,
-	},
+  -- for input mode
+  i = {
+    ["<C-j>"] = actions.move_selection_next,
+    ["<C-k>"] = actions.move_selection_previous,
+    ["<C-n>"] = actions.cycle_history_next,
+    ["<C-p>"] = actions.cycle_history_prev,
+  },
+  -- for normal mode
+  n = {
+    ["<C-j>"] = actions.move_selection_next,
+    ["<C-k>"] = actions.move_selection_previous,
+  },
 }
 lvim.builtin.telescope.defaults.layout_config.width = 0.95
 
@@ -79,16 +78,16 @@ lvim.builtin.indentlines.options.enabled = false
 
 lvim.builtin.lualine.options.globalstatus = true
 lvim.builtin.lualine.sections.lualine_c = {
-	{
-		"filename",
-		path = 1,
-		symbols = {
-			modified = " ", -- Text to show when the file is modified.
-			readonly = " ", -- Text to show when the file is non-modifiable or readonly.
-			unnamed = "[No Name]", -- Text to show for unnamed buffers.
-			newfile = "[New]", -- Text to show for new created file before first writting
-		},
-	},
+  {
+    "filename",
+    path = 1,
+    symbols = {
+      modified = " ", -- Text to show when the file is modified.
+      readonly = " ", -- Text to show when the file is non-modifiable or readonly.
+      unnamed = "[No Name]", -- Text to show for unnamed buffers.
+      newfile = "[New]", -- Text to show for new created file before first writting
+    },
+  },
 }
 
 lvim.builtin.telescope.defaults.path_display = { "truncate" }
@@ -99,21 +98,21 @@ lvim.builtin.nvimtree.setup.renderer.icons.show.git = true
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
-	"bash",
-	"c",
-	"elixir",
-	"erlang",
-	"javascript",
-	"json",
-	"lua",
-	"python",
-	"typescript",
-	"tsx",
-	"css",
-	-- "rust",  -- use rust-tools insteadd
-	"svelte",
-	"yaml",
-	"nix",
+  "bash",
+  "c",
+  "elixir",
+  "erlang",
+  "javascript",
+  "json",
+  "lua",
+  "python",
+  "typescript",
+  "tsx",
+  "css",
+  -- "rust",  -- use rust-tools insteadd
+  "svelte",
+  "yaml",
+  "nix",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -121,7 +120,7 @@ lvim.builtin.treesitter.highlight.enable = true
 lvim.builtin.treesitter.rainbow.enable = true
 
 lvim.builtin.cmp.formatting = {
-	format = require("tailwindcss-colorizer-cmp").formatter,
+  format = require("tailwindcss-colorizer-cmp").formatter,
 }
 
 -- generic LSP settings
@@ -168,18 +167,18 @@ lvim.builtin.cmp.formatting = {
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require("lvim.lsp.null-ls.formatters")
 formatters.setup({
-	-- { command = "black", filetypes = { "elixir", "heex" } },
-	{ command = "black", filetypes = { "python" } },
-	{ command = "isort", args = { "--profile", "black" }, filetypes = { "python" } },
-	{
-		--     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-		command = "prettier",
-		--     ---@usage arguments to pass to the formatter
-		--     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-		--     extra_args = { "--print-with", "100" },
-		--     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-		filetypes = { "typescript", "typescriptreact" },
-	},
+  -- { command = "black", filetypes = { "elixir", "heex" } },
+  { command = "black", filetypes = { "python" } },
+  { command = "isort", args = { "--profile", "black" }, filetypes = { "python" } },
+  {
+    --     -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+    command = "prettier",
+    --     ---@usage arguments to pass to the formatter
+    --     -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+    --     extra_args = { "--print-with", "100" },
+    --     ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+    filetypes = { "typescript", "typescriptreact" },
+  },
 })
 
 -- -- set additional linters

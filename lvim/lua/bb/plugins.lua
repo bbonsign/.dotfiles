@@ -64,6 +64,7 @@ M.setup = function()
       event = "CursorMoved",
       config = function()
         vim.g.matchup_matchparen_offscreen = { method = "popup" }
+        vim.g.matchup_matchpref = { html = { tagnameonly = 1 } }
       end,
     },
     -- { "folke/tokyonight.nvim" },  -- default in lunarvim now
