@@ -46,6 +46,7 @@ set -xg MANPAGER 'lvim +Man!'
 set -xg FZF_DEFAULT_COMMAND "fd --color always --no-ignore --follow --ignore-file '$HOME/.config/fd/ignore'"
 set -xg FZF_DEFAULT_OPTS "--ansi
                           --cycle
+                          --border
                           --layout=reverse
                           --height=70%
                           --pointer='⦿'
