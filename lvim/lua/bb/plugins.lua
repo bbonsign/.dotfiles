@@ -5,7 +5,7 @@ M.setup = function()
   lvim.plugins = {
 
     -- { "mhanberg/elixir.nvim",
-    --   requires = { "nvim-lua/plenary.nvim" },
+    --   dependencies = { "nvim-lua/plenary.nvim" },
     --   config = function()
     --     require("elixir").setup()
     --   end },
@@ -33,15 +33,15 @@ M.setup = function()
 
     { "whatyouhide/vim-textobj-xmlattr",
       event = "BufRead",
-      requires = "kana/vim-textobj-user"
+      dependencies = "kana/vim-textobj-user"
     },
     { "jceb/vim-textobj-uri",
       event = "BufRead",
-      requires = "kana/vim-textobj-user"
+      dependencies = "kana/vim-textobj-user"
     },
     { "Julian/vim-textobj-variable-segment",
       event = "BufRead",
-      requires = "kana/vim-textobj-user"
+      dependencies = "kana/vim-textobj-user"
     },
     { "mbbill/undotree" },
     { "ojroques/nvim-bufdel",
@@ -71,7 +71,7 @@ M.setup = function()
     {
       "folke/trouble.nvim",
       cmd      = "TroubleToggle",
-      requires = "folke/lsp-colors.nvim"
+      dependencies = "folke/lsp-colors.nvim"
     },
     -- {
     --   "folke/zen-mode.nvim",
@@ -229,7 +229,7 @@ M.setup = function()
     --       },
     --     }
     --   end,
-    --   requires = "nvim-lua/plenary.nvim",
+    --   dependencies = "nvim-lua/plenary.nvim",
     -- },
     -- {
     --   "sindrets/diffview.nvim",
@@ -290,13 +290,13 @@ M.setup = function()
       config = function()
         require('neogen').setup {}
       end,
-      requires = "nvim-treesitter/nvim-treesitter",
+      dependencies = "nvim-treesitter/nvim-treesitter",
       -- Uncomment next line if you want to follow only stable versions
       -- tag = "*"
     },
     {
       "AckslD/nvim-neoclip.lua",
-      requires = {
+      dependencies = {
         { 'kkharji/sqlite.lua',           module = 'sqlite' },
         -- you'll need at least one of these
         { 'nvim-telescope/telescope.nvim' },
@@ -356,7 +356,7 @@ M.setup = function()
     },
     {
       'kosayoda/nvim-lightbulb',
-      requires = 'antoinemadec/FixCursorHold.nvim',
+      dependencies = 'antoinemadec/FixCursorHold.nvim',
       config = function()
         require('nvim-lightbulb').setup({ autocmd = { enabled = true } })
       end
@@ -364,7 +364,7 @@ M.setup = function()
 
     -- {
     --   'simrat39/rust-tools.nvim',
-    --   requires = 'neovim/nvim-lspconfig',
+    --   dependencies = 'neovim/nvim-lspconfig',
     --   config = function()
 
     --     local rt = require("rust-tools")
@@ -383,7 +383,7 @@ M.setup = function()
 
     -- {
     --   "SmiteshP/nvim-navic",
-    --   requires = "neovim/nvim-lspconfig"
+    --   dependencies = "neovim/nvim-lspconfig"
     -- },
   }
 end
