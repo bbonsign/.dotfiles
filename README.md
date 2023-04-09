@@ -95,3 +95,10 @@ flatpak --user override --filesystem=/home/$USER/.icons/:ro
 ```
 
 [General cursor stuff in arch wiki](https://wiki.archlinux.org/title/Cursor_themes)
+
+### pacman packges
+See: [https://github.com/bruhtus/package-backup](https://github.com/bruhtus/package-backup)
+
+
+### MsTeams in Sway
+Copy `./teams.desktop` to `~/.local/share/applications` and `./microsoft-teams-2019.png` to `~/.local/share/icons/hicolor/512x512/apps/microsoft-teams-2019.png `

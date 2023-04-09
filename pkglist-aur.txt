@@ -1,0 +1,9 @@
+1password
+asdf-vm
+epson-inkjet-printer-escpr
+manjaro-firmware
+rofi-lbonn-wayland-git
+wev
+wxgtk-common-dev
+wxgtk2-dev
+wxgtk3-dev
