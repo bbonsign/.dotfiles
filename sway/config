@@ -59,8 +59,9 @@ set {
   $home_monitor "Dell Inc. DELL P2419H BTZ7Q33"
   $work_monitor "Unknown HP E243 CNK8491GW1" 
 
-  $glacier_wallpaper   $HOME/.dotfiles/wallpapers/samuel-ferrara-uOi3lg8fGl4-unsplash.jpg
-  $lightning_wallpaper $HOME/Pictures/Wallpapers/Sunset-Of-The-Gods_by_Isaac-Sloan.jpg
+  $glacier_wallpaper    $HOME/.dotfiles/wallpapers/samuel-ferrara-uOi3lg8fGl4-unsplash.jpg
+  $lightning_wallpaper  $HOME/Pictures/Wallpapers/Sunset-Of-The-Gods_by_Isaac-Sloan.jpg
+  $lockscreen_wallpaper $HOME/Pictures/Wallpapers/stsci-h-p1821a-m-1699x2000.png
 }
 
 
