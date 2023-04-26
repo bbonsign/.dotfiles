@@ -22,13 +22,15 @@ function fish_user_key_bindings
     fzf_configure_bindings --variables=\e\cv --git_log=\e\cg --directory=\ct &>/dev/null
 end
 
+fish_user_key_bindings
+
 # Emulates vim's cursor shape behavior
 # Set the normal and visual mode cursors to a block
-set fish_cursor_default block
-set fish_cursor_insert line
-set fish_cursor_replace_one underscore
-set fish_cursor_visual block
-set fish_cursor_visual block
+# set fish_cursor_default block
+# set fish_cursor_insert line
+# set fish_cursor_replace_one underscore
+# set fish_cursor_visual block
+# set fish_cursor_visual block
 
 set -g fish_escape_delay_ms 10
 
@@ -69,11 +71,13 @@ end
 
 set os (uname)
 if test "$os" = "Linux"
-    # source ~/.asdf/asdf.fish
+  # source ~/.asdf/asdf.fish
+  if test -e /opt/asdf-vm/asdf.fish
     source /opt/asdf-vm/asdf.fish
+  end
 else
-    # Mac/homebrew
-    source /usr/local/opt/asdf/libexec/asdf.fish
+  # Mac/homebrew
+  source /usr/local/opt/asdf/libexec/asdf.fish
 end
 
 # pipenv completions: https://pipenv.pypa.io/en/latest/advanced/#shell-completion
@@ -81,7 +85,7 @@ end
 
 # tabtab source for packages
 # uninstall by removing these lines
-[ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
+# [ -f ~/.config/tabtab/fish/__tabtab.fish ]; and . ~/.config/tabtab/fish/__tabtab.fish; or true
 
 
 set -gx SSH_AUTH_SOCK "$XDG_RUNTIME_DIR/ssh-agent.socket"

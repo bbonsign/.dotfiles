@@ -21,11 +21,11 @@
     ~/.gitignore:
 
     ~/.local/bin:
-      if: "[ (uname) = Linux ]"
+      if: "[ $(uname) = Linux ]"
       path: bin/*
 
     # ~/.local/bin/git-clone-bare:
-    #   if: "[ (uname) = Linux ]"
+    #   if: "[ $(uname) = Linux ]"
     #   path: bin/git-clone-bare
 
     ~/.iex.exs:
@@ -48,39 +48,39 @@
       ~/.tldrrc:
 
     ~/.config/dunst:
-      if: "[ (uname) = Linux ]"
+      if: "[ $(uname) = Linux ]"
 
     ~/.config/awesome:
-      if: "[ (uname) = Linux ]"
+      if: "[ $(uname) = Linux ]"
 
     ~/.config/i3:
-      if: "[ (uname) = Linux ]"
+      if: "[ $(uname) = Linux ]"
 
     ~/.config/sway:
-      if: "[ (uname) = Linux ]"
+      if: "[ $(uname) = Linux ]"
 
     ~/.config/swaylock:
-      if: "[ (uname) = Linux ]"
+      if: "[ $(uname) = Linux ]"
 
     ~/.config/hypr:
-      if: "[ (uname) = Linux ]"
+      if: "[ $(uname) = Linux ]"
 
     ~/.config/waybar:
-      if: "[ (uname) = Linux ]"
+      if: "[ $(uname) = Linux ]"
 
     ~/.config/nnn:
 
     ~/.config/i3status:
-      if: "[ (uname) = Linux ]"
+      if: "[ $(uname) = Linux ]"
 
     ~/.config/rofi:
-      if: "[ (uname) = Linux ]"
+      if: "[ $(uname) = Linux ]"
 
     ~/.config/sxhkd:
-      if: "[ (uname) = Linux ]"
+      if: "[ $(uname) = Linux ]"
 
     ~/.config/picom.conf:
-      if: "[ (uname) = Linux ]"
+      if: "[ $(uname) = Linux ]"
 
     ~/.config/kitty: kitty
 
@@ -113,14 +113,15 @@
     ~/.nanorc:
 
     "~/Library/Application Support/Code/User/keybindings.json":
-      if: "[ (uname) = Darwin ]"
+      if: "[ $(uname) = Darwin ]"
       path: vscode/keybindings.json
+
     ~/.config/Code/User/keybindings.json:
-      if: "[ (uname) = Linux ]"
+      if: "[ $(uname) = Linux ]"
       path: vscode/keybindings.json
 
     ~/.config/karabiner:
-      if: "[ (uname) = Darwin ]"
+      if: "[ $(uname) = Darwin ]"
       path: karabiner/*
 
     ~/.config/neofetch/config.conf: neofetch/config.conf
@@ -130,7 +131,6 @@
 
 - create:
     - ~/dev
-    - ~/.vim/undo
 
 - shell:
     - command: fish ./fish/abbr.fish
