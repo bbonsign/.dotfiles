@@ -38,6 +38,8 @@ lvim.keys.normal_mode["<C-l>"] = nil
 
 lvim.keys.term_mode["<C-l>"] = nil
 
+lvim.keys.normal_mode["],"] = ":Telescope buffers<cr>"
+lvim.keys.normal_mode["[,"] = ":Telescope buffers<cr>"
 lvim.keys.normal_mode["ga"] = "^"
 lvim.keys.normal_mode["ge"] = "g_"
 lvim.keys.normal_mode["]e"] = ":lua vim.diagnostic.goto_next()<cr>"
@@ -48,6 +50,7 @@ lvim.keys.normal_mode["zf"] = "z="
 lvim.keys.normal_mode["<space>lR"] = ":LspRestart<cr>"
 -- override a default keymapping
 -- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
+-- lvim.keys.normal_mode["<cr>"] = "*"
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.

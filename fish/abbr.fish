@@ -52,6 +52,7 @@ abbr -a -- pmrg 'pnpm run generate-client'
 abbr -a -- :dev 'export AWS_PROFILE=dev_qlair'
 abbr -a -- :sand 'export AWS_PROFILE=sandbox'
 abbr -a -- gp 'git pull'
+abbr -a -- gpp 'git push'
 abbr -a -- :syu 'sudo pacman -Syu'
 abbr -a -- pd prevd
 abbr -a -- ipy ipython
@@ -129,3 +130,5 @@ abbr -a -- pmrd 'pnpm run dev'
 abbr -a -- pyhton python
 abbr -a -- ids 'cat seeds.txt | fzf --bind \'ctrl-v:execute-silent(echo {2} | wl-copy)+accept,enter:execute-silent(echo {2} | wl-copy)\''
 abbr -a -- ripy ipython\ --ipython-dir\ .ipython/\ --profile=\(pwd\ \|\ awk\ -F\ \"/\"\ \'\{print\ \$NF\}\'\)
+abbr -a -- t tmux
+abbr -a -- cm chezmoi

@@ -14,12 +14,12 @@ M.setup = function()
   map("n", "F", "<cmd>HopPattern<CR>")
   map("n", "S", "<cmd>HopWordCurrentLineAC<CR>")
 
-  map("n", "<CR>", ";")
-  map("n", "<BS>", ",")
+  -- map("n", "<CR>", ";")
+  -- map("n", "<BS>", ",")
 
   -- highlight the visual selection after pressing enter.
-  map("x", "<CR>",
-    [[*y:silent! let searchTerm = '\V'.substitute(escape(@*, '\/'), "\n", '\\n', "g") <bar> let @/ = searchTerm <bar> echo '/'.@/ <bar> call histadd("search", searchTerm) <bar> set hls<cr>]])
+  -- map("x", "<CR>",
+  --   [[*y:silent! let searchTerm = '\V'.substitute(escape(@*, '\/'), "\n", '\\n', "g") <bar> let @/ = searchTerm <bar> echo '/'.@/ <bar> call histadd("search", searchTerm) <bar> set hls<cr>]])
 
   -- Enter command window from noraml mode
   -- note: enter command window with Ctrl-F when already at cmd line

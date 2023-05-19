@@ -55,13 +55,15 @@ M.setup = function()
         map #  <Plug>(asterisk-z#)
         map g* <Plug>(asterisk-gz*)
         map g# <Plug>(asterisk-gz#)
+        nnoremap <cr>  <Plug>(asterisk-z*)
+        vnoremap <cr>  <Plug>(asterisk-z*)
         let g:asterisk#keeppos = 1
        ]]
       end
     },
     {
       "andymass/vim-matchup",
-      event = "CursorMoved",
+      -- event = "CursorMoved",
       config = function()
         vim.g.matchup_matchparen_offscreen = { method = "popup" }
         vim.g.matchup_matchpref = { html = { tagnameonly = 1 } }
